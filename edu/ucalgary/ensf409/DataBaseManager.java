@@ -42,7 +42,7 @@ public class DataBaseManager{
     // PASSWORD = 'ensf409' etc
 
     ////////////////////////// CONSTRUCTORS //////////////////////////
- /**
+    /**
      * Constructor for class DataBaseManager
      *
      * @param inDBURL (String) the DBURL
@@ -55,7 +55,6 @@ public class DataBaseManager{
         this.PASSWORD = inPASSWORD;
     }
    
-
     ////////////////////////  ACCESSORS ///////////////////////////////
 
     /**
@@ -109,9 +108,9 @@ public class DataBaseManager{
     * close() closes the connection to the database and all results
     * @return void 
     */
-    public void close() {
+    public void closeDBConnection() {
         try {
-            results.close(); 
+            // results.close();  // null pointer no results to close yet
             dbConnect.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // print the error message
@@ -121,15 +120,33 @@ public class DataBaseManager{
 
 
 
+
 //////////////////////////////////////////////////////////////////////////////
     /**
      * main method for preliminary object and method testing
      */
     public static void main(String[] args){
 
+        // construct a new Registration object to manage INVENTORY
+        DataBaseManager myJDBC = new DataBaseManager(
+        "jdbc:mysql://localhost/INVENTORY","Marasco","ensf409");
+
+
+        myJDBC.initializeConnection(); // connect to the database 
+
         System.out.println("DataBaseManager!");
+
+
+        // close the connection to the database
+        myJDBC.closeDBConnection(); 
+        // remember to fix all documentation to describe database useage
+        // for each method
     
     
     }// closing brace for method main()
 
 }// closing brace for class DataBaseManager
+
+
+
+////////////////////////// END OF FILE /////////////////////////////////////////

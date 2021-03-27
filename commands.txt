@@ -26,10 +26,10 @@ $ java -cp .;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar;lib/system-rules-1.1
 ########################## WITH J -CONNECTOR ##################################################
 
 ## Build the Furniture Selector
-javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/FurnitureSelector.java
+javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 
 ## Run the Furniture Selector 
-java  -cp .:lib/mysql-connector-java-8.0.23.jar edu.ucalgary.ensf409.FurnitureSelector
+java  -cp .:lib/mysql-connector-java-8.0.23.jar edu.ucalgary.ensf409.DataBaseManager
 
 ############################# TESTING ###################################################
 ## Build All of the Class Files
