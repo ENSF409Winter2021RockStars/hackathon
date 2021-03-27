@@ -43,7 +43,7 @@ public class DataBaseManager{
 
     ////////////////////////// CONSTRUCTORS //////////////////////////
  /**
-     * Constructor for class Registration
+     * Constructor for class DataBaseManager
      *
      * @param inDBURL (String) the DBURL
      * @param inUSERNAME (String) USERNAME
@@ -56,11 +56,80 @@ public class DataBaseManager{
     }
    
 
+    ////////////////////////  ACCESSORS ///////////////////////////////
+
+    /**
+     * Getter for DBURL
+     * @return a String containing the DBURL
+     */
+    public String getDburl(){
+        return this.DBURL;
+    }
+
+    /**
+     * Getter for USERNAME
+     * @return a String containing the USERNAME
+     */
+    public String getUsername(){
+        return this.USERNAME;
+    }
+
+    /**
+     * Getter for PASSWORD
+     * @return a String containing the PASSWORD
+     */
+    public String getPassword(){
+        return this.PASSWORD;
+    }
+///////////////////////////////////////////////////////////////////////////
+
+ //////////////////////  DATABASE METHODS /////////////////////////
+
+    // connects to the MySQL DB
+    /**
+     * initializeConnection sets up the connection to the MySQL or MariaDB
+     * Database using information from the class attributes such as the
+     * DBURL, USERNAME and PASSWORD fields 
+     * @return void returns nothing
+     */
+    public void initializeConnection(){        
+        try{
+            // USE COMPETITION; will be set here in DBURL
+            this.dbConnect = DriverManager.getConnection(this.getDburl().toUpperCase(),
+            this.getUsername(),this.getPassword());
+        
+        } catch (SQLException e) {
+            System.out.println(e.getMessage()); // print the exception 
+            e.printStackTrace(); //print the stack trace
+        }
+    }// closing brace for initializeConection(
+
+    // method to close the DB connection  
+    /**
+    * close() closes the connection to the database and all results
+    * @return void 
+    */
+    public void close() {
+        try {
+            results.close(); 
+            dbConnect.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage()); // print the error message
+            e.printStackTrace();
+        }
+    } // closing brace for method close()
 
 
+
+//////////////////////////////////////////////////////////////////////////////
+    /**
+     * main method for preliminary object and method testing
+     */
     public static void main(String[] args){
 
         System.out.println("DataBaseManager!");
-    }
+    
+    
+    }// closing brace for method main()
 
-}
+}// closing brace for class DataBaseManager
