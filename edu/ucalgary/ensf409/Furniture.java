@@ -13,5 +13,5 @@ public abstract class Furniture{
 
     abstract void print();
 
-    private abstract boolean yntf(String arg);
+    abstract boolean yntf(String arg);
 }

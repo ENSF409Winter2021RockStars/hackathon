@@ -56,12 +56,15 @@ public class CheckInventory{
         for(Furniture temp:matchingFurn){
             temp.print();
         }
+        System.out.println("\n");
         return matchingFurn;
     }
     public static void main(String[] args){
         CheckInventory myDB = new CheckInventory("jdbc:mysql://localhost/inventory","mathew","ensf409");
         myDB.initializeConnection();
-        myDB.selectMatchingFurniture("desk", "Traditional");
-
+        ArrayList<Furniture> matches1 = myDB.selectMatchingFurniture("chair", "Mesh");
+        ArrayList<Furniture> matches2 = myDB.selectMatchingFurniture("desk", "Traditional");
+        ArrayList<Furniture> matches3 = myDB.selectMatchingFurniture("filing", "Small");
+        ArrayList<Furniture> matches4 = myDB.selectMatchingFurniture("lamp", "Desk");
     }
 }

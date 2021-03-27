@@ -9,7 +9,7 @@ public class Lamp extends Furniture{
     }
 
     public void print(){
-        System.out.println(id +" "+ type +" "+ bulb +" "+ base + " " + price +" "+ manuID);
+        System.out.println(id +" "+ type +" "+ base +" "+ bulb + " " + price +" "+ manuID);
     }
 
 
