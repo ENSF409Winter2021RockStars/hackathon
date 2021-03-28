@@ -3,8 +3,8 @@
 // Team: ENSF409 Group 48
 // Author: Mathew Pelletier
 // Creation Date: March 27, 2021
-// Version: 0.02
-// Revision Date: March 27, 2021
+// Version: 0.03
+// Revision Date: March 28, 2021
 //
 // Description: Preliminary class for querying the "inventory" database for specified records
 /////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ public class CheckInventory{
      */
     public void initializeConnection(){
         try{
-            dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            dbConnect = DriverManager.getConnection(DBURL.toUpperCase(), USERNAME, PASSWORD);
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -62,26 +62,26 @@ public class CheckInventory{
     public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
         try{
-            String query = "SELECT * FROM "+category+" WHERE Type = ?";
+            String query = "SELECT * FROM "+category.toUpperCase()+" WHERE Type = ?";
             PreparedStatement myStmt = dbConnect.prepareStatement(query);
             myStmt.setString(1, type);
             results = myStmt.executeQuery();
             while(results.next()){
                 Furniture newFurn;
-                switch(category){
-                    case "chair": 
+                switch(category.toUpperCase()){
+                    case "CHAIR": 
                         newFurn = new Chair(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
                         matchingFurn.add(newFurn);
                         break;
-                    case "desk": 
+                    case "DESK": 
                         newFurn = new Desk(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Top"), results.getString("Drawer"), results.getInt("Price"),results.getString("ManuID"));
                         matchingFurn.add(newFurn);
                         break;
-                    case "filing": 
+                    case "FILING": 
                         newFurn = new Filing(results.getString("ID"),results.getString("Type"),results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"), results.getInt("Price"),results.getString("ManuID"));
                         matchingFurn.add(newFurn);
                         break;
-                    case "lamp": 
+                    case "LAMP": 
                         newFurn = new Lamp(results.getString("ID"),results.getString("Type"),results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),results.getString("ManuID"));
                         matchingFurn.add(newFurn);
                         break;
@@ -91,20 +91,39 @@ public class CheckInventory{
         } catch(SQLException e){
             e.printStackTrace();
         }
-        // Print the arraylist for quick verification REMOVE 
-        for(Furniture temp:matchingFurn){
-            temp.print();
-        }
-        System.out.println("\n");
+
         return matchingFurn;
     }
     public static void main(String[] args){
         // chhange arguments to match your database
-        CheckInventory myDB = new CheckInventory("jdbc:mysql://localhost/inventory","mathew","ensf409");
+        String username="mathew"; // change back to mathew after test is done
+        String password="ensf409";
+        
+        CheckInventory myDB = new CheckInventory("jdbc:mysql://localhost/inventory",username,password);
+
         myDB.initializeConnection();
         ArrayList<Furniture> matches1 = myDB.selectMatchingFurniture("chair", "Mesh");
         ArrayList<Furniture> matches2 = myDB.selectMatchingFurniture("desk", "Traditional");
         ArrayList<Furniture> matches3 = myDB.selectMatchingFurniture("filing", "Small");
         ArrayList<Furniture> matches4 = myDB.selectMatchingFurniture("lamp", "Desk");
+
+
+        ///////////// SEE WHAT THE MATCHES WERE  /////////////
+        // debug printout
+        for (Furniture furn : matches1){
+            furn.print();
+        }
+        // debug printout
+        for (Furniture furn : matches2){
+            furn.print();
+        }        
+        // debug printout
+        for (Furniture furn : matches3){
+            furn.print();
+        }
+        // debug printout
+        for (Furniture furn : matches4){
+            furn.print();
+        }
     }
 }
