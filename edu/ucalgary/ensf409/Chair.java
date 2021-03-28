@@ -43,7 +43,8 @@ public class Chair extends Furniture{
      * method to print class fields to screen space separated
      */
     public void print(){
-        System.out.println(id +" "+ type +" "+ legs +" "+ arms +" "+ seat +" "+ cushion +" "+ price +" "+ manuID);
+        System.out.println(this.getID() +" "+ this.getType() +" "+ legs +" "+
+         arms +" "+ seat +" "+ cushion +" "+ this.getPrice() +" "+ this.getManuID());
     }
        
 }

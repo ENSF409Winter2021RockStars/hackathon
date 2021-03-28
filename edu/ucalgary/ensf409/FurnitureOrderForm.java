@@ -3,7 +3,7 @@
 // Team: ENSF409 Group 48
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.001
+// Version: 0.002
 // Revision Date: March 27, 2021
 //
 // Description: A class containing a Furniture Order Form 

@@ -45,7 +45,9 @@ public class Filing extends Furniture{
      * method to print class fields to screen space separated
      */
     public void print(){
-        System.out.println(id +" "+ type +" "+ rails +" "+ drawers +" "+ cabinet +" "+ price +" "+ manuID);
+        System.out.println(this.getID() +" "+ this.getType() +
+        " "+ rails +" "+ drawers +" "+ cabinet +" "
+        + this.getPrice()+" "+ this.getManuID());
     }
 
 } 

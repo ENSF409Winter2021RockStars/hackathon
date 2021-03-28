@@ -105,24 +105,24 @@ public String getFileName(){
   }
 
   /**
-   * 
-   * @param faculty
+   * Setter for the Faculty 
+   * @param faculty (String) represents the requesting faculty
    */
   public void setFaculty(String faculty){
       this.faculty = faculty;
   }
 
   /**
-   * 
-   * @param contact
+   * Setter for the contact person
+   * @param contact (String) representing the name of the purchase contact
    */
   public void setContact(String contact){
       this.contact = contact;
   }
 
   /**
-   * 
-   * @param date
+   * Setter for the date
+   * @param date (String) representing the date of the purchase order
    */
   public void setDate(String date){
       this.date = date;
@@ -137,15 +137,105 @@ public String getFileName(){
  */
 public void createFile(FurnitureOrderForm form){
 
-    /// open a file
+    File directory = new File(DIR);
+    BufferedWriter file = null;
+    String tmp=null;
 
-    ///  exception handling
+    // FileName must have been specified
+    if (this.fileName == null) {
 
-    /// Try to write out the form
+      // This line had an error there was no comma
+      // line below has a + maybe do that
+      System.err.printf(PREFIX + "FileName must be specified with setter or method call.%n");
+      System.exit(1);
+    }
+ 
+    // Create directory if it doesn't exist; if it does exist, make sure it is a directory
+    try {
+      if (! directory.exists()) {
+        directory.mkdir();
+      } else {
+        if (! directory.isDirectory()) {
+          System.err.printf(PREFIX + "file %s exists but is not a directory.%n", DIR);
+          System.exit(1);
+        }
+      }
+      this.cleanUp(); // Delete any existing file
+    }
+    // Exception handling
+    catch(Exception e) {
+      System.err.printf(PREFIX + "unable to create directory %s.%n", DIR);
+      System.err.println(e.getMessage());
+      System.exit(1);
+    }
 
+    try {
 
-    /// exception handling 
+      // fix this
+      // I don't like the nesting here, Constructs a BufferedWriter on a FileWriter
+      // opened on the fileName (this is to not require closing the FileWriter object)
+      // which is lazy and confusing 
+      file = new BufferedWriter(new FileWriter(this.fileName) );
+  
+      // Write the header
+        tmp="Furniture Order Form"; // file header
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        file.newLine(); // write another newLine
+      
+        // write the Faculty info
+        tmp="Contact: "+this.getContact();
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
 
+        // write the Date info
+        tmp="Date: "+this.getDate();
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+
+        file.newLine();// make a newLine
+
+        //Original Request: mesh chair, 1
+        tmp="Original Request: "+form.getClientRequest().getType()+
+                            ", "+form.getClientRequest().getQuantity();
+
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+                    
+        file.newLine();// make a newLine
+               
+        //Items Ordered
+        //ID: C9890
+        //ID: C0942
+        
+        tmp="Items Ordered\n";
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+      
+        // loop over the furniture array list 
+        for (int k = 0; k< form.getFurnitureList().size(); k++){
+
+           tmp="ID: "+ form.getFurnitureList().get(k).getID();
+           file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+           file.newLine(); // write a newline at the end of each string from the LinkedList      
+        }
+        
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+            
+        //Total Price: $150
+        tmp="Total Price: $"+form.getCost();
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+            
+    }
+
+    catch (Exception e) {
+      System.err.println(PREFIX + "I/O error opening/writing file.");
+      System.err.println(e.getMessage());
+      closeWriter(file);
+      System.exit(1);
+    }
+    
+    closeWriter(file);
     return;
 }
 
@@ -238,6 +328,21 @@ public void createFile(FurnitureOrderForm form){
       // added an integer exit value 
       System.exit(-1);
     }
+  }
+
+/**
+ * cleanUp() calls cleanup on the path/filename 
+ * probably to delete the file
+ */
+public void cleanUp() {
+    // get the absolute path of the cwd
+    String absolute = System.getProperty("user.dir");
+    // take the absolute path make it a File object 
+    File abs = new File(absolute); // this had a typo 
+    // append this to the fileName
+    File path = new File(abs, this.fileName);
+    // delete the fileName it and all subdirectories and files recursively 
+    cleanUp(path);
   }
 
 

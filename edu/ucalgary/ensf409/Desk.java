@@ -44,6 +44,8 @@ public class Desk extends Furniture{
      * method to print class fields to screen space separated
      */
     public void print(){
-        System.out.println(id +" "+ type +" "+ legs +" "+ top +" "+ drawer +" "+ price +" "+ manuID);
+        System.out.println(this.getID() +" "+ this.getType() +
+        " "+ legs +" "+ top +" "+ drawer +" "+ this.getPrice() +
+        " "+ this.getManuID());
     }
 } 

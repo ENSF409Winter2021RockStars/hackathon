@@ -42,7 +42,8 @@ public class Lamp extends Furniture{
      * method to print class fields to screen space separated
      */
     public void print(){
-        System.out.println(id +" "+ type +" "+ base +" "+ bulb + " " + price +" "+ manuID);
+        System.out.println(this.getID() +" "+ this.getType() +" "+ base 
+        +" "+ bulb + " " + this.getPrice() +" "+ this.getManuID());
     }
 
 }
