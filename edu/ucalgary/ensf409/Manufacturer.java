@@ -87,8 +87,8 @@ public String getProvince(){
  *@return (String) a representation fo the attribures in the class 
  */
 public String toString(){
-    return this.manuID + " " + this.name+ " " 
-    + this.phone + " " + this.province+" ";
+    return this.getManuID() + " " + this.getName()+ " " 
+    + this.getPhone() + " " + this.getProvince();
 }
 
 /**

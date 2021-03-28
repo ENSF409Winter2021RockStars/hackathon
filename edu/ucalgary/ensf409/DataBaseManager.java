@@ -12,6 +12,7 @@
 package edu.ucalgary.ensf409;
 import java.sql.*;
 import java.lang.IllegalArgumentException;
+import java.util.ArrayList;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
@@ -110,16 +111,106 @@ public class DataBaseManager{
     */
     public void closeDBConnection() {
         try {
-            // results.close();  // null pointer no results to close yet
             dbConnect.close();
+            
+            if ( this.results !=null){
+                this.results.close(); // close the results of the queries
+            }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // print the error message
             e.printStackTrace();
         }
     } // closing brace for method close()
 
+    /**
+     * selectMatchingFurniture checks a specified database table for all records with specified Type and returns as an ArrayList
+     * @param category database table to query (CHAIR,DESK,FILING,LAMP)
+     * @param type condition for rows to query (ie. in CHAIR: Task,Mesh,Executive,Ergonomic,Kneeling)
+     * @return ArrayList of objects, of the specified category with specified type
+     */
+    public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
+        ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
+        try{
+            String query = "SELECT * FROM "+category.toUpperCase()+" WHERE Type = ?";
+            PreparedStatement myStmt = dbConnect.prepareStatement(query);
+            myStmt.setString(1, type);
+            results = myStmt.executeQuery();
+            while(results.next()){
+                Furniture newFurn; // Furniture pointer 
+                switch(category.toUpperCase()){
+                    case "CHAIR": 
+                        newFurn = new Chair(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
+                        matchingFurn.add(newFurn);
+                        break;
+                    case "DESK": 
+                        newFurn = new Desk(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Top"), results.getString("Drawer"), results.getInt("Price"),results.getString("ManuID"));
+                        matchingFurn.add(newFurn);
+                        break;
+                    case "FILING": 
+                        newFurn = new Filing(results.getString("ID"),results.getString("Type"),results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"), results.getInt("Price"),results.getString("ManuID"));
+                        matchingFurn.add(newFurn);
+                        break;
+                    case "LAMP": 
+                        newFurn = new Lamp(results.getString("ID"),results.getString("Type"),results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),results.getString("ManuID"));
+                        matchingFurn.add(newFurn);
+                        break;
+                }
+            }
+            myStmt.close(); // close the statement 
+        } 
+        
+        catch(SQLException e){
+            System.out.println(e.getMessage()); // print the Exception message
+            e.printStackTrace(); // print the stack trace 
+        }
+            //DEBUG PRINT OUT OF PULLED FURNITURE ITEMSX
+            // Print the arraylist for quick verification REMOVE 
+            //for(Furniture temp:matchingFurn){
+            //    temp.print();
+            //}
+            //System.out.println("\n");
+        return matchingFurn; // return the ArrayList of Furniture which match the request 
+    }
 
+    /**
+     * retrieveManufacturers() is a method to extract all of the manufacturer info 
+     * from the manufacturer table in INVENTORY and populate Manufacturer objects and store them
+     * into an array list.  Retrieves all of the manufacturers.
+     * @return (ArrayList<Manufacturer>) an array list of manufacturers
+     */
+    public ArrayList<Manufacturer> retrieveManufacturers(){
+        // make a container to hold the manufactureres
+        ArrayList<Manufacturer> manufactList = new ArrayList<Manufacturer>() ; 
 
+        // the query string
+        String query = "SELECT * FROM MANUFACTURER";
+        try{
+            // make a Statement to Query the DB
+            Statement myStmt = dbConnect.createStatement();    
+            // execute the query store in results 
+            this.results = myStmt.executeQuery(query);
+                
+            Manufacturer tempMan=null; // make a manufacturer pointer
+            // results is itereable 
+            while (results.next()){
+                // construct a Manufacture object from the table row data
+                tempMan = new Manufacturer(results.getString("ManuID"), 
+                results.getString("Name"),results.getString("Phone"),
+                results.getString("Province")); 
+
+                // append it to the manufactList 
+                manufactList.add(tempMan);
+                }
+            myStmt.close();  // close the statement 
+            results.close(); // close the results
+        }
+        catch(SQLException e){ // exception handling
+            System.out.println(e.getMessage()); // print the exception
+            e.printStackTrace(); // print the Stack Trace
+        }
+        return manufactList;
+    }
 
 //////////////////////////////////////////////////////////////////////////////
     /**
@@ -134,7 +225,19 @@ public class DataBaseManager{
         // connect to the database 
         myJDBC.initializeConnection(); 
 
-        System.out.println("DataBaseManager!");
+        // System.out.println("DataBaseManager!");
+
+        // make an array list of manufacturers
+        ArrayList<Manufacturer> manufactList;
+        // grab all of the Manufacturers
+        manufactList = myJDBC.retrieveManufacturers();
+
+        //Manufacturer manu; // Manufacturer pointer
+        // print out the manufacturers 
+        for ( Manufacturer manu : manufactList){
+            manu.print();
+        }
+
 
         // close the connection to the database
         myJDBC.closeDBConnection(); 
