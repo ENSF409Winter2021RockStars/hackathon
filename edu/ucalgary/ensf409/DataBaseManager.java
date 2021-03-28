@@ -217,15 +217,16 @@ public class DataBaseManager{
      * main method for preliminary object and method testing
      */
     public static void main(String[] args){
+        // change these variables for your local installation
+        String username ="Marasco"; 
+        String password = "ensf409";
+        String dbURL="jdbc:mysql://localhost/INVENTORY";
 
         // construct a new Registration object to manage INVENTORY
-        DataBaseManager myJDBC = new DataBaseManager(
-        "jdbc:mysql://localhost/INVENTORY","Marasco","ensf409");
+        DataBaseManager myJDBC = new DataBaseManager(dbURL,username,password);
 
         // connect to the database 
         myJDBC.initializeConnection(); 
-
-        // System.out.println("DataBaseManager!");
 
         // make an array list of manufacturers
         ArrayList<Manufacturer> manufactList;

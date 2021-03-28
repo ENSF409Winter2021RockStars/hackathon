@@ -10,7 +10,7 @@ javac edu/ucalgary/ensf409/FurnitureOrder.java
 javac edu/ucalgary/ensf409/FurnitureOrderForm.java
 javac edu/ucalgary/ensf409/FurnitureOrderFormFile.java
 
-javac -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java
-javac -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
+javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java
+javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 
 ############################## END OF FILE ###############################################
