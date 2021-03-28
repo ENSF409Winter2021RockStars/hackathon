@@ -32,7 +32,7 @@ private Manufacturer[] manufacturers;
 /**
  * 
  */
-public FurniturOrderForm(FurnitureOrder clientRequest){
+public FurnitureOrderForm(FurnitureOrder clientRequest){
     // shallow copy , it might be better to copy construct a
     // new object with equal attriburres as the input parameter/arg
     this.clientRequest = clientRequest;
