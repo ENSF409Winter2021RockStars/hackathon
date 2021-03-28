@@ -93,7 +93,7 @@ public class DataBaseManager{
      */
     public void initializeConnection(){        
         try{
-            // USE COMPETITION; will be set here in DBURL
+            // USE INVENTORY; will be set here in DBURL
             this.dbConnect = DriverManager.getConnection(this.getDburl().toUpperCase(),
             this.getUsername(),this.getPassword());
         
@@ -131,17 +131,15 @@ public class DataBaseManager{
         DataBaseManager myJDBC = new DataBaseManager(
         "jdbc:mysql://localhost/INVENTORY","Marasco","ensf409");
 
-
-        myJDBC.initializeConnection(); // connect to the database 
+        // connect to the database 
+        myJDBC.initializeConnection(); 
 
         System.out.println("DataBaseManager!");
-
 
         // close the connection to the database
         myJDBC.closeDBConnection(); 
         // remember to fix all documentation to describe database useage
         // for each method
-    
     
     }// closing brace for method main()
 

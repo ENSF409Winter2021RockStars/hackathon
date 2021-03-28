@@ -8,6 +8,8 @@
 // Description: Container class for Manufacturer table data
 ////////////////////////////////////////////////////////////
 
+package edu.ucalgary.ensf409;
+
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
  * @version 0.001 03/20/2021
