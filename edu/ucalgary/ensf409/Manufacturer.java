@@ -12,8 +12,8 @@ package edu.ucalgary.ensf409;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.001 03/20/2021
- * @since 0.001 03/19/2021
+ * @version 0.01 03/20/2021
+ * @since 0.01 03/19/2021
  */
 
 /**
@@ -82,9 +82,21 @@ public String getProvince(){
 
 ////////////////////// OTHER //////////////////////////////
 
+/**
+ *toString() is a string representation of the class
+ *@return (String) a representation fo the attribures in the class 
+ */
 public String toString(){
-    return "Manufacturer: "+ this.manuID + " " + this.name+ " " 
+    return this.manuID + " " + this.name+ " " 
     + this.phone + " " + this.province+" ";
+}
+
+/**
+ * print() is a print to console method
+ * prints a String representation of the class to console
+ */
+public void print(){
+    System.out.println("Manufacturer: "+this.toString());
 }
 
 } // closing brace of class Manufacturer
