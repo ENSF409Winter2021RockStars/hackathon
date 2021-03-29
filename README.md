@@ -5,16 +5,29 @@ This will git repo will contain our preliminary UML and some preliminary classes
 
 ##BUILD INSTRUCTIONS
 
+###Linux or MacOS
 `$./build.sh `
+
+### Windows NT
+> build
 
 ## RUN PROGRAM
 
-'$ java -cp .: 
+* first make sure to load the inventory SQL database
 
-java -cp .:lib/mysql-connector-java-8.0.23.jar edu.ucalgary.ensf409.SupplyChainManager
+`$ mysql -u username -p
+mysql> source inventory.sql;
+mysql> quit; `
+
+`java -cp .;lib/mysql-connector-java-8.0.23.jar edu.ucalgary.ensf409.SupplyChainManager`
 
 or type at the console
 
+##Linux or MacOS
 `$ scm`
+
+## Windows NT
+`> scm`
+
 
 
