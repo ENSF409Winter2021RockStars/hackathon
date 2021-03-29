@@ -70,12 +70,25 @@ public class SupplyChainManager{
         System.out.println("___________________________________________");
         System.out.println("What category of object would you like?:");
         printCategories();
+        // get a line of keyboard input
         userResponseStr=keyconsole.nextLine();
-        userResponseInt = Integer.parseInt(userResponseStr);
-        while (userResponseInt < 1 || userResponseInt > 4){
+        try{
+        userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+        }catch(NumberFormatException e){
+            System.out.println(e.getMessage());
+            userResponseInt=-1;
+        }
+        
+        while ( userResponseInt < 1 || userResponseInt > 4) {
             System.out.println("Error: Selection out of range, try again!");
             userResponseStr=keyconsole.nextLine();
-            userResponseInt = Integer.parseInt(userResponseStr);
+            try{
+                // try to convert
+                userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+                }catch(NumberFormatException e){
+                    System.out.println(e.getMessage());
+                    userResponseInt=-1; // stay in the loop
+                }
         }
 
         System.out.println("The user selected: " + userResponseStr);
