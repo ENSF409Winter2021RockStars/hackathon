@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////////////////
 // Title: DataBaseManager.java
 // Team: ENSF409 Group 48
-// Author: Ron Rodriguez
+// Authors: Ron Rodriguez & Mathew Pelletier
 // Creation Date: March 27, 2021
-// Version: 0.002
-// Revision Date: March 27, 2021
+// Version: 0.003
+// Revision Date: March 29, 2021
 //
 // Description: A preliminary database traversing class file
 /////////////////////////////////////////////////////////////////
@@ -13,6 +13,7 @@ package edu.ucalgary.ensf409;
 import java.sql.*;
 import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
+
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
@@ -132,34 +133,44 @@ public class DataBaseManager{
     public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
         try{
-            String query = "SELECT * FROM "+category.toUpperCase()+" WHERE Type = ?";
-            PreparedStatement myStmt = dbConnect.prepareStatement(query);
-            myStmt.setString(1, type);
-            results = myStmt.executeQuery();
+            String query = "SELECT * FROM " + category + " WHERE Type = '" + type + "'";
+            Statement myStmt = dbConnect.createStatement();  
+            this.results = myStmt.executeQuery(query);
             while(results.next()){
-                Furniture newFurn; // Furniture pointer 
+                Furniture newFurn = null; // Furniture pointer 
                 switch(category.toUpperCase()){
                     case "CHAIR": 
-                        newFurn = new Chair(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
+                        newFurn = new Chair(results.getString("ID"),results.getString("Type"),
+                        results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),
+                        results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
+
                         matchingFurn.add(newFurn);
                         break;
                     case "DESK": 
-                        newFurn = new Desk(results.getString("ID"),results.getString("Type"),results.getString("Legs"),results.getString("Top"), results.getString("Drawer"), results.getInt("Price"),results.getString("ManuID"));
+                        newFurn = new Desk(results.getString("ID"),results.getString("Type"),
+                        results.getString("Legs"),results.getString("Top"), results.getString("Drawer"),
+                        results.getInt("Price"),results.getString("ManuID"));
+
                         matchingFurn.add(newFurn);
                         break;
                     case "FILING": 
-                        newFurn = new Filing(results.getString("ID"),results.getString("Type"),results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"), results.getInt("Price"),results.getString("ManuID"));
+                        newFurn = new Filing(results.getString("ID"),results.getString("Type"),
+                        results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"),
+                        results.getInt("Price"),results.getString("ManuID"));
+
                         matchingFurn.add(newFurn);
                         break;
                     case "LAMP": 
-                        newFurn = new Lamp(results.getString("ID"),results.getString("Type"),results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),results.getString("ManuID"));
+                        newFurn = new Lamp(results.getString("ID"),results.getString("Type"),
+                        results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),
+                        results.getString("ManuID"));
+
                         matchingFurn.add(newFurn);
                         break;
                 }
             }
             myStmt.close(); // close the statement 
         } 
-        
         catch(SQLException e){
             System.out.println(e.getMessage()); // print the Exception message
             e.printStackTrace(); // print the stack trace 
@@ -194,7 +205,7 @@ public class DataBaseManager{
             Manufacturer tempMan=null; // make a manufacturer pointer
             // results is itereable 
             while (results.next()){
-                // construct a Manufacture object from the table row data
+                // construct a Manufacturer object from the table row data
                 tempMan = new Manufacturer(results.getString("ManuID"), 
                 results.getString("Name"),results.getString("Phone"),
                 results.getString("Province")); 
@@ -211,6 +222,82 @@ public class DataBaseManager{
         }
         return manufactList;
     }
+    /**
+     * retrieveSpecificManufacturer is a method that extracts manufacturer info for all manufacturers who produce the requested item
+     * @param category category of produced item from inventory database
+     * @param type type of the produced item from inventory database
+     * @return (ArrayList<Manufacturer>) an array list of manufacturers which produce the specified item
+     */
+    public ArrayList<Manufacturer> retrieveSpecificManufacturer(String category, String type){
+        // Make a container to hold manufacturers
+        ArrayList<Manufacturer> manufactList = new ArrayList<Manufacturer>();
+        try{
+            //query string for all unique manufacturer IDs for all items of category and type
+            String furnQuery = "SELECT DISTINCT ManuID FROM " +  category + " WHERE Type = '" + type + "'";
+            // create statement to query DB
+            Statement myStmt = dbConnect.createStatement();
+            //execute query and store results
+            results = myStmt.executeQuery(furnQuery);
+            //list to store unique ManuIDs and loop to store them
+            ArrayList<String> uniqueID = new ArrayList<String>();
+            while (results.next()){
+                uniqueID.add(results.getString("ManuID"));
+            }
+            //new query to retrieve all manufacturer info for previously retrieved ManuIDs
+            StringBuilder manuQuery = new StringBuilder("SELECT * FROM manufacturer WHERE ManuID IN (");
+            //Add each ManuID from storage to string
+            for(String temp:uniqueID){
+                manuQuery.append("'" + temp + "',");
+            }
+            manuQuery.setLength(manuQuery.length()-1);
+            manuQuery.append(")");
+            // create and execute prepared statement
+            results = myStmt.executeQuery(manuQuery.toString());
+            Manufacturer tempMan=null; // make a manufacturer pointer
+            while(results.next()){
+                // construct a Manufacturer object from the table row data
+                tempMan = new Manufacturer(results.getString("ManuID"), 
+                results.getString("Name"),results.getString("Phone"),
+                results.getString("Province")); 
+ 
+                 // append it to the manufactList 
+                 manufactList.add(tempMan);
+            }
+            myStmt.close(); //close statement
+            results.close(); // close results
+
+        } 
+        catch(SQLException e){ //exception handling
+            System.out.println(e.getMessage()); // print the exception
+            e.printStackTrace(); // print the Stack Trace
+        }
+        return manufactList;
+    }
+
+    /**
+     * Method deleteItems, deletes all items from the table specified that have IDs matching objects in the Bought Items argument
+     * @param category table to delete from
+     * @param BoughtItems list of objects to delete from the database according to ID
+     */
+    public void deleteItems(String table, ArrayList<Furniture> BoughtItems){
+        try{
+            //New query string to delete all items in list from the specified table
+            StringBuilder query = new StringBuilder("DELETE FROM " + table + " WHERE ID IN (");
+            for(Furniture temp : BoughtItems){
+                query.append("'" + temp.getID() + "',");
+            }
+            query.setLength(query.length()-1);
+            query.append(")");
+            // create a prepared statement with the created query string and execute the update
+            PreparedStatement myStmt = dbConnect.prepareStatement(query.toString());
+            myStmt.executeUpdate();
+            myStmt.close(); // Close statement
+        }
+        catch(SQLException e){ //exception handling
+            System.out.println(e.getMessage()); // print the exception
+            e.printStackTrace(); // print the Stack Trace
+        }
+    }
 
 //////////////////////////////////////////////////////////////////////////////
     /**
@@ -218,7 +305,7 @@ public class DataBaseManager{
      */
     public static void main(String[] args){
         // change these variables for your local installation
-        String username ="Marasco"; 
+        String username ="mathew"; 
         String password = "ensf409";
         String dbURL="jdbc:mysql://localhost/INVENTORY";
 
@@ -232,12 +319,18 @@ public class DataBaseManager{
         ArrayList<Manufacturer> manufactList;
         // grab all of the Manufacturers
         manufactList = myJDBC.retrieveManufacturers();
-
+        myJDBC.selectMatchingFurniture("chair","Mesh");
+        // grab all manufacturer's of mesh chairs
+        ArrayList<Manufacturer> meshManufactList = myJDBC.retrieveSpecificManufacturer("Chair","Mesh");
         //Manufacturer manu; // Manufacturer pointer
-        // print out the manufacturers 
-        for ( Manufacturer manu : manufactList){
+        // print out the manufacturer of mesh chairs
+        for ( Manufacturer manu : meshManufactList){
             manu.print();
         }
+        //Wouldn't recommend testing this unless you want to re-add/restore the database
+        //ArrayList<Furniture> meshChairs = myJDBC.selectMatchingFurniture("chair","mesh");
+        //myJDBC.deleteItems("chair", meshChairs);
+        //
 
 
         // close the connection to the database
