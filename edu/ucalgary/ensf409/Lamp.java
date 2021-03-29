@@ -92,6 +92,8 @@ public class Lamp extends Furniture{
      */
     public void setBulb(boolean value){
         this.bulb = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
         return;
     }
 
@@ -103,6 +105,8 @@ public class Lamp extends Furniture{
      */
     public void setBase(boolean value){
         this.base = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
         return;
     }
 
