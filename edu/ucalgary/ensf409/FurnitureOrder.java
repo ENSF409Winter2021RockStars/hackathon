@@ -78,7 +78,7 @@ private  int quantity;
 
         output+="Category: " + this.category +"\n";
         output+="Type: " + this.type +"\n";
-        output+="Quantity" + this.quantity +"\n";
+        output+="Quantity: " + this.quantity +"\n";
 
         return output;
     }
