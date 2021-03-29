@@ -82,6 +82,21 @@ public class Lamp extends Furniture{
     }
 
 
+    /**
+     * isComplete() checks if all of the booleans are true or not 
+     * this method indicates if item is finished or requires more parts
+     * @return (boolean) true if all individual booleans are true, and false if not
+     */
+    public boolean isComplete(){
+        for (int k =0; k< this.boolArray.length; k++ ){
+            if (!this.boolArray[k]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     ///////////////////////////// MUTATORS /////////////////////////////////////
 
     /**
@@ -133,7 +148,7 @@ public class Lamp extends Furniture{
     }
 
     /**
-     * method to set one of the booleans in the array
+     * method to set one of the booleans in the arraydo
      * @param k the index of the array
      * @param value the boolean value to change it to
      */
