@@ -14,6 +14,8 @@ import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import jdk.jfr.Category;
+
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
  * @version 0.02 03/28/2021
@@ -32,8 +34,8 @@ public class SupplyChainManager{
 
     ////////////////////  ATTRIBUTES ///////////////////////////////
     // change these variables for your local installation
-    //private String username ="Marasco"; 
-    private String username ="mathew"; 
+    private String username ="Marasco"; 
+    //private String username ="mathew"; 
     private String password = "ensf409";
     private String dbURL="jdbc:mysql://localhost/INVENTORY";
     
@@ -69,10 +71,12 @@ public class SupplyChainManager{
 
         System.out.println("Welcome to the SupplyChainManager Program!");
         System.out.println("___________________________________________");
-        userResponseInt=userCategorySelection();
-
+        // get the user input return an integer
+        userResponseInt=userCategorySelection();  
+        // decode the integer back to a string category
+        category = decodeCategorySelection(userResponseInt);
         //debug print
-        System.out.println("The user selected: " + userResponseInt);
+        System.out.println("The user selected: " + category);
 
         return;
     }
@@ -80,7 +84,7 @@ public class SupplyChainManager{
     public int userCategorySelection(){ 
         int userResponseInt;
         String userResponseStr="";
-        System.out.println("What category of object would you like?:");
+        System.out.println("What category of object would you like?");
         printCategories();
         // get a line of keyboard input
         userResponseStr=keyconsole.nextLine();
@@ -105,6 +109,24 @@ public class SupplyChainManager{
     return userResponseInt;
 }
 
+    public String decodeCategorySelection(int selection){
+        String category="";
+        switch (selection){
+            case 1:
+            category="CHAIR";
+            break;
+            case 2:
+            category="DESK";
+            break;
+            case 3:
+            category="FILING";
+            break;
+            case 4:
+            category="LAMP";
+            break;
+        }
+        return category;
+    }
 
 
     /**
@@ -117,6 +139,7 @@ public class SupplyChainManager{
         System.out.println("3. FILING ");
         System.out.println("4. LAMP ");
         System.out.println("___________________________________________");
+        System.out.println("Enter a number and press the RETURN key.");
         return;
     }
 
