@@ -108,6 +108,44 @@ public class Desk extends Furniture{
 
     /////////////////////////////// MUTATORS  ////////////////////////////////////////
 
+     /**
+     * method to set the value of legs
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setLegs(boolean value){
+        this.legs = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+     /**
+     * method to set the value of top
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setTop(boolean value){
+        this.top = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+ /**
+     * method to set the value of drawer
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setDrawer(boolean value){
+        this.drawer = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
 
     /**
      * method to mirror the boolean values back

@@ -108,6 +108,59 @@ public class Chair extends Furniture{
 
     ////////////////////////////// MUTATORS //////////////////////////////////////
     
+    /**
+     * method to set the value of legs
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setLegs(boolean value){
+        this.legs = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+ /**
+     * method to set the value of arm
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setArm(boolean value){
+        this.arm = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+     /**
+     * method to set the value of seat
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setSeat(boolean value){
+        this.seat = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+ /**
+     * method to set the value of cushion
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setCushion(boolean value){
+        this.cushion = value;
+        // mirror the change into the array
+        this.resetBooleanArray();
+        return;
+    }
+
+
      /**
      * method to mirror the boolean values back
      * into the boolean array boolArray
