@@ -18,10 +18,13 @@ package edu.ucalgary.ensf409;
 public class Chair extends Furniture{
 
     /////////////////////////////// ATTRIBUTES ////////////////////////////////
-    boolean legs; // item has legs
-    boolean arms; // item has arms
-    boolean seat; // item has a seat
-    boolean cushion; // item has a cushion
+    private boolean legs; // item has legs
+    private boolean arms; // item has arms
+    private boolean seat; // item has a seat
+    private boolean cushion; // item has a cushion
+
+    // an array to mirror the booleans
+    private boolean[] boolArray = new boolean[4]; 
 
     /////////////////////////////// CONSTRUCTORS //////////////////////////////
     /**
@@ -41,6 +44,9 @@ public class Chair extends Furniture{
         this.arms = yesNoToBool(arms);
         this.seat = yesNoToBool(seat);
         this.cushion = yesNoToBool(cushion);
+
+        // mirror the booleans into the boolArray
+        this.resetBooleanArray();
     }
     ////////////////////////////// ACCESSORS /////////////////////////////////////
 
@@ -76,9 +82,73 @@ public class Chair extends Furniture{
         return this.cushion;
     }
 
+    /**
+     * getter for boolArray
+     * @return (boolean[]) array representation of the boolean attributes
+     */
+    public boolean[] getBoolArray(){
+        return this.boolArray; // return the pointer to the boolean array
+    }
+
+
+     /**
+     * isComplete() checks if all of the booleans are true or not 
+     * this method indicates if item is finished or requires more parts
+     * @return (boolean) true if all individual booleans are true, and false if not
+     */
+    public boolean isComplete(){
+        for (int k =0; k< this.boolArray.length; k++ ){
+            if (!this.boolArray[k]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     ////////////////////////////// MUTATORS //////////////////////////////////////
     
-    // not required currently
+     /**
+     * method to mirror the boolean values back
+     * into the boolean array boolArray
+     * @param value
+     */
+    public void resetBooleanArray(){
+        this.boolArray[0]=this.legs;
+        this.boolArray[1]=this.arms;
+        this.boolArray[2]=this.seat;
+        this.boolArray[3]=this.cushion;
+        return;
+    }
+
+    /**
+     * method to mirror the boolean values from the array
+     * back into the individual the boolean vars
+     * @param value
+     */
+    public void setBooleansFromArray(){
+        this.legs=this.boolArray[0];
+        this.arms=this.boolArray[1];
+        this.seat=this.boolArray[2];
+        this.cushion=this.boolArray[3];
+        return;
+    }
+
+    /**
+     * method to set one of the booleans in the arraydo
+     * @param k the index of the array
+     * @param value the boolean value to change it to
+     */
+    public void setBoolArray(int k, boolean value){
+        if (k < 0 || k > boolArray.length-1){
+            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+        }
+        //set the boolean in the array to value
+        this.boolArray[k]=value;
+        // mirror the change
+        this.setBooleansFromArray();
+    }
+
 
     ////////////////////////////// OTHER /////////////////////////////////////////
     /**

@@ -35,6 +35,9 @@ public class Filing extends Furniture{
     private boolean drawers; //item has drawers
     private boolean cabinet; //item has a cabinet housing
 
+    // an array to mirror the booleans
+    private boolean[] boolArray = new boolean[3]; 
+
     /////////////////////////////// CONSTRUCTORS ////////////////////////////////
     /**
      * Constructor for Filing, takes all columns from the inventory table as arguments;
@@ -51,6 +54,8 @@ public class Filing extends Furniture{
         this.rails = yesNoToBool(rails);
         this.drawers = yesNoToBool(drawers);
         this.cabinet = yesNoToBool(cabinet);
+
+   
     }
 
     /////////////////////////////// ACCESSORS //////////////////////////////////
@@ -79,7 +84,34 @@ public class Filing extends Furniture{
         return this.cabinet;
     }
 
+     /**
+     * getter for boolArray
+     * @return (boolean[]) array representation of the boolean attributes
+     */
+    public boolean[] getBoolArray(){
+        return this.boolArray; // return the pointer to the boolean array
+    }
+
+     /**
+     * isComplete() checks if all of the booleans are true or not 
+     * this method indicates if item is finished or requires more parts
+     * @return (boolean) true if all individual booleans are true, and false if not
+     */
+    public boolean isComplete(){
+        for (int k =0; k< this.boolArray.length; k++ ){
+            if (!this.boolArray[k]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /////////////////////////////// MUTATORS //////////////////////////////////
+
+
+
+
 
     /////////////////////////////// OTHER /////////////////////////////////////
     /**

@@ -61,40 +61,50 @@ public class SupplyChainManager{
      */
     public void getUserOrder(){
         String userResponseStr,category,type;
-        int userResponseInt,quantity;
+        int quantity, userResponseInt;
 
         // make a keyboard scanner on System.in
         keyconsole = new Scanner(System.in);
 
         System.out.println("Welcome to the SupplyChainManager Program!");
         System.out.println("___________________________________________");
+        userResponseInt=userCategorySelection();
+
+        //debug print
+        System.out.println("The user selected: " + userResponseInt);
+
+        return;
+    }
+
+    public int userCategorySelection(){ 
+        int userResponseInt;
+        String userResponseStr="";
         System.out.println("What category of object would you like?:");
         printCategories();
         // get a line of keyboard input
         userResponseStr=keyconsole.nextLine();
-        try{
-        userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
-        }catch(NumberFormatException e){
-            System.out.println(e.getMessage());
-            userResponseInt=-1;
-        }
-        
-        while ( userResponseInt < 1 || userResponseInt > 4) {
-            System.out.println("Error: Selection out of range, try again!");
-            userResponseStr=keyconsole.nextLine();
-            try{
-                // try to convert
-                userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
-                }catch(NumberFormatException e){
-                    System.out.println(e.getMessage());
-                    userResponseInt=-1; // stay in the loop
-                }
-        }
-
-        System.out.println("The user selected: " + userResponseStr);
-
-        return;
+    try{
+    userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+    }catch(NumberFormatException e){
+        System.out.println(e.getMessage());
+        userResponseInt=-1;
     }
+    
+    while ( userResponseInt < 1 || userResponseInt > 4) {
+        System.out.println("Error: Selection out of range, try again!");
+        userResponseStr=keyconsole.nextLine();
+        try{
+            // try to convert
+            userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+            }catch(NumberFormatException e){
+                System.out.println(e.getMessage());
+                userResponseInt=-1; // stay in the loop
+            }
+    }
+    return userResponseInt;
+}
+
+
 
     /**
      * print categories prints option choices for the 
