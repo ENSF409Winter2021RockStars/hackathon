@@ -2,8 +2,8 @@
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
-// Version: 0.01
-// Revision Date: March 28, 2021
+// Version: 0.03
+// Revision Date: March 29, 2021
 //
 // Description: Main control unit
 ///////////////////////////////////////////////////
@@ -96,6 +96,11 @@ public class SupplyChainManager{
         return;
     }
 
+    /**
+     * userTypeSelection() is an input validated user interaction selector for Type
+     * @param numberInput a numeric value corresponding to the category previously selected
+     * @return (int) a code for the Type associated with a Category
+     */
     public int userTypeSelection(int numberInput){
         // start off with an imposible selection
         // if the return is -1 then an error has occured
@@ -128,6 +133,13 @@ public class SupplyChainManager{
     }
 
 
+    /**
+     * decodeTypeSelection() is a decoder for the numeric value of the Type selected in
+     * a previous step by the user in the userTypeSelection() function
+     * @param selection (int) the user selected number for the Type
+     * @param category (String) the previously user selected category
+     * @return (String) a string representation of the Type
+     */
     public String decodeTypeSelection(int selection, String category){
         String type="";
         switch (category){
@@ -196,10 +208,16 @@ public class SupplyChainManager{
         return type;
     }
 
-
-
-
-
+    /**
+     * getResponseAsInt() is a user interaction function to take in a string from keyboard input
+     * using Scanner, and convert this string into an integer and return the integer
+     * input validation is controlled by the lower and upper bounds. A third input
+     * selectionStr changes the user prompt message to correspond to the items being chosen 
+     *@param lowerBound (int) the lowest value a user may input and be accepted
+     *@param upperBount (int) the highest value a user may input and be accepted
+     *@param selectionStr (String) a string corresponding to the type of objects being selected 
+     *@return (int) an integer value representing a menu option choice from lowerBound to upperBound
+     */
     public int getResponseAsInt(int lowerBound, int upperBound, String selectionStr){
 
     int userResponseInt;
@@ -230,6 +248,12 @@ public class SupplyChainManager{
     }
 
     // depecated for code reuse in getResponseAsInt
+    /**
+     * userCategorySelection() was the original method for selecting the category
+     * this function was extended /generalized to userInputAsInt()
+     * @Depreacated
+     * @return (int) and integer representing the value choice from an enumerated menu  
+     */
     public int userCategorySelection(){ 
         int userResponseInt;
         String userResponseStr="";
@@ -259,6 +283,13 @@ public class SupplyChainManager{
    
     }
 
+
+    /**
+     * decodCategorySelection() takes in an integer menu option previously selected
+     * and decodes it into a String representation of the selection
+     * @param selection (int) an input integer code for a category previously selected by the user
+     * @return (String) a string representation of the input numeric category code
+     */
     public String decodeCategorySelection(int selection){
         String category="";
         switch (selection){
@@ -278,8 +309,6 @@ public class SupplyChainManager{
         return category;
     }
 
-
-
     /**
      * print categories prints option choices for the 
      * categories from DB INVENTORY.  These should be constant
@@ -293,7 +322,10 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
         return;
     }
-
+   /**
+     * playChairMenu prints type option choices for the 
+     * category CHAIR.  These should be constant
+     */
     public void playChairMenu(){
         System.out.println("1. Task ");
         System.out.println("2. Mesh ");
@@ -304,6 +336,10 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
+    /**
+     * playDeskMenu prints type option choices for the 
+     * category DESK.  These should be constant
+     */
     public void playDeskMenu(){
         System.out.println("1. Traditional ");
         System.out.println("2. Adjustable ");
@@ -312,6 +348,11 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
+
+    /**
+     * playFilingMenu prints type option choices for the 
+     * category FILING.  These should be constant
+     */
     public void playFilingMenu(){
         System.out.println("1. Small ");
         System.out.println("2. Medium ");
@@ -320,6 +361,10 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
+    /**
+    * playLampMenu prints type option choices for the 
+    * category LAMP.  These should be constant
+    */
     public void playLampMenu(){
         System.out.println("1. Desk ");
         System.out.println("2. Swing Arm ");
@@ -329,6 +374,7 @@ public class SupplyChainManager{
     }
 
 
+    //////////////////////////// MAIN ////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
     /**
