@@ -65,7 +65,7 @@ public class SupplyChainManager{
     public void getUserOrder(){
         String userResponseStr,category,type;
         int quantity, userResponseInt;
-
+        
         // make a keyboard scanner on System.in
         keyconsole = new Scanner(System.in);
 
@@ -82,7 +82,7 @@ public class SupplyChainManager{
         // decode the integer response into a type
         type = decodeTypeSelection(userResponseInt,category);
         // now get the quantity of objects 
-        quantity = getResponseAsInt(1,1000,"quantity of items");
+        quantity = getResponseAsInt(0,1000,"quantity of items");
         //debug print
         System.out.println("The user selected category: " + category);
         //debug print
@@ -90,6 +90,9 @@ public class SupplyChainManager{
         //debug print
         System.out.println("The user selected a quantity of: " + quantity);
         
+        // load the userOrder as a new FurnitureOrder
+        this.userOrder = new FurnitureOrder(category,type,quantity);
+
         return;
     }
 
@@ -346,6 +349,8 @@ public class SupplyChainManager{
         // get some user interaction for an order 
         SCM.getUserOrder(); 
 
+        // print the userOrder object 
+        SCM.userOrder.print();
 
 
         // close the conenection 
