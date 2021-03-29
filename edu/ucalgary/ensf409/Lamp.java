@@ -117,6 +117,33 @@ public class Lamp extends Furniture{
         return;
     }
 
+    /**
+     * method to mirror the boolean values from the array
+     * back into the individual the boolean vars
+     * @param value
+     */
+    public void setBooleansFromArray(){
+        this.base=boolArray[0];
+        this.bulb=boolArray[1];
+        return;
+    }
+
+    /**
+     * method to set one of the booleans in the array
+     * @param k the index of the array
+     * @param value the boolean value to change it to
+     */
+    public void setBoolArray(int k, boolean value){
+        if (k < 0 || k > boolArray.length-1){
+            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+        }
+        //set the boolean in the array to value
+        this.boolArray[k]=value;
+        // mirror the change
+        this.setBooleansFromArray();
+    }
+
+
     /////////////////////////////// OTHER //////////////////////////////////////
     /**
      * method to print class fields to screen space separated
