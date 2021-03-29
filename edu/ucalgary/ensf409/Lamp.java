@@ -3,7 +3,7 @@
 // Team: ENSF409 Group 48
 // Authors: Mathew Pelletier, Ron Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.02
+// Version: 0.03
 // Revision Date: March 28, 2021
 //
 // Description: Furniture subclass for a filing cabinet
@@ -12,13 +12,13 @@
 package edu.ucalgary.ensf409;
 /**
  * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
- * @version   0.02
+ * @version   0.03
  * @since     0.01
 */
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.02 03/28/2021
+ * @version 0.03 03/28/2021
  * @since 0.02 03/28/2021
  */
 
@@ -31,6 +31,9 @@ public class Lamp extends Furniture{
     /////////////////////////////// ATTRIBUTES //////////////////////////////
   private boolean base; //item has a base
   private boolean bulb; //item has a bulb
+
+  // an array to mirror the booleans
+  private boolean[] boolArray = new boolean[2]; 
 
     ////////////////////////////// CONSTRUCTORS /////////////////////////////
     /**
@@ -46,6 +49,10 @@ public class Lamp extends Furniture{
         super(id, type, price, manuID);
         this.base = yesNoToBool(base);
         this.bulb = yesNoToBool(bulb);
+
+        // set the boolean array to mirror the booleans
+        this.resetBooleanArray(); 
+
     }
 
     ////////////////////////////// ACCESSORS /////////////////////////////////////
@@ -65,9 +72,50 @@ public class Lamp extends Furniture{
     public boolean getBulb(){
         return this.bulb;
     }
+
+  /**
+     * getter for boolArray
+     * @return (boolean[]) array representation of the boolean attributes
+     */
+    public boolean[] getBoolArray(){
+        return this.boolArray; // return the pointer to the boolean array
+    }
+
+
     ///////////////////////////// MUTATORS /////////////////////////////////////
 
-    // not required as of yet
+    /**
+     * method to set the value of bulb
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setBulb(boolean value){
+        this.bulb = value;
+        return;
+    }
+
+    /**
+     * method to set the value of base
+     * as we build a new object from broken parts
+     * or deconstruct / destroy an old object 
+     * @param value
+     */
+    public void setBase(boolean value){
+        this.base = value;
+        return;
+    }
+
+    /**
+     * method to mirror the boolean values back
+     * into the boolean array boolArray
+     * @param value
+     */
+    public void resetBooleanArray(){
+        boolArray[0]=this.base;
+        boolArray[1]=this.bulb;
+        return;
+    }
 
     /////////////////////////////// OTHER //////////////////////////////////////
     /**
