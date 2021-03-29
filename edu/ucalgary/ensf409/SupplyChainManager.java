@@ -32,7 +32,8 @@ public class SupplyChainManager{
 
     ////////////////////  ATTRIBUTES ///////////////////////////////
     // change these variables for your local installation
-    private String username ="Marasco"; 
+    //private String username ="Marasco"; 
+    private String username ="mathew"; 
     private String password = "ensf409";
     private String dbURL="jdbc:mysql://localhost/INVENTORY";
     
