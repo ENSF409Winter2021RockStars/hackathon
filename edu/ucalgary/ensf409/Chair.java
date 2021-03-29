@@ -128,7 +128,7 @@ public class Chair extends Furniture{
      * @param value
      */
     public void setArm(boolean value){
-        this.arm = value;
+        this.arms = value;
         // mirror the change into the array
         this.resetBooleanArray();
         return;

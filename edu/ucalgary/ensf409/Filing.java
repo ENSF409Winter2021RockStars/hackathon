@@ -131,7 +131,7 @@ public class Filing extends Furniture{
      * @param value
      */
     public void setDrawers(boolean value){
-        this.drawerss = value;
+        this.drawers = value;
         // mirror the change into the array
         this.resetBooleanArray();
         return;
@@ -144,7 +144,7 @@ public class Filing extends Furniture{
      * @param value
      */
     public void setCabinet(boolean value){
-        this.legs = value;
+        this.cabinet = value;
         // mirror the change into the array
         this.resetBooleanArray();
         return;
