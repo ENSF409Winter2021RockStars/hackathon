@@ -94,6 +94,26 @@ public class CheckInventory{
 
         return matchingFurn;
     }
+
+    // method to close the DB connection  
+    /**
+    * close() closes the connection to the database and all results
+    * @return void 
+    */
+    public void closeDBConnection() {
+        try {
+            dbConnect.close();
+            
+            if ( this.results !=null){
+                this.results.close(); // close the results of the queries
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage()); // print the error message
+            e.printStackTrace();
+        }
+    } // closing brace for method close()
+
     public static void main(String[] args){
         // chhange arguments to match your database
         String username="mathew"; // change back to mathew after test is done
@@ -125,5 +145,10 @@ public class CheckInventory{
         for (Furniture furn : matches4){
             furn.print();
         }
+
+        // close the connection to the database
+        myDB.closeDBConnection();
+
+
     }
 }
