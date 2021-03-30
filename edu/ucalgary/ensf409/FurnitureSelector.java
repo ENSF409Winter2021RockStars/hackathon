@@ -80,8 +80,8 @@ public class FurnitureSelector {
     /**
      * Method to calculate the cheapest set from the furniture list passed
      * to the constructor and quantity requested by the client 
-     * @param quantity number of requested by clien
-     * @return cost of the cheapest set
+     * @param quantity number of requested by client
+     * @return (int) cost of the cheapest set
      */
     public int calculateCheapestSet(int quantity) {
         

@@ -3,8 +3,8 @@
 // Team: ENSF409 Group 48
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.002
-// Revision Date: March 27, 2021
+// Version: 0.03
+// Revision Date: March 30, 2021
 //
 // Description: A class containing a Furniture Order Form 
 /////////////////////////////////////////////////////////////////
@@ -14,28 +14,47 @@ import java.util.ArrayList;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.002 03/20/2021
- * @since 0.001 03/19/2021
+ * @version 0.03 03/30/2021
+ * @since 0.01 03/27/2021
  */
 
  public class FurnitureOrderForm{
 
 ///////////////////////////// ATTRIBUTES ///////////////////////////////
 
+/// NEEDS ACCESS TO THE DATABASE TO WORK
+// a DataBaseManager object 
+private DataBaseManager dBM;  
+// change these variables for your local installation
+private String username ="Marasco"; 
+//private String username ="mathew"; 
+private String password = "ensf409";
+// The DataBase URL
+private String dbURL="jdbc:mysql://localhost/INVENTORY";
+    
+
 // this is the request from the client
 // a FurnitureOrder from user input
 private FurnitureOrder clientRequest;
 
-// This is ?? I don't know what this is 
-// Probably 
+// A furniture selector 
+private FurnitureSelector computer; 
+
+// first array list holds the final answer for what to get /works
 private ArrayList<Furniture> furnitureList;
 
-// this is the cost of the furniture retuired
+// make a second array list to hold the candidates
+private ArrayList<Furniture> candidateFurniture;
+
+// this is the cost of the furniture required
 private int cost;
 
 // This is the matching manufacturers
 // this will come from a DBM request against the clientRequest 
-private Manufacturer[] manufacturers;
+// you will need a database manager connection to get this
+//private Manufacturer[] manufacturers;
+// why use an array , when we can use an array list??
+private ArrayList<Manufacturer> manufacturers;
 
 /////////////////////////// CONSTRUCTORS ///////////////////////////////
 
@@ -48,10 +67,32 @@ public FurnitureOrderForm(FurnitureOrder clientRequest){
     this.clientRequest = clientRequest;
     furnitureList = new ArrayList<Furniture>(); // construct the array list 
 
-    // might need more, where do we get cost and the manufacturers from?
+    // use the client request to generate some information
+    // by querying the database 
+    this.getInformationFromDataBase();
+    // initialize a Furniture Selector named computer 
+    this.computer = new FurnitureSelector(this.candidateFurniture);
+
 }
 
 //////////////////////////// ACCESSORS /////////////////////////////////
+
+public void getInformationFromDataBase(){
+    // RON: might need more, where do we get cost and the manufacturers from?
+    // RON: here is the answer to your question:
+    this.dBM = new DataBaseManager(this.dbURL.toUpperCase(),this.username,this.password);
+    // open a connection
+    this.dBM.initializeConnection();
+    // declare storage arrayList for the candidate furniture 
+    this.candidateFurniture=dBM.selectMatchingFurniture(clientRequest.getCategory(),clientRequest.getType());
+    // grab the manufacturers while you're at it
+    this.manufacturers=dBM.retrieveSpecificManufacturer(clientRequest.getCategory(), clientRequest.getType());
+    // close the connection
+    this.dBM.closeDBConnection();
+ return;
+}
+
+
 
 /**
  * 
@@ -72,6 +113,15 @@ public ArrayList<Furniture> getFurnitureList(){
 /**
  * 
  */
+public ArrayList<Furniture> getCandidateFurniture(){
+    // better to return a copy
+    return this.candidateFurniture;
+}
+
+
+/**
+ * 
+ */
 public int getCost(){
     return this.cost;
 }
@@ -79,29 +129,29 @@ public int getCost(){
 /**
  * 
  */
-public Manufacturer[] getManufacturers(){    
+//public Manufacturer[] getManufacturers(){    
+public ArrayList<Manufacturer> getManufacturers(){
     // better to return a copy of the array 
     return this.manufacturers;
 }
-
 
 ///////////////////////////// MUTATORS ////////////////////////////////
 
 //generates the required furniture
 public void generateFurnitureList(){
-
-
+// you need to do this first 
+this.generateCost();
+// the cost must be calculated first for this next call to work
+this.furnitureList= this.computer.getLowestFurniture(); 
 return ;
 } 
 
-
 // changes this.cost to update with the lowest cost
 public void generateCost(){
-
-
+// send this list to the cost calculator next 
+this.cost=this.computer.calculateCheapestSet(clientRequest.getQuantity());
 return;
 }
-
 
 ////////////////////////////// OTHER ///////////////////////////////////
 

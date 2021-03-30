@@ -60,7 +60,7 @@ public class SupplyChainManager{
     /**
      * getUserOrder is a user interaction method to populate the userOrder FurnitureOrder object
      */
-    public void getUserOrder(){
+    public void setUserOrder(){
         String userResponseStr,category,type;
         int quantity, userResponseInt;
         
@@ -371,6 +371,18 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
+    ////////////////////////// ACCESSOR ///////////////////////////////////
+
+   /**
+    * Getter for userOrder
+    * @return (FurnitureOrder) userOrder 
+    */
+    public FurnitureOrder getUserOrder(){
+        return this.userOrder;
+    }
+
+
+
 
     //////////////////////////// MAIN ////////////////////////////////////////
 
@@ -384,24 +396,36 @@ public class SupplyChainManager{
         System.out.println("SupplyChainManager");
         // make a new SCM object 
         SupplyChainManager SCM = new SupplyChainManager();
+        
+        
+        // dBM is handled by FurnitureOrderForm now
         // initialize the database
-        SCM.dBM.initializeConnection();
+        //SCM.dBM.initializeConnection();
 
         // Need a menu for quit, order, etc
         // SCM.userMenu();
 
-        // get some user interaction for an order 
-        SCM.getUserOrder(); 
+        // get some user interaction and set the order 
+        SCM.setUserOrder(); 
         // print the userOrder object 
         //SCM.userOrder.print();
         // since we have a user order FurnitureOrder ,  we will use it to 
         // request all furniture that matches the category and type
 
+        /// NEXT prepare the order Form to print the order form 
+        /// THIS HAS TO BE HANDLED BY FurnitureOrderForm
+        ////////////////////////////////////////////////////////////////////////////
+    
+        // dBM access has to be offloaded into FurnitureOrderForm
+        // for the classes to snap together 
         // declare storage arrayList for the candidate furniture
-        ArrayList<Furniture>candidateFurniture;
-        candidateFurniture = SCM.dBM.selectMatchingFurniture(SCM.userOrder.getCategory()
-                            ,SCM.userOrder.getType());
+    
+        // make a new FurnitureOrderForm 
+        FurnitureOrderForm form = new FurnitureOrderForm(SCM.userOrder);
 
+        // print out the candidates
+        ArrayList<Furniture>candidateFurniture;
+        candidateFurniture = form.getCandidateFurniture();
         System.out.println("The Candidate Furniture:");
         System.out.println("=========================");
         // Debug print out the candidate furniture
@@ -409,12 +433,12 @@ public class SupplyChainManager{
             piece.print();
         }
 
-        // send this list to the cost calculator next 
-        FurnitureSelector computer= new FurnitureSelector(candidateFurniture);
-        int cheapCost;
-        cheapCost=computer.calculateCheapestSet(SCM.userOrder.getQuantity());
+        // compute the cost and the furnitureList
+        form.generateFurnitureList();
+        int cheapCost=form.getCost();
+
         ArrayList<Furniture> solutionSet;
-        solutionSet= computer.getLowestFurniture(); 
+        solutionSet= form.getFurnitureList(); 
 
         System.out.println("The Solution Set Furniture:");
         System.out.println("===========================");
@@ -422,15 +446,30 @@ public class SupplyChainManager{
         for (Furniture piece : solutionSet){
             piece.print();
         }
-
+        // print out the total cost of the solution
         System.out.println("Total Cost: " + cheapCost);
 
+        // If no combination was found print this message:
+        if (cheapCost == -1){
+            System.out.println("A combination to fullfil the requested Furniture" 
+                            +"peices and quantities was not found.");
+            System.out.println("Here are some posible manufacturers to contact:");
+            
+            for (Manufacturer manu : form.getManufacturers()){
+                manu.print();
+            }
+        
+        
+        }else{
+        /// NEXT Send the form to print in FurnitureOrderFormFile
+        FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
+        file.createFile(form);
 
-        /// NEXT prepare the order to print the order form 
+        }
 
-
+        // Now handled by FurnitureOrderForm 
         // close the conenection 
-        SCM.dBM.closeDBConnection();
+        //SCM.dBM.closeDBConnection();
     }
 
 
