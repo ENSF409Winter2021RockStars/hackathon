@@ -199,7 +199,7 @@ public class Filing extends Furniture{
      * @return number of parts the furniture item can have
      */
     public int numberOfParts() {
-        return this.boolArray.length;
+        return 3;
     }
     
     /**

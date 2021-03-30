@@ -170,8 +170,8 @@ public class Lamp extends Furniture{
      * can have.
      * @return number of parts the furniture item can have
      */
-    public static int numberOfParts() {
-        return this.boolArray.length;
+    public int numberOfParts() {
+        return 2;
     }
     
     /**
