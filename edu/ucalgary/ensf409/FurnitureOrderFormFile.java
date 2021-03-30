@@ -184,6 +184,11 @@ public void createFile(FurnitureOrderForm form){
         file.newLine(); // write another newLine
       
         // write the Faculty info
+        tmp="Faculty: "+this.getFaculty();
+        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        file.newLine(); // write a newline at the end of each string from the LinkedList  
+
+        // Write the Contact Info
         tmp="Contact: "+this.getContact();
         file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
         file.newLine(); // write a newline at the end of each string from the LinkedList  
@@ -192,7 +197,6 @@ public void createFile(FurnitureOrderForm form){
         tmp="Date: "+this.getDate();
         file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
         file.newLine(); // write a newline at the end of each string from the LinkedList  
-
         file.newLine();// make a newLine
 
         //Original Request: mesh chair, 1
@@ -202,7 +206,6 @@ public void createFile(FurnitureOrderForm form){
 
         file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
         file.newLine(); // write a newline at the end of each string from the LinkedList  
-                    
         file.newLine();// make a newLine
                
         //Items Ordered
@@ -220,7 +223,7 @@ public void createFile(FurnitureOrderForm form){
            file.newLine(); // write a newline at the end of each string from the LinkedList      
         }
         
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        file.newLine(); // write a newline 
             
         //Total Price: $150
         tmp="Total Price: $"+form.getCost();

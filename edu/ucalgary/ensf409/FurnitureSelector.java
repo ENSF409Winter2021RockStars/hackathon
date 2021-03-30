@@ -3,7 +3,7 @@
 // Team: ENSF409 Group 48
 // Authors: Quinn Ledingham, Jade Meggitt
 // Creation Date: March 28, 2021
-// Version: 0.03
+// Version: 0.06
 // Revision Date: March 29, 2021
 //
 // Description: A class to handle calculating which furniture items 
@@ -206,7 +206,7 @@ public class FurnitureSelector {
         return cheapestCost;        
     }
     
-    /////////////////////////////// OTHERS/HELLPERS //////////////////////
+    /////////////////////////////// OTHERS/HELPERS //////////////////////
     
     /**
      * Recursive function that helps generateAllCombos
@@ -240,6 +240,7 @@ public class FurnitureSelector {
     private List<int[]> generateAllCombos(int n, int k) {
         
         List<int[]> combinations = new ArrayList<>();
+        // Ron: is this a recursive method call?
         generateAllCombosHelper(combinations, new int[k], 0, n-1, 0);
         return combinations;
     } 
@@ -313,4 +314,6 @@ public class FurnitureSelector {
         //}
         //return combo;
     //}
-}
+}// closing brace of class FurnitureSelector
+
+////////////////////////////////// END OF FILE //////////////////////////////////////////////
