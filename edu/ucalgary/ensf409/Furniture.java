@@ -95,9 +95,8 @@ public abstract class Furniture{
 
  /////////////////////////////// OTHER  ///////////////////////////////////
  
-    abstract int numberOfParts();
-    abstract boolean[] getBoolArray();
-    abstract int getCost();
+    public abstract int numberOfParts();
+    public abstract boolean[] getBoolArray();
     
     /**
      * abstract class helper function to check a Y/N string input and convert to True/False
