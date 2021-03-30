@@ -196,7 +196,8 @@ public void createFile(FurnitureOrderForm form){
         file.newLine();// make a newLine
 
         //Original Request: mesh chair, 1
-        tmp="Original Request: "+form.getClientRequest().getType()+
+        tmp="Original Request: "+form.getClientRequest().getType()+" "
+                                +form.getClientRequest().getCategory()+
                             ", "+form.getClientRequest().getQuantity();
 
         file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
