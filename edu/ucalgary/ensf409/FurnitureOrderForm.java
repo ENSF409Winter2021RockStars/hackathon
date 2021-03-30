@@ -92,10 +92,9 @@ public void getInformationFromDataBase(){
  return;
 }
 
-
-
 /**
- * 
+ * Getter for clientRequest
+ * @return (FurnitureOrder) clientRequest
  */
 public FurnitureOrder getClientRequest(){
     // better to return a copy
@@ -103,7 +102,8 @@ public FurnitureOrder getClientRequest(){
 }
 
 /**
- * 
+ * Getter for the furnitureList of final requests that meet the lowest cost
+ * @return (ArrayList<Furniture>) the furniture list of solutions to the lowest cost combination 
  */
 public ArrayList<Furniture> getFurnitureList(){
     // better to return a copy
@@ -111,23 +111,25 @@ public ArrayList<Furniture> getFurnitureList(){
 }
 
 /**
- * 
+ * Getter for the candidate Furniture list
+ * @return all furniture that meet the category and type specifications in clientRequest form 
  */
 public ArrayList<Furniture> getCandidateFurniture(){
     // better to return a copy
     return this.candidateFurniture;
 }
 
-
 /**
- * 
+ * Getter for the cost
+ * @return (int) the lowest cost combination as an integer
  */
 public int getCost(){
     return this.cost;
 }
 
 /**
- * 
+ * Getter for the manufacturer list
+ * @return (ArrayList<Manufacturer>) the list of manufacturers of category and type office products
  */
 //public Manufacturer[] getManufacturers(){    
 public ArrayList<Manufacturer> getManufacturers(){
@@ -138,6 +140,13 @@ public ArrayList<Manufacturer> getManufacturers(){
 ///////////////////////////// MUTATORS ////////////////////////////////
 
 //generates the required furniture
+/**
+ * generateFurnitureList() is a method to compute the lowest cost combination of
+ * furniture that meets the specified category,type, and quantity requested in the
+ * userRequest form
+ * @return (void) modifies the pointer this.furnitureList to point 
+ *          to a new ArrayList<Furniture> with the correct combination items of lowest cost
+ */
 public void generateFurnitureList(){
 // you need to do this first 
 this.generateCost();
@@ -147,6 +156,10 @@ return ;
 } 
 
 // changes this.cost to update with the lowest cost
+/**
+ * generateCost() is a method to compute the lowest cost combination's price
+ * @return void (result is placed into this.cost)
+ */
 public void generateCost(){
 // send this list to the cost calculator next 
 this.cost=this.computer.calculateCheapestSet(clientRequest.getQuantity());

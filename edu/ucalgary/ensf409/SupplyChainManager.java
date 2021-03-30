@@ -2,22 +2,21 @@
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
-// Version: 0.03
-// Revision Date: March 29, 2021
+// Version: 0.04
+// Revision Date: March 30, 2021
 //
 // Description: Main control unit
 ///////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
-import java.sql.*;
-import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.lang.IllegalArgumentException;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.02 03/28/2021
+ * @version 0.04 03/30/2021
  * @since 0.01 03/28/2021
  */
 
@@ -38,29 +37,32 @@ public class SupplyChainManager{
     private String password = "ensf409";
     private String dbURL="jdbc:mysql://localhost/INVENTORY";
     
-    // Make these private and add setters and getters later
+    // a furniture order object
+    private FurnitureOrder userOrder;
 
+    // a saftey switch to prevent deletion from the Inventory DB
+    // change this to false when you want to demo DB deletion
+    private boolean safety=true;
+      
+    // Make these private and add setters and getters later
     // a DataBaseManager object 
     public DataBaseManager dBM;  
     // a scanner for user interaction  
     public Scanner keyconsole; 
-    // a furniture order object
-    public FurnitureOrder userOrder;
 
     ///////////////////// CONSTRUCTOR //////////////////////////////////
     public SupplyChainManager(){
     // construct a new Registration object to manage INVENTORY
     this.dBM = new DataBaseManager(this.dbURL,this.username,this.password);
-
     }
    
     ////////////////////// METHODS  /////////////////////////////////////
 
     /**
-     * getUserOrder is a user interaction method to populate the userOrder FurnitureOrder object
+     * setUserOrder is a user interaction method to populate the userOrder FurnitureOrder object
      */
     public void setUserOrder(){
-        String userResponseStr,category,type;
+        String category,type;
         int quantity, userResponseInt;
         
         // make a keyboard scanner on System.in
@@ -244,7 +246,7 @@ public class SupplyChainManager{
         
     }
 
-    // depecated for code reuse in getResponseAsInt
+    // Depecated for code reuse in getResponseAsInt
     /**
      * userCategorySelection() was the original method for selecting the category
      * this function was extended /generalized to userInputAsInt()
@@ -345,7 +347,6 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
-
     /**
      * playFilingMenu prints type option choices for the 
      * category FILING.  These should be constant
@@ -380,6 +381,13 @@ public class SupplyChainManager{
         return this.userOrder;
     }
 
+    /**
+    * Getter for saftey switch (true for saftey on)
+    * @return (boolean) the value of the saftey switch
+    */
+    public boolean getSafety(){
+        return this.safety;
+    }
     //////////////////////////// MAIN ////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
@@ -393,10 +401,7 @@ public class SupplyChainManager{
         // make a new SCM object 
         SupplyChainManager SCM = new SupplyChainManager();
         
-        
-        // dBM is handled by FurnitureOrderForm now
-        // initialize the database
-        //SCM.dBM.initializeConnection();
+        // dBM is also handled by FurnitureOrderForm now
 
         // Need a menu for quit, order, etc
         // SCM.userMenu();
@@ -417,7 +422,7 @@ public class SupplyChainManager{
         // declare storage arrayList for the candidate furniture
     
         // make a new FurnitureOrderForm 
-        FurnitureOrderForm form = new FurnitureOrderForm(SCM.userOrder);
+        FurnitureOrderForm form = new FurnitureOrderForm(SCM.getUserOrder());
 
         // print out the candidates
         ArrayList<Furniture>candidateFurniture;
@@ -451,22 +456,30 @@ public class SupplyChainManager{
                             +"peices and quantities was not found.");
             System.out.println("Here are some posible manufacturers to contact:");
             
+            // print out the suggested manufacturers 
+            // massage this to look like the output in the pdf 
             for (Manufacturer manu : form.getManufacturers()){
                 manu.print();
             }
-        
-        
+
         }else{
         /// NEXT Send the form to print in FurnitureOrderFormFile
         FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
+        // write the order form to disk in directory data
         file.createFile(form);
-
+        // the Answer for what to buy is in solutionSet
+        // or just reuse form.getFurnitureList() / solutionSet
+            if (!SCM.getSafety()){ // saftey is manually set in attributes
+                // initialize the connection to the Database
+                SCM.dBM.initializeConnection();
+                // send the kill item request to the DB
+                SCM.dBM.deleteItems(SCM.getUserOrder().getCategory(),solutionSet);
+                // close the conenection 
+                SCM.dBM.closeDBConnection();
+            }      
         }
 
-        // Now handled by FurnitureOrderForm 
-        // close the conenection 
-        //SCM.dBM.closeDBConnection();
-    }
+       return;
+    }// closing brace for method main()
 
-
-}
+}// closing brace for class SupplyChainManager()
