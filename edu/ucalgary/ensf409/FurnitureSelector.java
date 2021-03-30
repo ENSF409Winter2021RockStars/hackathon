@@ -50,6 +50,7 @@ public class FurnitureSelector {
     ////////////////////////////// CONSTRUCTORS /////////////////////////////
     
     /**
+     * Constructor takes in candidate furniture pulled from the DataBaseManager
      * @param database type/category matched results
      */
     public FurnitureSelector(ArrayList<Furniture> furniture) {

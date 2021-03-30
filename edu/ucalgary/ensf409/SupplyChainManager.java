@@ -43,10 +43,8 @@ public class SupplyChainManager{
 
     // a DataBaseManager object 
     public DataBaseManager dBM;  
-
     // a scanner for user interaction  
     public Scanner keyconsole; 
-
     // a furniture order object
     public FurnitureOrder userOrder;
 
@@ -84,11 +82,11 @@ public class SupplyChainManager{
         // now get the quantity of objects 
         quantity = getResponseAsInt(0,1000,"quantity of items");
         //debug print
-        System.out.println("The user selected category: " + category);
+        //System.out.println("The user selected category: " + category);
         //debug print
-        System.out.println("The user selected type: " + type);
+        //System.out.println("The user selected type: " + type);
         //debug print
-        System.out.println("The user selected a quantity of: " + quantity);
+        //System.out.println("The user selected a quantity of: " + quantity);
         
         // load the userOrder as a new FurnitureOrder
         this.userOrder = new FurnitureOrder(category,type,quantity);
@@ -394,9 +392,41 @@ public class SupplyChainManager{
 
         // get some user interaction for an order 
         SCM.getUserOrder(); 
-
         // print the userOrder object 
-        SCM.userOrder.print();
+        //SCM.userOrder.print();
+        // since we have a user order FurnitureOrder ,  we will use it to 
+        // request all furniture that matches the category and type
+
+        // declare storage arrayList for the candidate furniture
+        ArrayList<Furniture>candidateFurniture;
+        candidateFurniture = SCM.dBM.selectMatchingFurniture(SCM.userOrder.getCategory()
+                            ,SCM.userOrder.getType());
+
+        System.out.println("The Candidate Furniture:");
+        System.out.println("=========================");
+        // Debug print out the candidate furniture
+        for (Furniture piece : candidateFurniture){
+            piece.print();
+        }
+
+        // send this list to the cost calculator next 
+        FurnitureSelector computer= new FurnitureSelector(candidateFurniture);
+        int cheapCost;
+        cheapCost=computer.calculateCheapestSet(SCM.userOrder.getQuantity());
+        ArrayList<Furniture> solutionSet;
+        solutionSet= computer.getLowestFurniture(); 
+
+        System.out.println("The Solution Set Furniture:");
+        System.out.println("===========================");
+        // Debug print out the solution combination furniture list 
+        for (Furniture piece : solutionSet){
+            piece.print();
+        }
+
+        System.out.println("Total Cost: " + cheapCost);
+
+
+        /// NEXT prepare the order to print the order form 
 
 
         // close the conenection 

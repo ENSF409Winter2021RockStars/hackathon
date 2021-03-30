@@ -243,8 +243,6 @@ public void createFile(FurnitureOrderForm form){
     return;
 }
 
-
-
 ///////////////////////// OTHER ////////////////////////////////////////
 
   /**

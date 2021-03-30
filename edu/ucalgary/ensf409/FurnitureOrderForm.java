@@ -22,9 +22,19 @@ import java.util.ArrayList;
 
 ///////////////////////////// ATTRIBUTES ///////////////////////////////
 
+// this is the request from the client
+// a FurnitureOrder from user input
 private FurnitureOrder clientRequest;
+
+// This is ?? I don't know what this is 
+// Probably 
 private ArrayList<Furniture> furnitureList;
+
+// this is the cost of the furniture retuired
 private int cost;
+
+// This is the matching manufacturers
+// this will come from a DBM request against the clientRequest 
 private Manufacturer[] manufacturers;
 
 /////////////////////////// CONSTRUCTORS ///////////////////////////////
@@ -77,8 +87,20 @@ public Manufacturer[] getManufacturers(){
 
 ///////////////////////////// MUTATORS ////////////////////////////////
 
-// generateFurnitureList() 
-// generateCost()
+//generates the required furniture
+public void generateFurnitureList(){
+
+
+return ;
+} 
+
+
+// changes this.cost to update with the lowest cost
+public void generateCost(){
+
+
+return;
+}
 
 
 ////////////////////////////// OTHER ///////////////////////////////////
