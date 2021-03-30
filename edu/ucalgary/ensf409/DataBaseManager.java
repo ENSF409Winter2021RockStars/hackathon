@@ -311,7 +311,7 @@ public class DataBaseManager{
      */
     public static void main(String[] args){
         // change these variables for your local installation
-        String username ="ensf409"; 
+        String username ="ENSF409"; 
         String password = "ensf409";
         String dbURL="jdbc:mysql://localhost/INVENTORY";
 

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 // a DataBaseManager object 
 private DataBaseManager dBM;  
 // change these variables for your local installation
-private String username ="ensf409"; 
+private String username ="ENSF409"; 
 private String password = "ensf409";
 // The DataBase URL
 private String dbURL="jdbc:mysql://localhost/INVENTORY";
