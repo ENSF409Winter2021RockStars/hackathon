@@ -3,7 +3,7 @@
 // Team: ENSF409 Group 48
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.03
+// Version: 0.03M
 // Revision Date: March 30, 2021
 //
 // Description: A class containing a Furniture Order Form 
@@ -26,8 +26,7 @@ import java.util.ArrayList;
 // a DataBaseManager object 
 private DataBaseManager dBM;  
 // change these variables for your local installation
-private String username ="Marasco"; 
-//private String username ="mathew"; 
+private String username ="ensf409"; 
 private String password = "ensf409";
 // The DataBase URL
 private String dbURL="jdbc:mysql://localhost/INVENTORY";
