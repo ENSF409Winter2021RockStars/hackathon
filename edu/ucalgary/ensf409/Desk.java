@@ -188,6 +188,16 @@ public class Desk extends Furniture{
 
 
     /////////////////////////////// OTHER ///////////////////////////////////////////
+    
+    /**
+     * method to find the number of different parts a piece of furniture
+     * can have.
+     * @return number of parts the furniture item can have
+     */
+    public int numberOfParts() {
+        return this.boolArray.length;
+    }
+    
     /**
      * method to print class fields to screen space separated
      */
