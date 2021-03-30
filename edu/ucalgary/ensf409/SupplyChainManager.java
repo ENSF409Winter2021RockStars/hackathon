@@ -14,7 +14,6 @@ import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import jdk.jfr.Category;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
@@ -380,9 +379,6 @@ public class SupplyChainManager{
     public FurnitureOrder getUserOrder(){
         return this.userOrder;
     }
-
-
-
 
     //////////////////////////// MAIN ////////////////////////////////////////
 
