@@ -187,7 +187,10 @@ public class FurnitureSelector {
             
             //Loop through all items in combo by index
             for(int itemIndex : combo) {
-                tmpCost += candidateFurniture.get(itemIndex).getCost();
+
+                // RON: There is no .getCost() method in Furniture
+                // its getPrice() look at UML DIAGRAM and the implementation.
+                tmpCost += candidateFurniture.get(itemIndex).getPrice();
                 tmpSet.add(candidateFurniture.get(itemIndex));
             }
             
