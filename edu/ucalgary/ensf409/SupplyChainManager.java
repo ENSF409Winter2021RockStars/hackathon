@@ -449,10 +449,11 @@ public class SupplyChainManager{
         }
         // print out the total cost of the solution
         System.out.println("Total Cost: " + cheapCost);
+        
 
         // If no combination was found print this message:
         if (cheapCost == -1){
-            System.out.println("A combination to fullfil the requested Furniture" 
+            System.out.println("A combination to fulfill the requested Furniture " 
                             +"peices and quantities was not found.");
             System.out.println("Here are some posible manufacturers to contact:");
             
