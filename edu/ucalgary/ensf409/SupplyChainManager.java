@@ -150,10 +150,10 @@ public class SupplyChainManager{
                 type="Mesh";
                 break;
                 case 3:
-                type="Executive";
+                type="Kneeling";
                 break;
                 case 4:
-                type="Kneeling";
+                type="Executive";
                 break;
                 case 5:
                 type="Ergonomic";
