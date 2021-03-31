@@ -32,7 +32,7 @@ public class SupplyChainManager{
 
     ////////////////////  ATTRIBUTES ///////////////////////////////
     // change these variables for your local installation
-    private String username ="ENSF409"; 
+    private String username ="Marasco"; 
     //private String username ="mathew"; 
     private String password = "ensf409";
     private String dbURL="jdbc:mysql://localhost/INVENTORY";
@@ -448,9 +448,7 @@ public class SupplyChainManager{
             piece.print();
         }
         // print out the total cost of the solution
-        if (cheapCost != -1) {
-            System.out.println("Total Cost: " + cheapCost);
-        }
+        System.out.println("Total Cost: " + cheapCost);
         
 
         // If no combination was found print this message:
