@@ -38,11 +38,6 @@ public class DataBaseManager{
     // decalare a ResultSet object to store db querry results in 
     private ResultSet results;
 
-    // note that DBURL will set the DATABASE as:
-    // "jdbc:mysql://localhost/COMPETITION"
-    // USERNAME = 'Marasco'
-    // PASSWORD = 'ensf409' etc
-
     ////////////////////////// CONSTRUCTORS //////////////////////////
     /**
      * Constructor for class DataBaseManager

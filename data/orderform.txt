@@ -4,13 +4,11 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Desk LAMP, 3
+Original Request: Traditional DESK, 2
 
 Items Ordered
-ID: L013
-ID: L112
-ID: L208
-ID: L342
-ID: L564
+ID: D4231
+ID: D8675
+ID: D9352
 
-Total Price: $60
+Total Price: $200

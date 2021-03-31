@@ -25,7 +25,7 @@ import java.lang.IllegalArgumentException;
  * to an Inventory system using MySQL.  The user makes a request
  * The request is parsed, and a combination of lowest cost from the inventory is created
  * if such a combination does not exist, a helpful output is made to the console, suggesting 
- * relevant manufacturers.  If such a cheapest combination exists, then an orderform is created
+ * relevant manufacturers.  If such a cheapest combination exists, then an order form is created
  * and writen to disk.  Simultaneously the requested items are deleted from the database.
  */
 public class SupplyChainManager{
@@ -419,14 +419,14 @@ public class SupplyChainManager{
     
         // dBM access has to be offloaded into FurnitureOrderForm
         // for the classes to snap together 
-        // declare storage arrayList for the candidate furniture
-    
+        
         // make a new FurnitureOrderForm 
         FurnitureOrderForm form = new FurnitureOrderForm(SCM.getUserOrder());
 
-        // print out the candidates
+        // declare storage arrayList for the candidate furniture
         ArrayList<Furniture>candidateFurniture;
         candidateFurniture = form.getCandidateFurniture();
+        // print out the candidates
         System.out.println("The Candidate Furniture:");
         System.out.println("=========================");
         // Debug print out the candidate furniture
@@ -435,9 +435,11 @@ public class SupplyChainManager{
         }
 
         // compute the cost and the furnitureList
+        // this function calculates both the list of items and their cost
         form.generateFurnitureList();
+        // get the calculated cost 
         int cheapCost=form.getCost();
-
+        // get the calculated solution set of lowest cost furniture
         ArrayList<Furniture> solutionSet;
         solutionSet= form.getFurnitureList(); 
 
@@ -454,7 +456,7 @@ public class SupplyChainManager{
         System.out.println();
         // print out the total cost of the solution
         if (cheapCost != -1) {
-            System.out.println("Total Cost: " + cheapCost);
+            System.out.println("Total Cost: $" + cheapCost);
         }
         else {
             System.out.println("Total Cost: null");
