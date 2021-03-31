@@ -40,7 +40,7 @@ public class DataBaseManager{
 
     // note that DBURL will set the DATABASE as:
     // "jdbc:mysql://localhost/COMPETITION"
-    // USERNAME = 'Marasco'
+    // USERNAME = 'ENSF409'
     // PASSWORD = 'ensf409' etc
 
     ////////////////////////// CONSTRUCTORS //////////////////////////
