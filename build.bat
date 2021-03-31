@@ -31,8 +31,6 @@ javac edu/ucalgary/ensf409/FurnitureSelector.java
 
 
 REM #############  Build the Database Interaction units
-ECHO javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java
-javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java
 ECHO javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 

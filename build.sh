@@ -25,8 +25,6 @@ echo "javac edu/ucalgary/ensf409/FurnitureSelector.java"
 javac edu/ucalgary/ensf409/FurnitureSelector.java
 
 #############  Build the Database Interaction units
-echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java"
-javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/CheckInventory.java
 echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java"
 javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 
