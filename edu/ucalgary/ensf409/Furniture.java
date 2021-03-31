@@ -3,8 +3,8 @@
 // Team: ENSF409 Group 48
 // Authors: Mathew Pelletier, (Ron) Zorondras Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.02
-// Revision Date: n/a
+// Version: 0.03
+// Revision Date: March 31, 2021
 //
 // Description: Abstract class for a generic furniture item
 /////////////////////////////////////////////////////////////////
@@ -20,8 +20,14 @@ package edu.ucalgary.ensf409;
  * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
  * @version   0.02  28/03/2021
  * @since     0.02  27/03/2021
-*/
+ */
 
+/**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ * @version   0.03  31/03/2021
+ * @since     0.03  31/03/2021
+ */
+ 
 
 /**
  * Abstract class for a generic furniture item
@@ -48,11 +54,6 @@ public abstract class Furniture{
         this.price = price;
         this.manuID = manuID;
     }
-
-    /**
-     * Abstract class for print function
-     */
-    abstract void print();
 
 
 ////////////////////////  ACCESSORS  ////////////////////////////////////
@@ -87,16 +88,25 @@ public abstract class Furniture{
      */
     public int getPrice(){
         return this.price;
-    }
+    }    
 
  ////////////////////////////// MUTATORS /////////////////////////////////
 
   // not required as of right now
 
  /////////////////////////////// OTHER  ///////////////////////////////////
- 
+      
+    /**
+     * abstract methods which will be implemented by its child classes
+     */
     public abstract int numberOfParts();
+    public abstract boolean isComplete();
     public abstract boolean[] getBoolArray();
+    public abstract void resetBooleanArray();
+    public abstract void setBooleansFromArray();
+    public abstract void setBoolArray(int k, boolean value);
+    public abstract void print();
+    public abstract String toString();
     
     /**
      * abstract class helper function to check a Y/N string input and convert to True/False
