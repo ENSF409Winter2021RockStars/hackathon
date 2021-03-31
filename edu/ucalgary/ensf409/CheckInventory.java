@@ -116,7 +116,7 @@ public class CheckInventory{
 
     public static void main(String[] args){
         // chhange arguments to match your database
-        String username="mathew"; // change back to mathew after test is done
+        String username="ENSF409"; // change back to mathew after test is done
         String password="ensf409";
         
         CheckInventory myDB = new CheckInventory("jdbc:mysql://localhost/inventory",username,password);

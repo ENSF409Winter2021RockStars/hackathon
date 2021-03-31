@@ -25,15 +25,14 @@ import java.lang.IllegalArgumentException;
  * to an Inventory system using MySQL.  The user makes a request
  * The request is parsed, and a combination of lowest cost from the inventory is created
  * if such a combination does not exist, a helpful output is made to the console, suggesting 
- * relevant manufacturers.  If such a cheapest combination exists, then an orderform is created
+ * relevant manufacturers.  If such a cheapest combination exists, then an order form is created
  * and writen to disk.  Simultaneously the requested items are deleted from the database.
  */
 public class SupplyChainManager{
 
     ////////////////////  ATTRIBUTES ///////////////////////////////
     // change these variables for your local installation
-    private String username ="Marasco"; 
-    //private String username ="mathew"; 
+    private String username ="ENSF409"; 
     private String password = "ensf409";
     private String dbURL="jdbc:mysql://localhost/INVENTORY";
     
@@ -151,10 +150,10 @@ public class SupplyChainManager{
                 type="Mesh";
                 break;
                 case 3:
-                type="Executive";
+                type="Kneeling";
                 break;
                 case 4:
-                type="Kneeling";
+                type="Executive";
                 break;
                 case 5:
                 type="Ergonomic";
@@ -224,6 +223,7 @@ public class SupplyChainManager{
     System.out.println("What " + selectionStr + " would you like?");
     // get a line of keyboard input
     userResponseStr=keyconsole.nextLine();
+    System.out.println();
     try{
     userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
     }catch(NumberFormatException e){
@@ -419,14 +419,14 @@ public class SupplyChainManager{
     
         // dBM access has to be offloaded into FurnitureOrderForm
         // for the classes to snap together 
-        // declare storage arrayList for the candidate furniture
-    
+        
         // make a new FurnitureOrderForm 
         FurnitureOrderForm form = new FurnitureOrderForm(SCM.getUserOrder());
 
-        // print out the candidates
+        // declare storage arrayList for the candidate furniture
         ArrayList<Furniture>candidateFurniture;
         candidateFurniture = form.getCandidateFurniture();
+        // print out the candidates
         System.out.println("The Candidate Furniture:");
         System.out.println("=========================");
         // Debug print out the candidate furniture
@@ -435,21 +435,32 @@ public class SupplyChainManager{
         }
 
         // compute the cost and the furnitureList
+        // this function calculates both the list of items and their cost
         form.generateFurnitureList();
+        // get the calculated cost 
         int cheapCost=form.getCost();
-
+        // get the calculated solution set of lowest cost furniture
         ArrayList<Furniture> solutionSet;
         solutionSet= form.getFurnitureList(); 
 
+        System.out.println();
         System.out.println("The Solution Set Furniture:");
         System.out.println("===========================");
         // Debug print out the solution combination furniture list 
         for (Furniture piece : solutionSet){
             piece.print();
         }
+        if (solutionSet.size() == 0) {
+            System.out.println("null");
+        }
+        System.out.println();
         // print out the total cost of the solution
-        System.out.println("Total Cost: " + cheapCost);
-        
+        if (cheapCost != -1) {
+            System.out.println("Total Cost: $" + cheapCost);
+        }
+        else {
+            System.out.println("Total Cost: null");
+        }
 
         // If no combination was found print this message:
         if (cheapCost == -1){

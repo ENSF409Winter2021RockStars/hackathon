@@ -38,11 +38,6 @@ public class DataBaseManager{
     // decalare a ResultSet object to store db querry results in 
     private ResultSet results;
 
-    // note that DBURL will set the DATABASE as:
-    // "jdbc:mysql://localhost/COMPETITION"
-    // USERNAME = 'Marasco'
-    // PASSWORD = 'ensf409' etc
-
     ////////////////////////// CONSTRUCTORS //////////////////////////
     /**
      * Constructor for class DataBaseManager
@@ -311,8 +306,7 @@ public class DataBaseManager{
      */
     public static void main(String[] args){
         // change these variables for your local installation
-        String username ="mathew"; 
-        //String username ="Marasco";
+        String username ="ENSF409"; 
         String password = "ensf409";
         String dbURL="jdbc:mysql://localhost/INVENTORY";
 
