@@ -223,6 +223,7 @@ public class SupplyChainManager{
     System.out.println("What " + selectionStr + " would you like?");
     // get a line of keyboard input
     userResponseStr=keyconsole.nextLine();
+    System.out.println();
     try{
     userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
     }catch(NumberFormatException e){
@@ -440,15 +441,24 @@ public class SupplyChainManager{
         ArrayList<Furniture> solutionSet;
         solutionSet= form.getFurnitureList(); 
 
+        System.out.println();
         System.out.println("The Solution Set Furniture:");
         System.out.println("===========================");
         // Debug print out the solution combination furniture list 
         for (Furniture piece : solutionSet){
             piece.print();
         }
+        if (solutionSet.size() == 0) {
+            System.out.println("null");
+        }
+        System.out.println();
         // print out the total cost of the solution
-        System.out.println("Total Cost: " + cheapCost);
-        
+        if (cheapCost != -1) {
+            System.out.println("Total Cost: " + cheapCost);
+        }
+        else {
+            System.out.println("Total Cost: null");
+        }
 
         // If no combination was found print this message:
         if (cheapCost == -1){
