@@ -1,12 +1,13 @@
 #Hackathon
 Project files for working on the hackathon
 
-This will git repo will contain our preliminary UML and some preliminary classes
+This git repo will contain our preliminary UML and some preliminary classes to solve
+the INVENTORY Furniture combination of minimum cost problem.
 
 ##BUILD INSTRUCTIONS
 
 ###Linux or MacOS
-`$./build.sh `
+`$./build.sh`
 
 ### Windows NT
 > build
@@ -21,12 +22,12 @@ mysql> quit; `
 
 `java -cp .;lib/mysql-connector-java-8.0.23.jar edu.ucalgary.ensf409.SupplyChainManager`
 
-or type at the console
+Or type the following command at the command console (CMD,SH,BASH):<p>
 
-##Linux or MacOS
+###Linux or MacOS
 `$ scm`
 
-## Windows NT
+### Windows NT
 `> scm`
 
 
