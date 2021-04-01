@@ -119,43 +119,46 @@ public class DataBaseManager{
         }
     } // closing brace for method close()
 
-    /**
+        /**
      * selectMatchingFurniture checks a specified database table for all records with specified Type and returns as an ArrayList
      * @param category database table to query (CHAIR,DESK,FILING,LAMP)
      * @param type condition for rows to query (ie. in CHAIR: Task,Mesh,Executive,Ergonomic,Kneeling)
      * @return ArrayList of objects, of the specified category with specified type
      */
     public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
+        // ArrayList as a container to hold retrieved furniture
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
+        String query = "SELECT * FROM " + category.toUpperCase() + " WHERE Type = '" + type.toUpperCase() + "'";
         try{
-            String query = "SELECT * FROM " + category.toUpperCase() + " WHERE Type = '" + type.toUpperCase() + "'";
+            // create new statements and execute the query saving results
             Statement myStmt = dbConnect.createStatement();  
             this.results = myStmt.executeQuery(query);
-            while(results.next()){
+            while(results.next()){// results iterable
                 Furniture newFurn = null; // Furniture pointer 
+                // create a new list element 
                 switch(category.toUpperCase()){
-                    case "CHAIR": 
+                    case "CHAIR": // new list element is of type chair, use retrieved values from results as constructor arguments
                         newFurn = new Chair(results.getString("ID"),results.getString("Type"),
                         results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),
                         results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "DESK": 
+                    case "DESK": // new list element is of type desk, use retrieved values from results as constructor arguments
                         newFurn = new Desk(results.getString("ID"),results.getString("Type"),
                         results.getString("Legs"),results.getString("Top"), results.getString("Drawer"),
                         results.getInt("Price"),results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "FILING": 
+                    case "FILING": // new list element is of type filing, use retrieved values from results as constructor arguments
                         newFurn = new Filing(results.getString("ID"),results.getString("Type"),
                         results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"),
                         results.getInt("Price"),results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "LAMP": 
+                    case "LAMP": // new list element is of type lamp, use retrieved values from results as constructor arguments
                         newFurn = new Lamp(results.getString("ID"),results.getString("Type"),
                         results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),
                         results.getString("ManuID"));
@@ -171,12 +174,6 @@ public class DataBaseManager{
             System.out.println(e.getMessage()); // print the Exception message
             e.printStackTrace(); // print the stack trace 
         }
-            //DEBUG PRINT OUT OF PULLED FURNITURE ITEMSX
-            // Print the arraylist for quick verification REMOVE 
-            //for(Furniture temp:matchingFurn){
-            //    temp.print();
-            //}
-            //System.out.println("\n");
         return matchingFurn; // return the ArrayList of Furniture which match the request 
     }
 
