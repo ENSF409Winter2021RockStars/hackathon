@@ -29,7 +29,6 @@ javac edu/ucalgary/ensf409/FurnitureOrderFormFile.java
 ECHO javac edu/ucalgary/ensf409/FurnitureSelector.java
 javac edu/ucalgary/ensf409/FurnitureSelector.java
 
-
 REM #############  Build the Database Interaction units
 ECHO javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
@@ -38,6 +37,9 @@ REM ##############   BUILD SCM Control unit
 ECHO javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java
 javac -cp .;lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java
 
+REM ############# BUILD The Test Suild 
+ECHO javac -cp .;lib/mysql-connector-java-8.0.23.jar;lib/junit-4.13.2.jar;lib/hamcrest-core-1.2.jar:lib/system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java
+javac -cp .;lib/mysql-connector-java-8.0.23.jar;lib/junit-4.13.2.jar;lib/hamcrest-core-1.2.jar:lib/system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java
 
 REM ##############
 
