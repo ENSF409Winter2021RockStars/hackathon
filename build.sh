@@ -32,8 +32,11 @@ javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseMan
 echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java"
 javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java
 
+############## TESTS
+echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java"
+javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java
 
-##############
+
 
 echo Build Completed at `date`
 ############################## END OF FILE ###############################################
