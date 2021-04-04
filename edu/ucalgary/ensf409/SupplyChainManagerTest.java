@@ -256,6 +256,15 @@ public class SupplyChainManagerTest{
         assertEquals("getQuantity returned an unexpcted value",3,order.getQuantity());
     }
 
+    @Test
+    public void testFurniturOrderStringRepresentation(){
+        // make  an order for 3 mesh chairs
+        FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
+        // test each attribute via getters
+        String expected = "Category: CHAIR\nType: Mesh\nQuantity: 3\n";
+        assertTrue("getCategory returned an unexpcted value",expected.equals(order.toString() ) );
+  
+    }
 
 
 
