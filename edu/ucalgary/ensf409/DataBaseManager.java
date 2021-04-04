@@ -134,7 +134,7 @@ public class DataBaseManager{
     public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
         // ArrayList as a container to hold retrieved furniture
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
-        String query = "SELECT * FROM " + category + " WHERE Type = '" + type + "'";
+        String query = "SELECT * FROM " + category.toUpperCase() + " WHERE Type = '" + type + "'";
         try{
             // create new statements and execute the query saving results
             Statement myStmt = dbConnect.createStatement();  
