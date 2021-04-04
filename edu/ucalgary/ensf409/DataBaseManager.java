@@ -3,7 +3,7 @@
 // Team: ENSF409 Group 48
 // Authors: Ron Rodriguez & Mathew Pelletier
 // Creation Date: March 27, 2021
-// Version: 0.003
+// Version: 0.03
 // Revision Date: March 29, 2021
 //
 // Description: A preliminary database traversing class file
@@ -17,9 +17,15 @@ import java.util.ArrayList;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.003 03/20/2021
- * @since 0.001 03/19/2021
+ * @version 0.03 03/20/2021
+ * @since 0.01 03/19/2021
  */
+
+/**
+*@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@version: 0.03 03/31/2021
+*@since: 0.02 03/31/2021
+*/
 
 /**
  * FurnitureSelector is a class to manipulate a MySQL database related

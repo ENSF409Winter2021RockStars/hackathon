@@ -1,8 +1,8 @@
 ////////////////////////////////////////////
 // Title: SupplyChainManagerTest.java
-// Authors: (Ron) Zorondras Rodriguez
+// Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
 // Creation Date: March 31, 2021
-// Version:0.01
+// Version: 0.03
 // Revision Date: March 31, 2021
 //
 // Description: Unit Tests for SCM program
@@ -18,13 +18,25 @@ import java.sql.*;
 
 
 /**
+*@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@version: 0.03 03/31/2021
+*@since: 0.02 03/31/2021
+*/
+
+/**
 *@author Ron Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
-*@version: 0.01 03/31/2021
+*@version: 0.03 03/31/2021
 *@since: 0.01 03/31/2021
 */
 
 
+/**
+ * SupplyChainManagerTest is a class to test all of the classes and methods related to the supply chain management
+ * problem of selecting the lowest cost furniture items from an inventory database
+ */
 public class SupplyChainManagerTest{
+
+    /****************************** FURNITURE CONSTRUCTOR TESTS ********************************************/
 
     @Test
     public void testChairConstructor(){
@@ -87,6 +99,8 @@ public class SupplyChainManagerTest{
         assertEquals("ON", testManufacturer.getProvince());
     }
 
+
+    /**************************************** DBM TESTS ***********************************************/
     @Test
     public void testDBMSelectMatchingFurniture(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
@@ -144,6 +158,8 @@ public class SupplyChainManagerTest{
         boolean closed = testDBM.closeDBConnection();
         assertTrue("Connection was not succesfully made", closed);
     }
+
+    /************************************** FurnitureSelector Tests ***********************************************/
 
     @Test
     public void testFurnSelectCalcCheapestRequest1(){
@@ -220,17 +236,13 @@ public class SupplyChainManagerTest{
     }
 
 
+    /****************************************************************************************************************/
 
+    // Remaining Classes to test 
+    /* FurnitureOrder, FurnitureOrderForm, 
+    *  FurnitureOrderFormFile, SupplyChainManager
+    */
 
-
-
-/////////////////// ATTRIBUTES ////////////////////////////
-
-
-//////////////////// CONSTRUCTORS /////////////////////////
-
-
-/////////////////// TESTS /////////////////////////////////
 
 
 ////////////////// HELPER METHODS /////////////////////////
