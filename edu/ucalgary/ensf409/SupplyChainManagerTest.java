@@ -12,6 +12,9 @@ package edu.ucalgary.ensf409;
 
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import jdk.jfr.Timestamp;
+
 import java.util.*;
 import java.io.*;
 import java.sql.*;
@@ -242,6 +245,18 @@ public class SupplyChainManagerTest{
     /* FurnitureOrder, FurnitureOrderForm, 
     *  FurnitureOrderFormFile, SupplyChainManager
     */
+
+    @Test
+    public void testFurniturOrderConstructor(){
+        // make  an order for 3 mesh chairs
+        FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
+        // test each attribute via getters
+        assertEquals("getCategory returned an unexpcted value","CHAIR",order.getCategory());
+        assertEquals("getType returned an unexpcted value","Mesh",order.getType());
+        assertEquals("getQuantity returned an unexpcted value",3,order.getQuantity());
+    }
+
+
 
 
 
