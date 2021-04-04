@@ -4,11 +4,10 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Traditional DESK, 2
+Original Request: Mesh CHAIR, 1
 
 Items Ordered
-ID: D4231
-ID: D8675
-ID: D9352
+ID: C0942
+ID: C9890
 
-Total Price: $200
+Total Price: $150
