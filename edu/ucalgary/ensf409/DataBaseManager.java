@@ -88,16 +88,20 @@ public class DataBaseManager{
      * DBURL, USERNAME and PASSWORD fields 
      * @return void returns nothing
      */
-    public void initializeConnection(){        
+    public boolean initializeConnection(){   
         try{
             // USE INVENTORY; will be set here in DBURL
             this.dbConnect = DriverManager.getConnection(this.getDburl().toUpperCase(),
             this.getUsername(),this.getPassword());
+            return dbConnect.isValid(1);
+        
         
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // print the exception 
             e.printStackTrace(); //print the stack trace
+            return false;
         }
+
     }// closing brace for initializeConection(
 
     // method to close the DB connection  
@@ -105,17 +109,19 @@ public class DataBaseManager{
     * close() closes the connection to the database and all results
     * @return void 
     */
-    public void closeDBConnection() {
+    public boolean closeDBConnection() {
         try {
             dbConnect.close();
             
             if ( this.results !=null){
                 this.results.close(); // close the results of the queries
             }
+            return dbConnect.isClosed();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage()); // print the error message
             e.printStackTrace();
+            return false;
         }
     } // closing brace for method close()
 
@@ -128,7 +134,7 @@ public class DataBaseManager{
     public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
         // ArrayList as a container to hold retrieved furniture
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
-        String query = "SELECT * FROM " + category.toUpperCase() + " WHERE Type = '" + type.toUpperCase() + "'";
+        String query = "SELECT * FROM " + category + " WHERE Type = '" + type + "'";
         try{
             // create new statements and execute the query saving results
             Statement myStmt = dbConnect.createStatement();  
@@ -233,6 +239,10 @@ public class DataBaseManager{
             Statement myStmt = dbConnect.createStatement();///** */
             //execute query and store results
             results = myStmt.executeQuery(furnQuery);
+            // if there were no matching manufacturers return the empty list
+            if (!results.isBeforeFirst() ) {    
+                return manufactList; 
+            }
             //list to store unique ManuIDs and loop to store them
             ArrayList<String> uniqueID = new ArrayList<String>();
             while (results.next()){
@@ -322,12 +332,13 @@ public class DataBaseManager{
         // make a pull of all matching furniture 
         myFurnMatch= myJDBC.selectMatchingFurniture("chair","Mesh");
         // grab all manufacturer's of mesh chairs
-        ArrayList<Manufacturer> meshManufactList = myJDBC.retrieveSpecificManufacturer("Chair","Mesh");
+        ArrayList<Manufacturer> meshManufactList = myJDBC.retrieveSpecificManufacturer("Filing","large");
         //Manufacturer manu; // Manufacturer pointer
         // print out the manufacturer of mesh chairs
-        for ( Manufacturer manu : meshManufactList){
-            manu.print();
+        for ( Manufacturer temp : meshManufactList){
+            temp.print();
         }
+        System.out.println(myFurnMatch.size());
 
         // !!! DANGER !!! 
         //Wouldn't recommend testing this unless you want to re-add/restore the database

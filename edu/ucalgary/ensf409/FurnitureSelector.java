@@ -84,6 +84,9 @@ public class FurnitureSelector {
      * @return (int) cost of the cheapest set
      */
     public int calculateCheapestSet(int quantity) {
+        if(candidateFurniture.isEmpty()){
+            return -1;
+        }
         
         int parts = candidateFurniture.get(0).numberOfParts(); //Number of parts an item can have max, assumes all furniture items have the same max
         int quantityOnHand = candidateFurniture.size(); //Number of items in inventory that matched in the query
@@ -119,6 +122,7 @@ public class FurnitureSelector {
                 allPossibleCombinations.add(combination);
             }
         }
+        
     }
     
     /**
