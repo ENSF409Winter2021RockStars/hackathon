@@ -2,7 +2,7 @@
 // Title: SupplyChainManagerTest.java
 // Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
 // Creation Date: March 31, 2021
-// Version: 0.03
+// Version: 0.04
 // Revision Date: April 4, 2021
 //
 // Description: Unit Tests for SCM program
@@ -22,13 +22,13 @@ import java.sql.*;
 
 /**
 *@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
-*@version: 0.03 03/31/2021
+*@version: 0.04 03/31/2021
 *@since: 0.02 03/31/2021
 */
 
 /**
 *@author Ron Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
-*@version: 0.03 03/31/2021
+*@version: 0.04 03/31/2021
 *@since: 0.01 03/31/2021
 */
 
@@ -41,6 +41,8 @@ public class SupplyChainManagerTest{
 
     /****************************** FURNITURE CONSTRUCTOR TESTS ********************************************/
 
+
+    /***************************************         Chair          ********************************************************/
     @Test
     public void testChairConstructor(){
         Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
@@ -55,6 +57,7 @@ public class SupplyChainManagerTest{
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false,false}, testChair.getBoolArray());
     }
 
+    /**********************************         Desk           ***********************************************************/
     @Test
     public void testDeskConstructor(){
         Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
@@ -68,6 +71,7 @@ public class SupplyChainManagerTest{
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testDesk.getBoolArray());
     }
 
+    /***********************************            Filing            *****************************************************/
     @Test
     public void testFilingConstructor(){
         Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
@@ -81,6 +85,7 @@ public class SupplyChainManagerTest{
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testFiling.getBoolArray());
     }
 
+    /*************************************          Lamp               ***************************************************/
     @Test
     public void testLampConstructor(){
         Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
@@ -93,6 +98,8 @@ public class SupplyChainManagerTest{
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,false}, testLamp.getBoolArray());
     }
 
+    /************************************          Manufacturer             *************************************************/
+
     @Test
     public void testManufacturerConstructor(){
         Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
@@ -103,7 +110,7 @@ public class SupplyChainManagerTest{
     }
 
 
-    /**************************************** DBM TESTS ***********************************************/
+    /************************************        DataBaseManager           **************************************************/
     @Test
     public void testDBMSelectMatchingFurniture(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
@@ -241,13 +248,9 @@ public class SupplyChainManagerTest{
 
     /****************************************************************************************************************/
 
-    // Remaining Classes to test 
-    /* FurnitureOrder, FurnitureOrderForm, 
-    *  FurnitureOrderFormFile, SupplyChainManager
-    */
-
+    /******************************  FurnitureOrder ***********************************************/
     @Test
-    public void testFurniturOrderConstructor(){
+    public void testFurniturOrderructor(){
         // make  an order for 3 mesh chairs
         FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
         // test each attribute via getters
@@ -266,13 +269,26 @@ public class SupplyChainManagerTest{
   
     }
 
+    /********************************     FurnitureOrderForm   ****************************************/
 
 
 
-////////////////// HELPER METHODS /////////////////////////
 
+
+    /*********************************   FurnitureOrderFormFile ***********************************/
+
+
+
+
+    /*********************************    SupplyChainManager  *************************************/
+
+    // Remaining Classes to test 
+    /* FurnitureOrderForm, 
+    *  FurnitureOrderFormFile, SupplyChainManager
+    */
+
+/*************************************** HELPER METHODS **********************************************/
 
 } // closing brace for class SupplyChainManagerTest 
 
-
-
+/****************************************** END OF FILE  **********************************************/
