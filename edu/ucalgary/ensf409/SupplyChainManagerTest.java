@@ -249,13 +249,36 @@ public class SupplyChainManagerTest{
     /****************************************************************************************************************/
 
     /******************************  FurnitureOrder ***********************************************/
+       
     @Test
-    public void testFurniturOrderructor(){
+    public void testFurniturOrderConstructor(){
+        // make  an order for 3 mesh chairs
+        FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
+        // test that order is not pointing to null
+        assertTrue("getCategory returned an unexpcted value",(order!=null));
+    }
+   
+    @Test
+    public void testFurniturOrderGetCategory(){
         // make  an order for 3 mesh chairs
         FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
         // test each attribute via getters
         assertEquals("getCategory returned an unexpcted value","CHAIR",order.getCategory());
+    }
+
+    @Test
+    public void testFurniturOrderGetType(){
+        // make  an order for 3 mesh chairs
+        FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
+        // test each attribute via getters
         assertEquals("getType returned an unexpcted value","Mesh",order.getType());
+    }
+
+    @Test
+    public void testFurniturOrderGetQuantity(){
+        // make  an order for 3 mesh chairs
+        FurnitureOrder order = new FurnitureOrder("CHAIR","Mesh",3);
+        // test each attribute via getters
         assertEquals("getQuantity returned an unexpcted value",3,order.getQuantity());
     }
 
