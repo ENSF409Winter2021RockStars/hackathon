@@ -62,7 +62,7 @@ public class FurnitureSelector {
     /**
      * Getter method for a shallow copy of candidateFurniture.
      * @return candidateFurniture member object
-     */
+      */
      public ArrayList<Furniture> getCandidateFurniture() {
          return candidateFurniture;
      }
@@ -165,6 +165,8 @@ public class FurnitureSelector {
                 //If part count is less than the quantity needed for the order, then this combo is invalid
                 if(count < quantity) {
                     partCountComplete = false;
+                    break; // stop counting , the part list won't work break the loop (April 5 Ron)
+                           // breaking just speeds up the algorithm potentially, but shouldn't change the outcome
                 }
             }
             //If this combo is valid, add to validCombinations
