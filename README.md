@@ -31,4 +31,11 @@ Or type the following command at the command console (CMD,SH,BASH):<p>
 `> scm`
 
 
+## RUN TEST FILE
 
+### Linux of MacOS
+`$ ./test`
+
+### Windows NT
+
+`> test`
