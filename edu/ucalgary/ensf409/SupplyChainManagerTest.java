@@ -534,6 +534,18 @@ public class SupplyChainManagerTest{
         assertTrue("Solution Furniture List was null",testOrderForm.getFurnitureList() !=null);
     }
 
+    @Test
+    /**
+     * Test that the furnitureList variable is empty
+     */
+    public void testFurnitureOrderFormGetFurnitureListEmpty(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // check that the candidate furniture is initially unset and points to null
+        assertTrue("Solution Furniture List was not empty",testOrderForm.getFurnitureList().isEmpty());
+    }
 
     @Test
     /**
@@ -553,15 +565,53 @@ public class SupplyChainManagerTest{
         } 
 
         // check that the candidate furniture is initially unset and points to null
-        assertTrue("Solution Furniture List was null",candidates.equals("D0890 Traditional false false true 25 002"+
+        assertTrue("Candidate Furniture List was incorrect",candidates.equals("D0890 Traditional false false true 25 002"+
                                                                     "D4231 Traditional false true true 50 005"+
                                                                     "D8675 Traditional true true false 75 001"+
                                                                     "D9352 Traditional true false true 75 002"));
     }
 
 
+    @Test
+    /**
+     * Test that the solution furniture computed is correct
+     */
+    public void testFurnitureOrderFormSolutionFurniture(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+
+        // compute the lowest cost set 
+        testOrderForm.generateFurnitureList();
+        // now get the furniture list 
+        ArrayList<Furniture> solutionFurniture = testOrderForm.getFurnitureList();
+
+        String solution="";
+        for (Furniture peice: solutionFurniture) {
+            solution+=peice.toString();
+        } 
+
+        // check that the candidate furniture is initially unset and points to null
+        assertTrue("Solution Furniture List was incorrect",solution.equals("D0890 Traditional false false true 25 002"+
+                                                                    "D8675 Traditional true true false 75 001"));
+    }
 
 
+    @Test
+    /**
+     * Test that the solution furniture computed is correct
+     */
+    public void testFurnitureOrderFormGenerateCost(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // compute the lowest cost set 
+        testOrderForm.generateCost();
+        // check that the solution cost is correct
+        assertEquals("Solution cost should have beed $100 and was not",100,testOrderForm.getCost());
+    }
 
     /*********************************   FurnitureOrderFormFile ***********************************/
 
