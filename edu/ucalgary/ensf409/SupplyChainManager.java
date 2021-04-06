@@ -2,8 +2,8 @@
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
-// Version: 0.04
-// Revision Date: March 30, 2021
+// Version: 0.05
+// Revision Date: April 5, 2021
 //
 // Description: Main control unit
 ///////////////////////////////////////////////////
@@ -16,7 +16,7 @@ import java.lang.IllegalArgumentException;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.04 03/30/2021
+ * @version 0.05 03/30/2021
  * @since 0.01 03/28/2021
  */
 

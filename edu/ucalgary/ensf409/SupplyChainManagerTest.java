@@ -2,8 +2,8 @@
 // Title: SupplyChainManagerTest.java
 // Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
 // Creation Date: March 31, 2021
-// Version: 0.06
-// Revision Date: April 4, 2021
+// Version: 0.07
+// Revision Date: April 5, 2021
 //
 // Description: Unit Tests for SCM program
 //////////////////////////////////////////////
@@ -22,13 +22,13 @@ import java.sql.*;
 
 /**
 *@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
-*@version: 0.06 03/31/2021
+*@version: 0.05 03/31/2021
 *@since: 0.02 03/31/2021
 */
 
 /**
 *@author Ron Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
-*@version: 0.06 03/31/2021
+*@version: 0.07 03/31/2021
 *@since: 0.01 03/31/2021
 */
 
@@ -753,6 +753,8 @@ public class SupplyChainManagerTest{
     }
 
     /*********************************    SupplyChainManager  *************************************/
+
+    // Nothing really to test since it's user interactive 
 
     // Remaining Classes to test
     /* SupplyChainManager */
