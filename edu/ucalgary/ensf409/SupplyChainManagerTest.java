@@ -647,25 +647,70 @@ public class SupplyChainManagerTest{
 
     // basic tests on the constructor
     @Test
+    /**
+     * test the constructor on no input filename defaults to "orderform.txt"
+     */
     public void testFurnitureOrderFormFileConstructorNoArg(){
         FurnitureOrderFormFile formFile = new FurnitureOrderFormFile();
         assertTrue("Error: File name path was not correct", formFile.getFileName().equals(getRelativePath("orderform.txt")));
     }
 
     @Test
+    /**
+     * test the constructor on an input file name and the getter for the filename
+     */
     public void testFurnitureOrderFormFileConstructorFileName(){
         String fileNameIn = "superDuperForm.txt";
+        // construct the FurnitureOrderFormFile object
         FurnitureOrderFormFile formFile = new FurnitureOrderFormFile(fileNameIn);
         assertTrue("Error: File name path was not correct", formFile.getFileName().equals(getRelativePath(fileNameIn)));
     }
 
     // test setters and getters
 
-    // full test on output form
+    @Test
+    /**
+     * test the unused setters and getters for Faculty attribute 
+     */
+    public void testFurnitureOrderFormFileSetGetFaculty(){
+        String fileNameIn = "superDuperForm.txt";
+        // construct the FurnitureOrderFormFile object
+        FurnitureOrderFormFile formFile = new FurnitureOrderFormFile(fileNameIn);
+        // set the faculty
+        formFile.setFaculty("Software Engineering");
+        assertTrue("Error: Faculty string from getFaculty() was not correct", formFile.getFaculty().equals("Software Engineering") );
+    }
+
+    @Test
+     /**
+     * test the unused setters and getters for Cintact attribute 
+     */
+    public void testFurnitureOrderFormFileSetGetContact(){
+        String fileNameIn = "superDuperForm.txt";
+        // construct the FurnitureOrderFormFile object
+        FurnitureOrderFormFile formFile = new FurnitureOrderFormFile(fileNameIn);
+        // set the contact
+        formFile.setContact("OscarAmyLime");
+        assertTrue("Error: Contact string from getContact() was not correct", formFile.getContact().equals("OscarAmyLime") );
+    }
+
+    @Test
+     /**
+     * test the unused setters and getters for Date attribute 
+     */
+    public void testFurnitureOrderFormFileSetGetDate(){
+        String fileNameIn = "superDuperForm.txt";
+        // construct the FurnitureOrderFormFile object
+        FurnitureOrderFormFile formFile = new FurnitureOrderFormFile(fileNameIn);
+        // set the contact
+        formFile.setDate("April 9, 2021");
+        assertTrue("Error: Date string from getDate() was not correct", formFile.getDate().equals("April 9, 2021") );
+    }
+
+
 
     // this will require making a read method
-
-
+    // full test on output form
 
 
     /*********************************    SupplyChainManager  *************************************/
