@@ -613,6 +613,31 @@ public class SupplyChainManagerTest{
         assertEquals("Solution cost should have beed $100 and was not",100,testOrderForm.getCost());
     }
 
+    @Test
+    /**
+     * Test that the candidate furniture pull from the DBM is correct
+     */
+    public void testFurnitureOrderFormGetManufacturers(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // get the associated manufacturers of Traditional Desks
+        ArrayList<Manufacturer> pulledManufacturers = testOrderForm.getManufacturers();
+
+        String manuString="";
+        for (Manufacturer manu: pulledManufacturers) {
+            //manu.print();
+            manuString+=manu.toString();
+        } 
+
+        // check that the candidate furniture is initially unset and points to null
+        assertTrue("Manufacturer List was incorrect",manuString.equals("001 Academic Desks 236-145-2542 BC"
+                                                        +"002 Office Furnishings 587-890-4387 AB"
+                                                        +"005 Fine Office Supplies 403-980-9876 AB"));
+    }
+
+
     /*********************************   FurnitureOrderFormFile ***********************************/
 
 
