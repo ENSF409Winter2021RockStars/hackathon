@@ -2,7 +2,7 @@
 // Title: SupplyChainManagerTest.java
 // Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
 // Creation Date: March 31, 2021
-// Version: 0.05
+// Version: 0.06
 // Revision Date: April 4, 2021
 //
 // Description: Unit Tests for SCM program
@@ -22,13 +22,13 @@ import java.sql.*;
 
 /**
 *@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
-*@version: 0.05 03/31/2021
+*@version: 0.06 03/31/2021
 *@since: 0.02 03/31/2021
 */
 
 /**
 *@author Ron Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
-*@version: 0.05 03/31/2021
+*@version: 0.06 03/31/2021
 *@since: 0.01 03/31/2021
 */
 
@@ -38,6 +38,12 @@ import java.sql.*;
  * problem of selecting the lowest cost furniture items from an inventory database
  */
 public class SupplyChainManagerTest{
+
+    /****************************************** ATTRIBUTES  *********************************************************/
+
+    // static final stirng variables
+    private static final String DIR = "data"; // the directory to place the order form
+    private static final String PREFIX = "Error: "; // a prefix for error messages 
 
     /***************************************** FURNITURE TESTS ********************************************************/
 
@@ -637,20 +643,55 @@ public class SupplyChainManagerTest{
                                                         +"005 Fine Office Supplies 403-980-9876 AB"));
     }
 
-
     /*********************************   FurnitureOrderFormFile ***********************************/
+
+    // basic tests on the constructor
+    @Test
+    public void testFurnitureOrderFormFileConstructorNoArg(){
+        FurnitureOrderFormFile formFile = new FurnitureOrderFormFile();
+        assertTrue("Error: File name path was not correct", formFile.getFileName().equals(getRelativePath("orderform.txt")));
+    }
+
+    @Test
+    public void testFurnitureOrderFormFileConstructorFileName(){
+        String fileNameIn = "superDuperForm.txt";
+        FurnitureOrderFormFile formFile = new FurnitureOrderFormFile(fileNameIn);
+        assertTrue("Error: File name path was not correct", formFile.getFileName().equals(getRelativePath(fileNameIn)));
+    }
+
+    // test setters and getters
+
+    // full test on output form
+
+    // this will require making a read method
 
 
 
 
     /*********************************    SupplyChainManager  *************************************/
 
-    // Remaining Classes to test 
-    /* FurnitureOrderForm, 
-    *  FurnitureOrderFormFile, SupplyChainManager
-    */
+    // Remaining Classes to test
+    /*  FurnitureOrderFormFile, SupplyChainManager     */
 
 /*************************************** HELPER METHODS **********************************************/
+
+
+ // Give us the full relative path to the filename, OS independently
+  /**
+   * getRealativePath() gets the realtive path of a file from CWD
+   * This function is not used anywhere ... ??
+   * @param filename
+   * @return (String) representing the relative path
+   */
+  private String getRelativePath(String filename) {
+    File path = new File(DIR);
+    File full = new File(path, filename);
+    return full.getPath();
+  }
+
+
+
+
 
 /************************************************************************************************************/
 
