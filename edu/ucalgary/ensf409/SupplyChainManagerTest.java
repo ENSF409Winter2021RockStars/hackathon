@@ -493,7 +493,7 @@ public class SupplyChainManagerTest{
     /**
      * test equality of pointers of the original order form and the .getClientRequest() 
      */
-    public void testFurnitureOrderFormTestClientRequest(){
+    public void testFurnitureOrderFormClientRequest(){
         // make an order
         FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
         // construct an orderform
@@ -509,7 +509,7 @@ public class SupplyChainManagerTest{
     /**
      * test equality of string representations of the original order and the orderForm client request variable
      */
-    public void testFurnitureOrderFormTestClientRequestToString(){
+    public void testFurnitureOrderFormClientRequestToString(){
         // make an order
         FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
         // construct an orderform
@@ -520,6 +520,47 @@ public class SupplyChainManagerTest{
         assertTrue("getClientRequest() returned incorrect information",order.toString().equals(testOrderForm.getClientRequest().toString()) );
 
     }
+
+    @Test
+    /**
+     * Test that the furnitureList variable is constructed with the order Form
+     */
+    public void testFurnitureOrderFormGetFurnitureListNotNull(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // check that the candidate furniture is initially unset and points to null
+        assertTrue("Solution Furniture List was null",testOrderForm.getFurnitureList() !=null);
+    }
+
+
+    @Test
+    /**
+     * Test that the candidate furniture pull from the DBM is correct
+     */
+    public void testFurnitureOrderFormCandidateFurniture(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+
+        ArrayList<Furniture> pulledFurniture = testOrderForm.getCandidateFurniture();
+
+        String candidates="";
+        for (Furniture peice: pulledFurniture) {
+            candidates+=peice.toString();
+        } 
+
+        // check that the candidate furniture is initially unset and points to null
+        assertTrue("Solution Furniture List was null",candidates.equals("D0890 Traditional false false true 25 002"+
+                                                                    "D4231 Traditional false true true 50 005"+
+                                                                    "D8675 Traditional true true false 75 001"+
+                                                                    "D9352 Traditional true false true 75 002"));
+    }
+
+
+
 
 
     /*********************************   FurnitureOrderFormFile ***********************************/

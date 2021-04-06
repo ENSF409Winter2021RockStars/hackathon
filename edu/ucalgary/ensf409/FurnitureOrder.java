@@ -8,6 +8,7 @@
 //
 // Description: A class containing parameters of a furniture order
 /////////////////////////////////////////////////////////////////
+
 package edu.ucalgary.ensf409;
 
 /**
