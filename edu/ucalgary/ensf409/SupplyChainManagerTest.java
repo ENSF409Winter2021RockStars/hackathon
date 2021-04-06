@@ -18,6 +18,7 @@ import jdk.jfr.Timestamp;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
+import java.util.List;
 
 
 /**
@@ -173,7 +174,7 @@ public class SupplyChainManagerTest{
     @Test
     public void testFilingConstructor(){
         Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
-        
+        assertTrue("Constructor failed and points to Null", testFiling!=null);
     }
 
     @Test
@@ -318,13 +319,23 @@ public class SupplyChainManagerTest{
     public void testDBMSelectMatchingFurniture(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
+
+        List<String> expectedIds = new ArrayList<String>();
+        expectedIds.add("C0942");
+        expectedIds.add("C6748");
+        expectedIds.add("C8138");
+        expectedIds.add("C9890");
+
         ArrayList<Furniture> testFurnMatch= testDBM.selectMatchingFurniture("chair","Mesh");
-        assertEquals("Returned array list does not have the expected number of elements", 4, testFurnMatch.size());
-        assertEquals("The first returned item did not match expected", "C0942", testFurnMatch.get(0).getID());
-        assertEquals("The second returned item did not match expected", "C6748", testFurnMatch.get(1).getID());
-        assertEquals("The third returned item did not match expected", "C8138", testFurnMatch.get(2).getID());
-        assertEquals("The fourth returned item did not match expected", "C9890", testFurnMatch.get(3).getID());
+
+        List<String> ids = new ArrayList<String>();
+        for(int i = 0; i < testFurnMatch.size(); i++){
+            ids.add(testFurnMatch.get(i).getID());
+        }        
         testDBM.closeDBConnection();
+
+        assertEquals("Returned array list does not match the expected results", expectedIds, ids);
+
     }
 
     @Test
@@ -332,19 +343,30 @@ public class SupplyChainManagerTest{
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
         ArrayList<Furniture> testFurnMatch= testDBM.selectMatchingFurniture("chair","hammock");
-        assertTrue("Returned array list was not empty",testFurnMatch.isEmpty());
         testDBM.closeDBConnection();
+        assertTrue("Returned array list was not empty",testFurnMatch.isEmpty());
+    
     }
 
     @Test
     public void testDBMRetrieveSpecificManufacturer(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
+
+        List<String> expectedManuIds = new ArrayList<String>();
+        expectedManuIds.add("003");
+        expectedManuIds.add("005");
+
         ArrayList<Manufacturer> testManuMatch = testDBM.retrieveSpecificManufacturer("chair", "Mesh");
-        assertEquals("Returned array list was not the expected length", 2, testManuMatch.size());
-        assertEquals("The first returned item did not match expected", "003", testManuMatch.get(0).getManuID());
-        assertEquals("The second returned item did not match expected", "005", testManuMatch.get(1).getManuID());
+
+        List<String> manuIds = new ArrayList<String>();
+        for(int i = 0; i < testManuMatch.size(); i++){
+            manuIds.add(testManuMatch.get(i).getManuID());
+        } 
+
         testDBM.closeDBConnection();
+
+        assertEquals("Returned manufacturer list does not contain the expected results", expectedManuIds, manuIds);
     }
 
     @Test
@@ -352,16 +374,16 @@ public class SupplyChainManagerTest{
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
         ArrayList<Manufacturer> testManuMatch = testDBM.retrieveSpecificManufacturer("chair", "notMesh");
-        assertEquals("Returned array list was not empty",0, testManuMatch.size());
         testDBM.closeDBConnection();
+        assertEquals("Returned array list was not empty",0, testManuMatch.size());
     }
 
     @Test
     public void testDBMCSuccessfulConnection(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         boolean connected = testDBM.initializeConnection();
-        assertTrue("Connection was not succesfully made", connected);
         testDBM.closeDBConnection();
+        assertTrue("Connection was not succesfully made", connected);
     }
 
     @Test
@@ -369,6 +391,7 @@ public class SupplyChainManagerTest{
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
         boolean closed = testDBM.closeDBConnection();
+        testDBM.closeDBConnection();
         assertTrue("Connection was not succesfully made", closed);
     }
 
@@ -393,9 +416,17 @@ public class SupplyChainManagerTest{
         FurnitureSelector testFurnSelect = new FurnitureSelector(testFurnMatch);
         testFurnSelect.calculateCheapestSet(1);
         ArrayList<Furniture> testLowestFurn = testFurnSelect.getLowestFurniture();
-        assertEquals("Expected Furniture list to contain 2 items", 2, testLowestFurn.size());
-        assertEquals("The first item to be purchased did not match expected","C0942",testLowestFurn.get(0).getID());
-        assertEquals("The second item to be purchased did not match expected","C9890",testLowestFurn.get(1).getID());
+
+        List<String> expectedIds = new ArrayList<String>();
+        expectedIds.add("C0942");
+        expectedIds.add("C9890");
+
+        List<String> ids = new ArrayList<String>();
+        for(int i = 0; i < testLowestFurn.size(); i++){
+            ids.add(testLowestFurn.get(i).getID());
+        } 
+
+        assertEquals("Expected Furniture list did not match the expected lowest combination", expectedIds, ids);
     }
 
     @Test
@@ -440,12 +471,21 @@ public class SupplyChainManagerTest{
         FurnitureSelector testFurnSelect = new FurnitureSelector(testFurnMatch);
         testFurnSelect.calculateCheapestSet(3);
         ArrayList<Furniture> testLowestFurn = testFurnSelect.getLowestFurniture();
-        assertEquals("Expected returned furniture list to contain 5 items",5,testLowestFurn.size());
-        assertEquals("The first item to be purchased did not match expected","F001",testLowestFurn.get(0).getID());
-        assertEquals("The second item to be purchased did not match expected","F004",testLowestFurn.get(1).getID());
-        assertEquals("The second item to be purchased did not match expected","F005",testLowestFurn.get(2).getID());
-        assertEquals("The second item to be purchased did not match expected","F006",testLowestFurn.get(3).getID());
-        assertEquals("The second item to be purchased did not match expected","F013",testLowestFurn.get(4).getID());
+
+        List<String> expectedIds = new ArrayList<String>();
+        expectedIds.add("F001");
+        expectedIds.add("F004");
+        expectedIds.add("F005");
+        expectedIds.add("F006");
+        expectedIds.add("F013");
+
+
+        List<String> ids = new ArrayList<String>();
+        for(int i = 0; i < testLowestFurn.size(); i++){
+            ids.add(testLowestFurn.get(i).getID());
+        } 
+
+        assertEquals("Expected Furniture list did not match the expected lowest combination", expectedIds, ids);
     }
 
 
