@@ -707,11 +707,50 @@ public class SupplyChainManagerTest{
         assertTrue("Error: Date string from getDate() was not correct", formFile.getDate().equals("April 9, 2021") );
     }
 
-
-
     // this will require making a read method
     // full test on output form
+    @Test
+     /**
+     * test writing a form of datathe unused setters and getters for Date attribute 
+     */
+    public void testFurnitureOrderFormFileWriteForm(){
+        String fileNameIn = "superDuperForm.txt";
+        // construct the FurnitureOrderFormFile object
+        FurnitureOrderFormFile testFormFile = new FurnitureOrderFormFile(fileNameIn);
+        // construct a FurnitureOrder and FurnitureOrderForm
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // generate the lowest cost Furniture List
+        testOrderForm.generateFurnitureList();
+        // now write the form out to the data directory
+        testFormFile.createFile(testOrderForm); // write the file out
 
+        //System.out.println(testFormFile.getFileName());
+        // read the file into the array list 
+        ArrayList<String> orderFormList = this.readFileToArrayList(testFormFile.getFileName());
+
+        String orderFormString="";
+
+        for (String line: orderFormList) {
+            // debug print the line of text 
+            //System.out.println(line);
+            // add it to the string that we will test (add back the newline for each line)
+            orderFormString+=line+"\n"; 
+        }
+
+        String theCorrectString="Furniture Order Form\n\n"+
+        "Faculty: "+""+"\n"+"Contact: "+""+"\n"+"Date: "+""+"\n\n"+        
+        "Original Request: Traditional Desk, 1\n\n"+
+        "Items Ordered\n"+"ID: D0890\n"+"ID: D8675\n"+"\n"+
+        "Total Price: $100"+"\n";
+
+        // Debug
+        //System.out.println(theCorrectString);
+
+        // perform the assertion test 
+        assertTrue("Error: The form data was not correct", orderFormString.equals(theCorrectString) );
+    }
 
     /*********************************    SupplyChainManager  *************************************/
 
@@ -735,7 +774,66 @@ public class SupplyChainManagerTest{
   }
 
 
+  private ArrayList<String> readFileToArrayList(String filename){
 
+    String textPointer="";
+    ArrayList<String> theFormList = new ArrayList<String>();
+    BufferedReader file =null; // declare here to use outside of try/catch 
+    // here we want to open the file that was written and read it in
+
+    //String fileName =this.getRelativePath(filename);
+
+
+    try {
+
+      // fix this
+      // I don't like the nesting here, Constructs a BufferedWriter on a FileWriter
+      // opened on the fileName (this is to not require closing the FileWriter object)
+      // which is lazy and confusing 
+      //open a BufferedReader
+      file = new BufferedReader(new FileReader(filename) );
+  
+      while(textPointer!=null){
+      // read in a line of text 
+      textPointer = file.readLine();
+      // copy construct the line as a new string and add it to the list 
+        if (textPointer!=null){
+            theFormList.add(new String(textPointer)); 
+        }
+    }
+      
+    }
+    catch (Exception e) {
+        System.err.println(PREFIX + "I/O error opening the file.");
+        System.err.println(e.getMessage());
+        this.closeReader(file);
+        System.exit(1);
+      }
+      
+  this.closeReader(file); 
+  return theFormList; // return the list 
+  }
+
+
+  /**
+   * closeWriter() is a wrapper for file.close() 
+   * with Exception handling
+   * @param file (BufferedWriter) is a file handle that is open that we want to close
+   */
+  private void closeReader(BufferedReader file) {
+    try {
+      if (file != null) {
+        file.close();
+      }
+    }
+    // Exception handling 
+    catch (Exception e) {
+      System.err.println(PREFIX + "I/O error closing file.");
+      System.err.println(e.getMessage());
+      System.exit(1);
+    }
+  return;
+}
 
 
 /************************************************************************************************************/
