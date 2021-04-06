@@ -2,7 +2,7 @@
 // Title: SupplyChainManagerTest.java
 // Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
 // Creation Date: March 31, 2021
-// Version: 0.04
+// Version: 0.05
 // Revision Date: April 4, 2021
 //
 // Description: Unit Tests for SCM program
@@ -22,13 +22,13 @@ import java.sql.*;
 
 /**
 *@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
-*@version: 0.04 03/31/2021
+*@version: 0.05 03/31/2021
 *@since: 0.02 03/31/2021
 */
 
 /**
 *@author Ron Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
-*@version: 0.04 03/31/2021
+*@version: 0.05 03/31/2021
 *@since: 0.01 03/31/2021
 */
 
@@ -39,76 +39,273 @@ import java.sql.*;
  */
 public class SupplyChainManagerTest{
 
-    /****************************** FURNITURE CONSTRUCTOR TESTS ********************************************/
-
+    /***************************************** FURNITURE TESTS ********************************************************/
 
     /***************************************         Chair          ********************************************************/
     @Test
     public void testChairConstructor(){
         Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
+        assertTrue("Constructor for Filing failed and points to null", testChair!=null);
+    }
+
+   @Test
+    public void testChairGetID(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertEquals("getID returned an unexpected value","C1234",testChair.getID());
-        assertEquals("getType returned an unexpcted value","Mesh",testChair.getType());
+    }
+
+   @Test
+    public void testChairGetType(){
+       Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
+       assertEquals("getType returned an unexpcted value","Mesh",testChair.getType());
+    }
+
+
+    @Test
+    public void testChairGetLegs(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertTrue("Boolean for getLegs returned false", testChair.getLegs());
-        assertTrue("Boolean for getArms returned false", testChair.getArms());
-        assertFalse("Boolean for getSeat returned true", testChair.getSeat());
+     }
+ 
+
+    @Test
+    public void testChairGetSeat(){
+         Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
+         assertFalse("Boolean for getSeat returned true", testChair.getSeat());
+       
+    }
+
+    @Test
+    public void testChairGetArms(){
+          Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
+          assertTrue("Boolean for getArms returned false", testChair.getArms());
+    }
+
+    @Test
+    public void testChairGetCushion(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertFalse("Boolean for getCusion returned true", testChair.getCushion());
+    }
+    
+    @Test
+        public void testChairGetPrice(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertEquals("getPrice returned an unexpected value", 50, testChair.getPrice());
+    }
+    
+    @Test
+        public void testChairGetManuID(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertEquals("getManuID returned an unexpected value","002",testChair.getManuID());
+    }
+
+    @Test
+        public void testChairGetBoolArray(){
+        Chair testChair = new Chair("C1234","Mesh","Y","Y","N","N",50,"002");
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false,false}, testChair.getBoolArray());
     }
+
+ 
+
 
     /**********************************         Desk           ***********************************************************/
     @Test
     public void testDeskConstructor(){
         Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
-        assertEquals("getID returned an unexpected value","D1234",testDesk.getID());
-        assertEquals("getType returned an unexpcted value","Standing",testDesk.getType());
-        assertTrue("Boolean for getLegs returned false", testDesk.getLegs());
-        assertTrue("Boolean for getTop returned false", testDesk.getTop());
-        assertFalse("Boolean for getDrawer returned true", testDesk.getDrawer());
-        assertEquals("getPrice returned an unexpected value", 100, testDesk.getPrice());
-        assertEquals("getManuID returned an unexpected value","001",testDesk.getManuID());
-        assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testDesk.getBoolArray());
+        assertTrue("Constructor for Filing failed and points to null", testDesk!=null);
     }
 
+    @Test
+    public void testDeskGetID(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertEquals("getID returned an unexpected value","D1234",testDesk.getID());
+    }
+
+    @Test
+    public void testDeskGetType(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertEquals("getType returned an unexpcted value","Standing",testDesk.getType());
+    }
+
+    @Test
+    public void testDeskGetLegs(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertTrue("Boolean for getLegs returned false", testDesk.getLegs());
+    }
+
+    @Test
+    public void testDeskGetTop(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertTrue("Boolean for getTop returned false", testDesk.getTop());
+    }
+
+    @Test
+    public void testDeskGetDrawer(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertFalse("Boolean for getDrawer returned true", testDesk.getDrawer());
+    }
+
+    @Test
+    public void testDeskGetPrice(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");
+        assertEquals("getPrice returned an unexpected value", 100, testDesk.getPrice());
+    }
+  
+    @Test
+    public void testDeskGetManuID(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");   
+        assertEquals("getManuID returned an unexpected value","001",testDesk.getManuID());
+    }
+    
+    @Test
+    public void testDeskGetBoolArray(){
+        Desk testDesk = new Desk("D1234","Standing","Y","Y","N",100,"001");   
+        assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testDesk.getBoolArray());
+    }
+    
     /***********************************            Filing            *****************************************************/
     @Test
     public void testFilingConstructor(){
         Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
-        assertEquals("getID returned an unexpected value","F1234",testFiling.getID());
-        assertEquals("getType returned an unexpcted value","Large",testFiling.getType());
-        assertTrue("Boolean for getRails returned false", testFiling.getRails());
-        assertTrue("Boolean for getDrawers returned false", testFiling.getDrawers());
-        assertFalse("Boolean for getCabinet returned true", testFiling.getCabinet());
-        assertEquals("getPrice returned an unexpected value", 75, testFiling.getPrice());
-        assertEquals("getManuID returned an unexpected value","003",testFiling.getManuID());
-        assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testFiling.getBoolArray());
+        
     }
 
+    @Test
+    public void testFilingGetID(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertEquals("getID returned an unexpected value","F1234",testFiling.getID());
+    }
+
+    @Test
+    public void testFilingGetType(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertEquals("getType returned an unexpcted value","Large",testFiling.getType());
+    }
+    
+    @Test
+    public void testFilingGetRails(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertTrue("Boolean for getRails returned false", testFiling.getRails());
+    }
+
+    @Test
+    public void testFilingGetDrawers(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertTrue("Boolean for getDrawers returned false", testFiling.getDrawers());
+    }
+
+    @Test
+    public void testFilingGetCabinet(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertFalse("Boolean for getCabinet returned true", testFiling.getCabinet());
+    }
+
+    @Test
+    public void testFilingGetManuID(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertEquals("getManuID returned an unexpected value","003",testFiling.getManuID());
+    }
+    
+
+    @Test
+    public void testFilingGetPrice(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertEquals("getPrice returned an unexpected value", 75, testFiling.getPrice());
+    }
+    
+    @Test
+    public void testFilingGetBoolArray(){
+        Filing testFiling = new Filing("F1234","Large","Y","Y","N",75,"003");
+        assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,true,false}, testFiling.getBoolArray());
+    }
+    
     /*************************************          Lamp               ***************************************************/
     @Test
     public void testLampConstructor(){
         Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
+        assertTrue("Constructor failed and points to Null", testLamp!=null);
+
+    }
+
+    @Test 
+    public void testLampGetID(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertEquals("getID returned an unexpected value","L1234",testLamp.getID());
+
+    }
+ 
+    @Test 
+    public void testLampGetType(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertEquals("getType returned an unexpcted value","Desk",testLamp.getType());
+    }
+
+    @Test 
+    public void testLampGetBase(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertTrue("Boolean for getBase returned false", testLamp.getBase());
+
+    }
+
+    @Test 
+    public void testLampGetBulb(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertFalse("Boolean for getBulb returned true", testLamp.getBulb());
+    }
+
+    @Test 
+    public void testLampGetPrice(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertEquals("getPrice returned an unexpected value", 25, testLamp.getPrice());
+    }
+
+    @Test 
+    public void testLampGetManuID(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertEquals("getManuID returned an unexpected value","004",testLamp.getManuID());
+    }
+
+
+    @Test 
+    public void testLampGetBoolArray(){
+        Lamp testLamp = new Lamp("L1234","Desk","Y","N",25,"004");
         assertArrayEquals("getBoolArray returned an unexpected value", new boolean[] {true,false}, testLamp.getBoolArray());
     }
+   
 
     /************************************          Manufacturer             *************************************************/
 
     @Test
     public void testManufacturerConstructor(){
         Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
-        assertEquals("003", testManufacturer.getManuID());
-        assertEquals("Chairs R Us", testManufacturer.getName());
-        assertEquals("705-667-9481", testManufacturer.getPhone());
-        assertEquals("ON", testManufacturer.getProvince());
+        assertTrue("Constructor failed and points to Null", testManufacturer!=null);
     }
 
+    @Test 
+    public void testManufacturerGetManuID(){
+        Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
+        assertEquals("Incorrect manufacturer ID", "003", testManufacturer.getManuID());
+    }
+
+
+    @Test 
+    public void testManufacturerGetName(){
+        Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
+        assertEquals("Incorrect Manufacturer Name","Chairs R Us", testManufacturer.getName());
+    }
+
+    @Test 
+    public void testManufacturerGetPhone(){
+        Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
+        assertEquals("Incorrect Manufacturer Phone Number","705-667-9481", testManufacturer.getPhone());
+    }
+  
+    @Test 
+    public void testManufacturerGetProvince(){
+        Manufacturer testManufacturer = new Manufacturer("003", "Chairs R Us", "705-667-9481", "ON");
+        assertEquals("Incorrect Manufacturer Province","ON", testManufacturer.getProvince());
+    }
+  
 
     /************************************        DataBaseManager           **************************************************/
     @Test
@@ -169,7 +366,7 @@ public class SupplyChainManagerTest{
         assertTrue("Connection was not succesfully made", closed);
     }
 
-    /************************************** FurnitureSelector Tests ***********************************************/
+    /**************************************    FurnitureSelector    ***********************************************/
 
     @Test
     public void testFurnSelectCalcCheapestRequest1(){
