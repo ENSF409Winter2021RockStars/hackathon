@@ -443,9 +443,7 @@ public class SupplyChainManagerTest{
     }
 
 
-    /****************************************************************************************************************/
-
-    /******************************  FurnitureOrder ***********************************************/
+    /****************************************  FurnitureOrder ******************************************************/
        
     @Test
     public void testFurniturOrderConstructor(){
@@ -491,8 +489,37 @@ public class SupplyChainManagerTest{
 
     /********************************     FurnitureOrderForm   ****************************************/
 
+    @Test
+    /**
+     * test equality of pointers of the original order form and the .getClientRequest() 
+     */
+    public void testFurnitureOrderFormTestClientRequest(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // test getClientRequest()
+        testOrderForm.getClientRequest(); 
+        // check that the orders are the same (pointer level) 
+        assertEquals("getClientRequest() returned incorrect information",order,testOrderForm.getClientRequest());
 
+    }
 
+    @Test
+    /**
+     * test equality of string representations of the original order and the orderForm client request variable
+     */
+    public void testFurnitureOrderFormTestClientRequestToString(){
+        // make an order
+        FurnitureOrder order = new FurnitureOrder("Desk","Traditional",1);
+        // construct an orderform
+        FurnitureOrderForm testOrderForm = new FurnitureOrderForm(order);
+        // test getClientRequest()
+        testOrderForm.getClientRequest(); 
+        // check that the orders are the same (pointer level) 
+        assertTrue("getClientRequest() returned incorrect information",order.toString().equals(testOrderForm.getClientRequest().toString()) );
+
+    }
 
 
     /*********************************   FurnitureOrderFormFile ***********************************/
@@ -508,6 +535,8 @@ public class SupplyChainManagerTest{
     */
 
 /*************************************** HELPER METHODS **********************************************/
+
+/************************************************************************************************************/
 
 } // closing brace for class SupplyChainManagerTest 
 
