@@ -755,7 +755,7 @@ public class SupplyChainManagerTest{
     /*********************************    SupplyChainManager  *************************************/
 
     // Remaining Classes to test
-    /*  FurnitureOrderFormFile, SupplyChainManager     */
+    /* SupplyChainManager */
 
 /*************************************** HELPER METHODS **********************************************/
 

@@ -140,7 +140,7 @@ public class SupplyChainManager{
      */
     public String decodeTypeSelection(int selection, String category){
         String type="";
-        switch (category){
+        switch (category.toUpperCase()){
             case "CHAIR":
             switch(selection){
                 case 1:
@@ -293,16 +293,16 @@ public class SupplyChainManager{
         String category="";
         switch (selection){
             case 1:
-            category="CHAIR";
+            category="Chair";
             break;
             case 2:
-            category="DESK";
+            category="Desk";
             break;
             case 3:
-            category="FILING";
+            category="Filing";
             break;
             case 4:
-            category="LAMP";
+            category="Lamp";
             break;
         }
         return category;

@@ -3,8 +3,8 @@
 // Team: ENSF409 Group 48
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
-// Version: 0.003
-// Revision Date: March 27, 2021
+// Version: 0.04
+// Revision Date: April 5, 2021
 //
 // Description: A class to output a order form in one of two formats
 /////////////////////////////////////////////////////////////////
@@ -31,9 +31,9 @@ import java.io.FileWriter;
 
 ///////////////////////////  ATTRIBUTES  ////////////////////////////////
 
-// fixed this with Type String declaration
-private static final String DIR = "data";
-private static final String PREFIX = "Error: ";
+// static final stirng variables
+private static final String DIR = "data"; // the directory to place the order form
+private static final String PREFIX = "Error: "; // a prefix for error messages 
 
 private String faculty="";
 private String date=""; // maybe a DateTime object instead?
@@ -97,7 +97,7 @@ public String getFileName(){
 
   // Set the fileName
   /**
-   * Setter for fileName attribute 
+   * Setter for fileName attribute uses full path  
    * @param fileName (String) represents a filename 
    */
   public void setFileName(String fileName) {
