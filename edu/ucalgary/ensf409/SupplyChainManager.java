@@ -1,5 +1,8 @@
 //////////////////////////////
 // Title: SupplyChainManager
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
 // Version: 0.05
@@ -18,6 +21,16 @@ import java.lang.IllegalArgumentException;
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
  * @version 0.05 03/30/2021
  * @since 0.01 03/28/2021
+ */
+
+ /**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*/
+/**
+ * @author    Quinn Ledingham
  */
 
 /**

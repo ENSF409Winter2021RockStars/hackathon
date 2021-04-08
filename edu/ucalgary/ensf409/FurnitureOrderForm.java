@@ -1,6 +1,8 @@
 //////////////////////////////////////////////////////////////
 // Title: FurnitureOrderForm.java
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.03M
@@ -16,6 +18,16 @@ import java.util.ArrayList;
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
  * @version 0.03 03/30/2021
  * @since 0.01 03/27/2021
+ */
+
+/**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*/
+/**
+ * @author    Quinn Ledingham
  */
 
  public class FurnitureOrderForm{

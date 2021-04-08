@@ -1,12 +1,22 @@
 ////////////////////////////////////////////
 // Title: SupplyChainManagerTest.java
-// Authors: (Ron) Zorondras Rodriguez & Matthew Pelletier 
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
+// Authors: (Ron) Zorondras Rodriguez & Mathew Pelletier
 // Creation Date: March 31, 2021
 // Version: 0.07
 // Revision Date: April 5, 2021
 //
 // Description: Unit Tests for SCM program
 //////////////////////////////////////////////
+
+
+/*
+
+NOTE: THIS TEST EXPECTS THE INVENTORY.SQL FILE USED IS THE SAME AS THE CORRECTED ONE PROVIDED AS A SAMPLE
+
+*/
 
 package edu.ucalgary.ensf409;
 
@@ -32,6 +42,13 @@ import java.util.List;
 *@version: 0.07 03/31/2021
 *@since: 0.01 03/31/2021
 */
+
+/**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Quinn Ledingham
+ */
 
 
 /**
@@ -316,6 +333,9 @@ public class SupplyChainManagerTest{
 
     /************************************        DataBaseManager           **************************************************/
     @Test
+    /**
+     * Tests the method that returns an arraylist of all querried items from teh db
+     */
     public void testDBMSelectMatchingFurniture(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -339,6 +359,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * Tests trying to querry a furniture type that doesn't exist
+     */
     public void testDBMSelectMatchingFurnitureNoMatch(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -349,6 +372,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * Tests the method to querry all manufacturers of a specific furniture class and type
+     */
     public void testDBMRetrieveSpecificManufacturer(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -370,6 +396,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * test retrieving all manufactuers of a type not present in the database
+     */
     public void testDBMRetrieveSpecificManufacturerNoMatch(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -379,6 +408,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * test that the db connection is successfully made
+     */
     public void testDBMCSuccessfulConnection(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         boolean connected = testDBM.initializeConnection();
@@ -387,6 +419,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * test that the db connection is successfully closed
+     */
     public void testDBMCSuccessfulClose(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -398,6 +433,9 @@ public class SupplyChainManagerTest{
     /**************************************    FurnitureSelector    ***********************************************/
 
     @Test
+    /**
+     * Ensures the furniture selector returns the lowest price 
+     */
     public void testFurnSelectCalcCheapestRequest1(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -408,6 +446,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * ensures furniture selector returns the combination that has the lowest cost
+     */
     public void testFurnSelectGetLowestFurnRequest1(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -431,6 +472,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * Tests when the furniture selector can't fulfill and order
+     */
     public void testFurnSelectUnfulfillable(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -441,6 +485,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * Tests when the furniture selector can't fulfill and order, checks that the returned furniture list is empty
+     */
     public void testFurnSelectGetLowestFurnUnfulfillable(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -454,6 +501,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * Tests the furniture selector when requesting multiple items, checks returns price
+     */
     public void testFurnSelectCalcCheapestRequestMultiple(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();
@@ -464,6 +514,9 @@ public class SupplyChainManagerTest{
     }
 
     @Test
+    /**
+     * checks the furniture selector when requsting multiple items, checks returned list
+     */
     public void testFurnSelectGetLowestFurnRequestMultiple(){
         DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
         testDBM.initializeConnection();

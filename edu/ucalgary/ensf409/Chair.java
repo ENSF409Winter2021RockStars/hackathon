@@ -1,6 +1,8 @@
 //////////////////////////////////////////////////////////////
 // Title: Chair.java
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Author: Mathew Pelletier
 // Creation Date: March 27, 2021
 // Version: 0.01
@@ -10,6 +12,24 @@
 /////////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
+/**
+ * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+ * @version   0.02
+ * @since     0.01
+*/
+
+/**
+ * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
+ * @version   0.02  28/03/2021
+ * @since     0.02  27/03/2021
+ */
+
+ /**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Quinn Ledingham
+ */
 
 /**
  * Chair is a subclass of furniture with boolean fields 

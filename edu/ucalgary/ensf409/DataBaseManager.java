@@ -1,10 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: DataBaseManager.java
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Authors: Ron Rodriguez & Mathew Pelletier
 // Creation Date: March 27, 2021
-// Version: 0.03
-// Revision Date: March 29, 2021
+// Version: 0.05
+// Revision Date: April 4, 2021
 //
 // Description: A preliminary database traversing class file
 /////////////////////////////////////////////////////////////////
@@ -22,10 +24,17 @@ import java.util.ArrayList;
  */
 
 /**
-*@author Matthew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
-*@version: 0.03 03/31/2021
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@version: 0.05 04/04/2021
 *@since: 0.02 03/31/2021
 */
+
+/**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Quinn Ledingham
+ */
 
 /**
  * FurnitureSelector is a class to manipulate a MySQL database related
