@@ -1,6 +1,8 @@
 //////////////////////////////////////////////////////////////
 // Title: FunitureSelector
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Authors: Quinn Ledingham, Jade Meggitt
 // Creation Date: March 28, 2021
 // Version: 0.06
@@ -24,6 +26,13 @@ import java.util.ArrayList;
  * @author    Quinn Ledingham
  * @version   0.03
  * @since     0.00
+ */
+
+/**
+ * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*/
+/**
+ * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
  */
  
 /**

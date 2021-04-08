@@ -1,6 +1,8 @@
 //////////////////////////////////////////////////////////////
 // Title: Furniture.java
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Authors: Mathew Pelletier, (Ron) Zorondras Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.03
@@ -27,6 +29,12 @@ package edu.ucalgary.ensf409;
  * @version   0.03  31/03/2021
  * @since     0.03  31/03/2021
  */
+
+
+/**
+ * @author    Quinn Ledingham
+ */
+
  
 
 /**

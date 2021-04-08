@@ -1,6 +1,8 @@
 //////////////////////////////////////////////////////////////
 // Title: Desk.java
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
+//
 // Author: Mathew Pelletier
 // Creation Date: March 27, 2021
 // Version: 0.02
@@ -20,6 +22,13 @@ package edu.ucalgary.ensf409;
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
  * @version 0.02 03/28/2021
  * @since 0.02 03/27/2021
+ */
+
+/**
+ * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ */
+/**
+ * @author    Quinn Ledingham
  */
 
 /**
