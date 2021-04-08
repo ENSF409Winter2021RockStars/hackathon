@@ -2,7 +2,7 @@
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
-// Version: 0.06
+// Version: 0.07
 // Revision Date: April 8, 2021
 //
 // Team: ENSF409 Group 48
@@ -19,7 +19,7 @@ import java.lang.IllegalArgumentException;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.06 03/30/2021
+ * @version 0.07 03/30/2021
  * @since 0.01 03/28/2021
  */
 
@@ -628,8 +628,6 @@ public class SupplyChainManager{
 	    }
 	}
 
-
-
     //////////////////////////// MAIN ////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
@@ -659,7 +657,8 @@ public class SupplyChainManager{
             // Get a user form from user interaction
             SCM.userOrderForm();
             // print the Main Menu and get a selection
-            System.out.println();// make some space 
+            System.out.println();// make some space
+            // play the main menu and ask for a response 
             userInputInt=SCM.mainMenuInteraction();
             // handle bad input by asking again in a loop 
             while ( userInputInt == -2 ){
@@ -675,7 +674,7 @@ public class SupplyChainManager{
         System.out.println("See you next time! Bye...");
         // close the scanner resource
         // only close this when you no longer ever need System.in
-        // System.in will freeze / close and not work
+        // System.in will freeze / close and not work if you do this earlier...
          SCM.keyconsole.close(); 
     return;
     }// closing brace for method main()
