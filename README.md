@@ -14,7 +14,7 @@ the INVENTORY Furniture combination of minimum cost problem.
 `$./build`
 
 ### Windows NT
-> build
+`> build`
 
 ![build](screencaps/build.png)
 
@@ -22,9 +22,9 @@ the INVENTORY Furniture combination of minimum cost problem.
 
 * first make sure to load the inventory SQL database
 
-`$ mysql -u username -p
-mysql> source inventory.sql;
-mysql> quit; `
+<p> `$ mysql -u username -p` </p>
+<p> `mysql> source inventory.sql;`</p>
+<p> `mysql> quit; ` </p>
 
 
 ![mysql](screencaps/mysql_src.png)
@@ -34,7 +34,7 @@ mysql> quit; `
 
 Or type the following command at the command console (CMD,SH,BASH):<p>
 
-###Linux or MacOS
+### Linux or MacOS
 `$ scm`
 
 ### Windows NT
