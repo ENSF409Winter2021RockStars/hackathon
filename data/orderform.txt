@@ -4,11 +4,13 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Medium Filing, 2
+Original Request: Small Filing, 3
 
 Items Ordered
-ID: F007
-ID: F008
-ID: F014
+ID: F001
+ID: F004
+ID: F005
+ID: F006
+ID: F013
 
-Total Price: $400
+Total Price: $300

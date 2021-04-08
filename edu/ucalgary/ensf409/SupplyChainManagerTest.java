@@ -404,7 +404,7 @@ public class SupplyChainManagerTest{
         ArrayList<Furniture> testFurnMatch= testDBM.selectMatchingFurniture("chair","Mesh");
         testDBM.closeDBConnection();
         FurnitureSelector testFurnSelect = new FurnitureSelector(testFurnMatch);
-        assertEquals("Calculated lowest price did not match expected: $150", 150, testFurnSelect.calculateCheapestSet(1));
+        assertEquals("Calculated lowest price did not match expected: $200", 200, testFurnSelect.calculateCheapestSet(1));
     }
 
     @Test
@@ -418,7 +418,8 @@ public class SupplyChainManagerTest{
         ArrayList<Furniture> testLowestFurn = testFurnSelect.getLowestFurniture();
 
         List<String> expectedIds = new ArrayList<String>();
-        expectedIds.add("C0942");
+        expectedIds.add("C6748");
+        expectedIds.add("C8138");
         expectedIds.add("C9890");
 
         List<String> ids = new ArrayList<String>();

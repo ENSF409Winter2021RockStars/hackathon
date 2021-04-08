@@ -41,7 +41,7 @@ public class SupplyChainManager{
 
     // a saftey switch to prevent deletion from the Inventory DB
     // change this to false when you want to demo DB deletion
-    private boolean safety=true;
+    private boolean safety=false;
       
     // Make these private and add setters and getters later
     // a DataBaseManager object 
@@ -462,8 +462,14 @@ public class SupplyChainManager{
             
             // print out the suggested manufacturers 
             // massage this to look like the output in the pdf 
-            for (Manufacturer manu : form.getManufacturers()){
-                manu.print();
+            // if no manufacturers are found print an message saying so
+            if(form.getManufacturers().isEmpty()){
+                System.out.print("Sorry, no manufacturers for this product type were found in the database.");
+            }
+            else{
+                for (Manufacturer manu : form.getManufacturers()){
+                    manu.print();
+                }
             }
 
         }else{
