@@ -69,6 +69,9 @@ public class SupplyChainManager{
     public SupplyChainManager(){
     // construct a new Registration object to manage INVENTORY
     this.dBM = new DataBaseManager(this.dbURL,this.username,this.password);
+
+    // make a keyboard scanner on System.in
+    this.keyconsole = new Scanner(System.in);
     }
    
     ////////////////////// METHODS  /////////////////////////////////////
@@ -86,8 +89,6 @@ public class SupplyChainManager{
         faculty="";
         date="";
         contact="";       
-        // make a keyboard scanner on System.in
-        this.keyconsole = new Scanner(System.in);
 
         System.out.println(); // make some space
         System.out.println("We are creating the order form, please answer the following questions: ");
@@ -123,9 +124,6 @@ public class SupplyChainManager{
         String category,type;
         int quantity, userResponseInt;
         
-        // make a keyboard scanner on System.in
-        this.keyconsole = new Scanner(System.in);
-
         System.out.println("Welcome to the SupplyChainManager Program!");
         System.out.println("___________________________________________");
         // play the menu
@@ -628,6 +626,25 @@ public class SupplyChainManager{
 	    }
 	}
 
+
+    /**
+     * closeKeyBoard() is a Wrapper method to close the keyboard resource 
+     * with exception handling 
+     */
+    public void closeKeyBoard(){
+        try{
+        // close the scanner on system.in 
+        // this will freeze/close System.in permenantly for the run
+        this.keyconsole.close();
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    return;
+    }
+
+
     //////////////////////////// MAIN ////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
@@ -674,8 +691,9 @@ public class SupplyChainManager{
         System.out.println("See you next time! Bye...");
         // close the scanner resource
         // only close this when you no longer ever need System.in
-        // System.in will freeze / close and not work if you do this earlier...
-         SCM.keyconsole.close(); 
+        // Otherwise System.in will freeze and not work 
+        // if you do this before you don't need input again
+        SCM.closeKeyBoard(); 
     return;
     }// closing brace for method main()
 
