@@ -35,7 +35,7 @@ the INVENTORY Furniture combination of minimum cost problem.
 Or type the following command at the command console (CMD,SH,BASH):<p>
 
 ### Linux or MacOS
-`$ scm`
+`$ ./scm`
 
 ### Windows NT
 `> scm`
