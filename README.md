@@ -62,5 +62,3 @@ Or type the following command at the command console (CMD,SH,BASH):<p>
 
 ### UML Diagram
 <p> The UML class diagram for the project files is found in the <b>uml</b> directory with the filename <b>ensf409project_v1.3.dia</b> which is in dia format, and a pdf version is found as  <b>uml/ensf409project_v1.3.pdf</b></p>
-
-/******************************************* END OF FILE ***********************************************************/
