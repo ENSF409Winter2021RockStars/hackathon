@@ -29,12 +29,12 @@ echo Build Started at `date`
 #javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/DataBaseManager.java
 
 ##############   BUILD SCM Control unit
-#echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java"
-#javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java
+echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java"
+javac -cp .:lib/mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/SupplyChainManager.java
 
 ################### JUNIT TEST FILE  
-echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java"
-javac -cp .:lib/mysql-connector-java-8.0.23.jar:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:lib/system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java
+#echo "javac -cp .:lib/mysql-connector-java-8.0.23.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java"
+#javac -cp .:lib/mysql-connector-java-8.0.23.jar:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:lib/system-rules-1.19.0.jar edu/ucalgary/ensf409/SupplyChainManagerTest.java
 
 ##############
 

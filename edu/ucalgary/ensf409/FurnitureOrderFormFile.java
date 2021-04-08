@@ -121,7 +121,7 @@ public String getFileName(){
    * @param faculty (String) represents the requesting faculty
    */
   public void setFaculty(String faculty){
-      this.faculty = faculty;
+      this.faculty = new String(faculty);
   }
 
   /**
@@ -129,7 +129,7 @@ public String getFileName(){
    * @param contact (String) representing the name of the purchase contact
    */
   public void setContact(String contact){
-      this.contact = contact;
+      this.contact = new String(contact);
   }
 
   /**
@@ -137,7 +137,7 @@ public String getFileName(){
    * @param date (String) representing the date of the purchase order
    */
   public void setDate(String date){
-      this.date = date;
+      this.date = new String(date);
   }
 
 ///////////////////////// FORM WRITER METHODS ///////////////////////

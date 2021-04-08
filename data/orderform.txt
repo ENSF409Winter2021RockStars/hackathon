@@ -1,16 +1,14 @@
 Furniture Order Form
 
-Faculty: 
-Contact: 
-Date: 
+Faculty: Software Engineering
+Contact: Emily Marasco
+Date: April 9, 2021
 
-Original Request: Small Filing, 3
+Original Request: Mesh Chair, 1
 
 Items Ordered
-ID: F001
-ID: F004
-ID: F005
-ID: F006
-ID: F013
+ID: C6748
+ID: C8138
+ID: C9890
 
-Total Price: $300
+Total Price: $200

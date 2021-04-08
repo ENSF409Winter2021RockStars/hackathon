@@ -2,8 +2,8 @@
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
-// Version: 0.05
-// Revision Date: April 5, 2021
+// Version: 0.06
+// Revision Date: April 8, 2021
 //
 // Team: ENSF409 Group 48
 // Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
@@ -19,7 +19,7 @@ import java.lang.IllegalArgumentException;
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
- * @version 0.05 03/30/2021
+ * @version 0.06 03/30/2021
  * @since 0.01 03/28/2021
  */
 
@@ -55,6 +55,9 @@ public class SupplyChainManager{
     // a saftey switch to prevent deletion from the Inventory DB
     // change this to false when you want to demo DB deletion
     private boolean safety=true; //false;
+    // change this boolean to control setting the Faculty, Contact and Date 
+    // in the FurnitureOrderFormFile file 
+    private boolean orderFormFileInfoBool=true;
       
     // Make these private and add setters and getters later
     // a DataBaseManager object 
@@ -70,6 +73,49 @@ public class SupplyChainManager{
    
     ////////////////////// METHODS  /////////////////////////////////////
 
+
+    /**
+     * setOrderFormFileInfo is a user interaction method to populate the FurnitureOrderFormFile object with 
+     * String information for the Faculty, Contact and Date.
+     * 
+     * file: (FurnitureOrderFormFile) a furniture order form file, that is being prepared for output to disk/printing
+     * return: (void) 
+     */
+    public void setOrderFormFileInfo( FurnitureOrderFormFile fileIn ){
+        String faculty,date,contact;
+        faculty="";
+        date="";
+        contact="";       
+        // make a keyboard scanner on System.in
+        this.keyconsole = new Scanner(System.in);
+
+        System.out.println(); // make some space
+        System.out.println("We are creating the order form, please answer the following questions: ");
+        System.out.println("______________________________________________________________________");
+
+        try{
+        System.out.println("Who is the Contact for the order? Enter a Contact Name as a String : ");
+        contact=this.keyconsole.nextLine();
+        System.out.println("What is the Date of the order? Enter a Date as a String : ");
+        date=this.keyconsole.nextLine();
+        System.out.println("Which Faculty is requesting the order? Enter the Faculty as a String : ");
+        faculty=this.keyconsole.nextLine();
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+            
+        // update the file parameters for the order faculty
+        fileIn.setFaculty(faculty);
+        // update the file parameters for the order contact
+        fileIn.setContact(contact);
+        // maybe handle this automatically with today's date 
+        // room for upgrading this 
+        fileIn.setDate(date);
+ 
+        return;
+    }
+
     /**
      * setUserOrder is a user interaction method to populate the userOrder FurnitureOrder object
      */
@@ -78,7 +124,7 @@ public class SupplyChainManager{
         int quantity, userResponseInt;
         
         // make a keyboard scanner on System.in
-        keyconsole = new Scanner(System.in);
+        this.keyconsole = new Scanner(System.in);
 
         System.out.println("Welcome to the SupplyChainManager Program!");
         System.out.println("___________________________________________");
@@ -401,6 +447,16 @@ public class SupplyChainManager{
     public boolean getSafety(){
         return this.safety;
     }
+
+
+    /**
+    * Getter for switch (true to test the form info grab feature )
+    * @return (boolean) the value of the method switch
+    */
+    public boolean getOrderFormFileInfoBool(){
+        return this.orderFormFileInfoBool;
+    }
+
     //////////////////////////// MAIN ////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
@@ -486,23 +542,33 @@ public class SupplyChainManager{
             }
 
         }else{
-        /// NEXT Send the form to print in FurnitureOrderFormFile
-        FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
-        // write the order form to disk in directory data
-        file.createFile(form);
-        // the Answer for what to buy is in solutionSet
-        // or just reuse form.getFurnitureList() / solutionSet
-            if (!SCM.getSafety()){ // saftey is manually set in attributes
-                // initialize the connection to the Database
-                SCM.dBM.initializeConnection();
-                // send the kill item request to the DB
-                SCM.dBM.deleteItems(SCM.getUserOrder().getCategory(),solutionSet);
-                // close the conenection 
-                SCM.dBM.closeDBConnection();
-            }      
+            /// NEXT Send the form to print in FurnitureOrderFormFile
+            FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
+
+             // Call method for setting the Faculty, Contact and Date in the file, before print out
+                if ( SCM.getOrderFormFileInfoBool()){
+                // method to get user interation and modify the OrderFormFile 
+                SCM.setOrderFormFileInfo(file); 
+                }
+
+            // write the order form to disk in directory data
+            file.createFile(form);
+            // the Answer for what to buy is in solutionSet
+            // or just reuse form.getFurnitureList() / solutionSet
+                if (!SCM.getSafety()){ // saftey is manually set in attributes
+                    // initialize the connection to the Database
+                    SCM.dBM.initializeConnection();
+                    // send the kill item request to the DB
+                    SCM.dBM.deleteItems(SCM.getUserOrder().getCategory(),solutionSet);
+                    // close the conenection 
+                    SCM.dBM.closeDBConnection();
+                }      
         }
 
-       return;
+        // DO NOT CLOSE THIS before now or System.in will freeze / close and not work
+        // close the scanner resource
+         SCM.keyconsole.close(); 
+    return;
     }// closing brace for method main()
 
 }// closing brace for class SupplyChainManager()
