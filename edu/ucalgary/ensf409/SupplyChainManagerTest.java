@@ -14,7 +14,10 @@
 
 /*
 
-NOTE: THIS TEST EXPECTS THE INVENTORY.SQL FILE USED IS THE SAME AS THE CORRECTED ONE PROVIDED AS A SAMPLE
+NOTE #1: THIS TEST EXPECTS THE INVENTORY.SQL FILE USED IS THE SAME AS THE CORRECTED ONE PROVIDED AS A SAMPLE
+
+NOTE #2: IF THE SAFTEY IS TURNED OFF IN SupplyChainManager, some of the tests will fail as the items have been removed.
+         You will need to reload inventory.sql, and turn the saftey boolean on before running this test file. 
 
 */
 

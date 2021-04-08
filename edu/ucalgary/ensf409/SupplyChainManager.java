@@ -54,7 +54,7 @@ public class SupplyChainManager{
 
     // a saftey switch to prevent deletion from the Inventory DB
     // change this to false when you want to demo DB deletion
-    private boolean safety=false;
+    private boolean safety=true; //false;
       
     // Make these private and add setters and getters later
     // a DataBaseManager object 
