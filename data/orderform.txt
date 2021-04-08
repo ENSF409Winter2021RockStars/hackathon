@@ -1,13 +1,15 @@
 Furniture Order Form
 
 Faculty: Software Engineering
-Contact: Anne Barcomb
-Date: April 10, 2021
+Contact: Emily Marasco
+Date: April 7, 2021
 
-Original Request: Standing Desk, 1
+Original Request: Swing Arm Lamp, 2
 
 Items Ordered
-ID: D1927
-ID: D2341
+ID: L053
+ID: L096
+ID: L487
+ID: L879
 
-Total Price: $300
+Total Price: $60
