@@ -457,32 +457,19 @@ public class SupplyChainManager{
         return this.orderFormFileInfoBool;
     }
 
-    //////////////////////////// MAIN ////////////////////////////////////////
-
-    /////////////////////////////////////////////////////////////////////
+    
     /**
-     * main function for running the program 
-     * @param args (String[]) console arguments (optional)
+     * userOrderForm() is the process flow from user interaction 
+     * up to form printing 
      */
-    public static void main(String[] args){
-
-        System.out.println("SupplyChainManager");
-        // make a new SCM object 
-        SupplyChainManager SCM = new SupplyChainManager();
-        
-        // dBM is also handled by FurnitureOrderForm now
-
-        // Need a menu for quit, order, etc
-        // SCM.userMenu();
+    public void userOrderForm(){
 
         // get some user interaction and set the order 
-        SCM.setUserOrder(); 
-        // print the userOrder object 
-        // SCM.userOrder.print();
+        this.setUserOrder(); 
         // since we have a user order FurnitureOrder ,  we will use it to 
         // request all furniture that matches the category and type
         // make a new FurnitureOrderForm 
-        FurnitureOrderForm form = new FurnitureOrderForm(SCM.getUserOrder());
+        FurnitureOrderForm form = new FurnitureOrderForm(this.getUserOrder());
 
         // declare storage arrayList for the candidate furniture
         ArrayList<Furniture>candidateFurniture;
@@ -546,27 +533,149 @@ public class SupplyChainManager{
             FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
 
              // Call method for setting the Faculty, Contact and Date in the file, before print out
-                if ( SCM.getOrderFormFileInfoBool()){
+                if ( this.getOrderFormFileInfoBool()){
                 // method to get user interation and modify the OrderFormFile 
-                SCM.setOrderFormFileInfo(file); 
+                this.setOrderFormFileInfo(file); 
                 }
 
             // write the order form to disk in directory data
             file.createFile(form);
+
+            System.out.println("A new form with the request has been saved to : "+file.getFileName() );
+            //System.out.println();// make some space
             // the Answer for what to buy is in solutionSet
             // or just reuse form.getFurnitureList() / solutionSet
-                if (!SCM.getSafety()){ // saftey is manually set in attributes
+                if (!this.getSafety()){ // saftey is manually set in attributes
                     // initialize the connection to the Database
-                    SCM.dBM.initializeConnection();
+                    this.dBM.initializeConnection();
                     // send the kill item request to the DB
-                    SCM.dBM.deleteItems(SCM.getUserOrder().getCategory(),solutionSet);
+                    this.dBM.deleteItems(this.getUserOrder().getCategory(),solutionSet);
                     // close the conenection 
-                    SCM.dBM.closeDBConnection();
+                    this.dBM.closeDBConnection();
+                    System.out.println("The ordered items have been removed from the inventory database");
                 }      
         }
 
-        // DO NOT CLOSE THIS before now or System.in will freeze / close and not work
+        return;
+    }
+
+    /**
+     * mainMenuInteraction() gets the response from the main menu options, 
+     * then returns a code corresponding to the input entered by the user
+     *
+     * @return an integer code based on user input , 1 for continue, -1 for quit, -2 for bad input
+     */
+    public int mainMenuInteraction(){
+        String userSelectionStr="";
+        // make a keyboard scanner on System.in
+        this.keyconsole = new Scanner(System.in);
+        // play the main menu
+        this.playMainMenu();
+        // get a line of input from the keyboard   
+        userSelectionStr=this.keyconsole.nextLine();
+
+        // if it is q or 2 send the quit signal -1, if 1 return 1, else return -2
+        if (userSelectionStr.equalsIgnoreCase("q") || userSelectionStr.equals("2")){
+            return -1; // signal for quit
+        } else if (userSelectionStr.equals("1")){
+            return 1;
+        } else {
+            // must be bad input
+            return -2;
+        }
+    }
+
+    /**
+     * playMainMenu() prints the main user menu options
+     */
+    public void playMainMenu(){
+        System.out.println("========Main Menu========");
+        System.out.println("=========================");
+        System.out.println("1. Make a new Furniture Request");
+        System.out.println("2. Exit Program or press q to quit");
+        
+        return;
+    }
+
+
+	// Use this to clear the screen taken from source: 	
+	//  https://stackoverflow.com/questions/2979383/java-clear-the-console		
+	/**
+	* clearScreen() Clears the console screen. 
+	*/
+	public final static void clearScreen()
+	{
+	    try
+	    {
+	        final String os = System.getProperty("os.name");
+
+	        if (os.contains("Windows"))
+	        {
+	            //Runtime.getRuntime().exec("cls"); // doesn't work
+				System.out.print("\033[H\033[2J");  
+				System.out.flush(); 
+	        }
+	        else
+	        {
+			System.out.print("\033[H\033[2J");  
+			System.out.flush(); 
+			//Runtime.getRuntime().exec("clear");
+	        }
+	    }
+	    catch (final Exception e)
+	    {
+	       System.out.println(e.getMessage()); //  Handle any exceptions.
+	    }
+	}
+
+
+
+    //////////////////////////// MAIN ////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////
+    /**
+     * main function for running the program 
+     * @param args (String[]) console arguments (optional)
+     */
+    public static void main(String[] args){
+
+        System.out.println("Welcome to the Supply Chain Manager Program!");
+        // make a new SCM object 
+        SupplyChainManager SCM = new SupplyChainManager();
+        int userInputInt;
+
+        // play the main menu and get a response 
+        userInputInt=SCM.mainMenuInteraction();
+        // handle bad input by asking again until getting good input
+        while ( userInputInt == -2 ){
+            System.out.println("Bad Input, make a new selection: ");
+            // try to recover and get some other input 
+            userInputInt=SCM.mainMenuInteraction();
+        }
+        // enter the loop if choice was not quit
+        while( userInputInt == 1){
+            // clear the screen 
+            clearScreen();
+            // Get a user form from user interaction
+            SCM.userOrderForm();
+            // print the Main Menu and get a selection
+            System.out.println();// make some space 
+            userInputInt=SCM.mainMenuInteraction();
+            // handle bad input by asking again in a loop 
+            while ( userInputInt == -2 ){
+                System.out.println("Bad Input, make a new selection: ");
+                // try to recover and get some other input 
+                userInputInt=SCM.mainMenuInteraction();
+            }
+
+        }
+
+        System.out.println(); // make some space 
+        System.out.println("Thanks for choosing Suppy Chain Manager as your Inventory Selector!");
+        System.out.println("See you next time! Bye...");
         // close the scanner resource
+        // only close this when you no longer ever need System.in
+        // System.in will freeze / close and not work
          SCM.keyconsole.close(); 
     return;
     }// closing brace for method main()
