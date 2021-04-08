@@ -32,7 +32,7 @@ package edu.ucalgary.ensf409;
 
 
 /**
- * @author    Quinn Ledingham
+ * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
  

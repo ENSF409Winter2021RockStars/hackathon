@@ -28,7 +28,7 @@ package edu.ucalgary.ensf409;
  * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Quinn Ledingham
+ * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 

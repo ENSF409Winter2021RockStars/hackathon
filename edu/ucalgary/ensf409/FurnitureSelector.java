@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 
 /**
- * @author    Quinn Ledingham
+ * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  * @version   0.03
  * @since     0.00
  */

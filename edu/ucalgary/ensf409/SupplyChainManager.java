@@ -30,7 +30,7 @@ import java.lang.IllegalArgumentException;
  * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham
+ * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 /**
