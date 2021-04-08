@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 // Title: Desk.java
-// Author: Mathew Pelletier
+// Authors: Mathew Pelletier, Zorondras Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.02
 // Revision Date: March 28, 2021

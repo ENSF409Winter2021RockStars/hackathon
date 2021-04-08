@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 // Title: Chair.java
-// Author: Mathew Pelletier
+// Authors: Mathew Pelletier, Zorondras Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.01
 // Revision Date: March 28, 2021
