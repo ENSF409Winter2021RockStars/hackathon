@@ -409,17 +409,9 @@ public class SupplyChainManager{
         // get some user interaction and set the order 
         SCM.setUserOrder(); 
         // print the userOrder object 
-        //SCM.userOrder.print();
+        // SCM.userOrder.print();
         // since we have a user order FurnitureOrder ,  we will use it to 
         // request all furniture that matches the category and type
-
-        /// NEXT prepare the order Form to print the order form 
-        /// THIS HAS TO BE HANDLED BY FurnitureOrderForm
-        ////////////////////////////////////////////////////////////////////////////
-    
-        // dBM access has to be offloaded into FurnitureOrderForm
-        // for the classes to snap together 
-        
         // make a new FurnitureOrderForm 
         FurnitureOrderForm form = new FurnitureOrderForm(SCM.getUserOrder());
 
