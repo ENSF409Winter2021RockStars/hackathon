@@ -1,12 +1,12 @@
 ////////////////////////////////////////////
 // Title: SupplyChainManagerTest.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Authors: (Ron) Zorondras Rodriguez & Mathew Pelletier
 // Creation Date: March 31, 2021
 // Version: 0.07
 // Revision Date: April 5, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Unit Tests for SCM program
 //////////////////////////////////////////////

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////
 // Title: Manufacturer.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.01
 // Revision Date: March 27, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Container class for Manufacturer table data
 ////////////////////////////////////////////////////////////

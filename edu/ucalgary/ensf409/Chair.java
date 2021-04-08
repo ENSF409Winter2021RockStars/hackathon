@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: Chair.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Author: Mathew Pelletier
 // Creation Date: March 27, 2021
 // Version: 0.01
 // Revision Date: March 28, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Furniture subclass for a chair
 /////////////////////////////////////////////////////////////////

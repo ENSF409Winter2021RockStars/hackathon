@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: FurnitureOrderForm.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.03M
 // Revision Date: March 30, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: A class containing a Furniture Order Form 
 /////////////////////////////////////////////////////////////////

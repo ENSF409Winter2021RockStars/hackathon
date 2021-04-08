@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: FunitureSelector
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Authors: Quinn Ledingham, Jade Meggitt
 // Creation Date: March 28, 2021
 // Version: 0.06
 // Revision Date: March 29, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: A class to handle calculating which furniture items 
 //              to add to orders based on price and part availability
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 */
 /**
  * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
- */
+ */           // I added 1 line of code (Line 177,178) and some comments
  
 /**
  * FurnitureSelector is a class to find the lowest cost combination

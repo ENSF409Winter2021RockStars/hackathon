@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: DataBaseManager.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Authors: Ron Rodriguez & Mathew Pelletier
 // Creation Date: March 27, 2021
 // Version: 0.05
 // Revision Date: April 4, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: A preliminary database traversing class file
 /////////////////////////////////////////////////////////////////

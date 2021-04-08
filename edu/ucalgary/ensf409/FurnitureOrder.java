@@ -1,13 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: FurnitureOrder.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-// Team: ENSF409 Group 48
-//
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.02
 // Revision Date: March 28, 2021
+//
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Team: ENSF409 Group 48
 //
 // Description: A class containing parameters of a furniture order
 /////////////////////////////////////////////////////////////////

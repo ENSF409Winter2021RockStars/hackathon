@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////
 // Title: Lamp.java
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Authors: Mathew Pelletier, Ron Rodriguez
 // Creation Date: March 27, 2021
 // Version: 0.03
 // Revision Date: March 28, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Furniture subclass for a filing cabinet
 /////////////////////////////////////////////////////////////////

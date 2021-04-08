@@ -1,12 +1,12 @@
 //////////////////////////////
 // Title: SupplyChainManager
-// Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zarondras Rodriguez
-//
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
 // Version: 0.05
 // Revision Date: April 5, 2021
+//
+// Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Main control unit
 ///////////////////////////////////////////////////
