@@ -22,9 +22,9 @@ the INVENTORY Furniture combination of minimum cost problem.
 
 * first make sure to load the inventory SQL database
 
-`$ mysql -u username -p`
-`mysql> source inventory.sql;`
-`mysql> quit; ` 
+`$ mysql -u username -p` <p>
+`mysql> source inventory.sql;` <p>
+`mysql> quit; ` <p>
 
 
 ![mysql](screencaps/mysql_src.png)
