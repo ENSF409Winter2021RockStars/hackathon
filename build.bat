@@ -1,5 +1,11 @@
 @ECHO OFF
-
+REM #########################################################################################
+REM # Author: Zorondras Rodriguez
+REM # Team: ENSF409 Group 48
+REM # Team Members: Zorondras Rodriguez, Jade Meggitt, Matthew Pelletier, Quinn Ledingham
+REM #
+REM # Description: Build Script to build all Java Class Files for Linux or MacOS
+REM #########################################################################################
 
 REM ############### Build Instructions ##########################
 

@@ -1,4 +1,13 @@
 #! /bin/sh
+#########################################################################################
+# Author: Zorondras Rodriguez
+# Team: ENSF409 Group 48
+# Team Members: Zorondras Rodriguez, Jade Meggitt, Matthew Pelletier, Quinn Ledingham
+#
+# Description: Build Script to build all Java Class Files for Linux or MacOS
+#########################################################################################
+
+
 ############### Build Instructions ##########################
 
 echo Build Started at `date`
