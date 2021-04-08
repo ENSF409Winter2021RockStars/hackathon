@@ -459,9 +459,12 @@ public class SupplyChainManager{
     /**
      * userOrderForm() is the process flow from user interaction 
      * up to form printing 
+     * @param run (int) program counter to track the number of order forms generated
+     *             and label them seperately.
      */
-    public void userOrderForm(){
+    public boolean userOrderForm(int run){
 
+        boolean success = true;
         // get some user interaction and set the order 
         this.setUserOrder(); 
         // since we have a user order FurnitureOrder ,  we will use it to 
@@ -510,10 +513,15 @@ public class SupplyChainManager{
 
         // If no combination was found print this message:
         if (cheapCost == -1){
+            
+            // no valid combo set success to false
+            success = false;
+            
             System.out.println("A combination to fulfill the requested Furniture " 
                             +"peices and quantities was not found.");
             System.out.println("Here are some posible manufacturers to contact:");
             
+
             // print out the suggested manufacturers 
             // massage this to look like the output in the pdf 
             // if no manufacturers are found print an message saying so
@@ -528,7 +536,7 @@ public class SupplyChainManager{
 
         }else{
             /// NEXT Send the form to print in FurnitureOrderFormFile
-            FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform.txt");
+            FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform_"+run+".txt");
 
              // Call method for setting the Faculty, Contact and Date in the file, before print out
                 if ( this.getOrderFormFileInfoBool()){
@@ -554,7 +562,7 @@ public class SupplyChainManager{
                 }      
         }
 
-        return;
+        return success;
     }
 
     /**
@@ -658,7 +666,10 @@ public class SupplyChainManager{
         // make a new SCM object 
         SupplyChainManager SCM = new SupplyChainManager();
         int userInputInt;
+        boolean success;
 
+        // start counter with one order
+        int counter = 1;
         // play the main menu and get a response 
         userInputInt=SCM.mainMenuInteraction();
         // handle bad input by asking again until getting good input
@@ -672,7 +683,10 @@ public class SupplyChainManager{
             // clear the screen 
             clearScreen();
             // Get a user form from user interaction
-            SCM.userOrderForm();
+            success=SCM.userOrderForm(counter);
+            if(success){
+                counter++; // keep track of the number of order requests made / program runs 
+            }
             // print the Main Menu and get a selection
             System.out.println();// make some space
             // play the main menu and ask for a response 
