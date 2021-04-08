@@ -54,11 +54,11 @@ Or type the following command at the command console (CMD,SH,BASH):<p>
 ![test](screencaps/test.png)
 
 ### OrderForm Location??
-<p> The orderform output from a scm run is found in the <b>data</b> directory with the filename <b>data/orderform.txt</b></p>
+<p> The orderform output from a scm run is found in the <b>data</b> directory with the filename <b>orderform.txt</b></p>
 
 `$ cat data/orderform.txt`
 
 ![orderform](screencaps/orderform.png)
 
 ### UML Diagram
-<p> The UML class diagram for the project files is found in the <b>uml</b> directory with the filename <b>ensf409project_v1.3.dia</b> which is in dia format, and a pdf version is found as  <b>uml/ensf409project_v1.3.pdf</b></p>
+<p> The UML class diagram for the project files is found in the <b>uml</b> directory with the filename <b>ensf409project_v1.3.dia</b> which is in dia format, and a pdf version is found as  <b>ensf409project_v1.3.pdf</b></p>
