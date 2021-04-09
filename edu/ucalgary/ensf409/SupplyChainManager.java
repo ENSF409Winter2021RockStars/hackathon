@@ -623,17 +623,13 @@ public class SupplyChainManager{
                 } catch (Exception e){
                     System.out.println(e.getMessage());
                     e.printStackTrace();
-                }
-                
-                //Runtime.getRuntime().exec("clear"); // doesn't work
-				//System.out.print("\033[H\033[2J");  
-				//System.out.flush(); 
+                } 
 	        }
 	        else
 	        {
-			System.out.print("\033[H\033[2J");  
-			System.out.flush(); 
-			//Runtime.getRuntime().exec("clear");
+			    //System.out.print("\033[H\033[2J");  
+			    //System.out.flush(); 
+			    Runtime.getRuntime().exec("clear");
 	        }
 	    }
 	    catch (final Exception e)
