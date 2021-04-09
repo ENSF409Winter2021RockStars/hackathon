@@ -14,6 +14,7 @@
 package edu.ucalgary.ensf409;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.ProcessBuilder;
 
 import java.lang.IllegalArgumentException;
 
@@ -54,7 +55,7 @@ public class SupplyChainManager{
 
     // a saftey switch to prevent deletion from the Inventory DB
     // change this to false when you want to demo DB deletion
-    private boolean safety=false; //false;
+    private boolean safety=true; //false;
     // change this boolean to control setting the Faculty, Contact and Date 
     // in the FurnitureOrderFormFile file 
     private boolean orderFormFileInfoBool=true;
@@ -617,9 +618,16 @@ public class SupplyChainManager{
 
 	        if (os.contains("Windows"))
 	        {
-	            //Runtime.getRuntime().exec("cls"); // doesn't work
-				System.out.print("\033[H\033[2J");  
-				System.out.flush(); 
+                try{
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+                
+                //Runtime.getRuntime().exec("clear"); // doesn't work
+				//System.out.print("\033[H\033[2J");  
+				//System.out.flush(); 
 	        }
 	        else
 	        {

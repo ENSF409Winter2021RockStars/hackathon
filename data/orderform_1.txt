@@ -4,11 +4,11 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Mesh Chair, 1
+Original Request: Adjustable Desk, 2
 
 Items Ordered
-ID: C6748
-ID: C8138
-ID: C9890
+ID: D2746
+ID: D4475
+ID: D7373
 
-Total Price: $200
+Total Price: $800
