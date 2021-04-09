@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////////
 // Title: Furniture.java
 // Authors: Mathew Pelletier, (Ron) Zorondras Rodriguez
 // Creation Date: March 27, 2021
@@ -9,46 +9,43 @@
 // Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 //
 // Description: Abstract class for a generic furniture item
-/////////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
- * @version   0.02
- * @since     0.01
+* @author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+* @version   0.02
+* @since     0.01
 */
 
 /**
- * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
- * @version   0.02  28/03/2021
- * @since     0.02  27/03/2021
- */
+*@author Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
+* @version   0.02  28/03/2021
+* @since     0.02  27/03/2021
+*/
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- * @version   0.03  31/03/2021
- * @since     0.03  31/03/2021
- */
-
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+* @version   0.03  31/03/2021
+* @since     0.03  31/03/2021
+*/
 
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
-
- 
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
 
 /**
  * Abstract class for a generic furniture item
  */
 public abstract class Furniture{
  
-/////////////////////     ATTRIBUTES    //////////////////////////////
+//** //////////////     ATTRIBUTES    //////////////////////////////
  private String id; // item ID
  private String type; // item Type
  private int price; // item price
  private String manuID; // item manufacturer ID
 
- /////////////////////   CONSTRUCTORS   ////////////////////////////////
+ //** /////////////   CONSTRUCTORS   ////////////////////////////////
     /**
      * Constructor for the Furniture class
      * @param id // ID
@@ -63,8 +60,7 @@ public abstract class Furniture{
         this.manuID = manuID;
     }
 
-
-////////////////////////  ACCESSORS  ////////////////////////////////////
+//** //////////////////  ACCESSORS   ////////////////////////////////
 
     /**
      * getter for ID for each furniture object 
@@ -98,11 +94,11 @@ public abstract class Furniture{
         return this.price;
     }    
 
- ////////////////////////////// MUTATORS /////////////////////////////////
+ //** /////////////////////  MUTATORS  /////////////////////////////////
 
   // not required as of right now
 
- /////////////////////////////// OTHER  ///////////////////////////////////
+ //** /////////////////////////    OTHER    ////////////////////////////////
       
     /**
      * abstract methods which will be implemented by its child classes
@@ -117,7 +113,8 @@ public abstract class Furniture{
     public abstract String toString();
     
     /**
-     * abstract class helper function to check a Y/N string input and convert to True/False
+     * abstract class helper function to check a Y/N string input 
+     * and convert to True/False
      * @param arg Y/N string
      * @return True/False based on input
      */
