@@ -13,23 +13,24 @@
 
 package edu.ucalgary.ensf409;
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
- * @version   0.02
- * @since     0.01
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@version   0.02
+*@since     0.01
 */
 
 /**
- * @author    Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
- * @version   0.02  28/03/2021
- * @since     0.02  27/03/2021
- */
+*@author Zorondras Rodriguez <a href="mailto:zarodrig@ucalgary.ca">zarodrig@ucalgary.ca</a>
+*@version   0.02  28/03/2021
+*@since     0.02  27/03/2021
+*/
 
- /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+*/
+
+/**
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
 
 /**
  * Chair is a subclass of furniture with boolean fields 
@@ -37,7 +38,7 @@ package edu.ucalgary.ensf409;
  */
 public class Chair extends Furniture{
 
-    /////////////////////////////// ATTRIBUTES ////////////////////////////////
+    //** ////////////////////// ATTRIBUTES ////////////////////////////////
     private boolean legs; // item has legs
     private boolean arms; // item has arms
     private boolean seat; // item has a seat
@@ -46,9 +47,10 @@ public class Chair extends Furniture{
     // an array to mirror the booleans
     private boolean[] boolArray = new boolean[4]; 
 
-    /////////////////////////////// CONSTRUCTORS //////////////////////////////
+    //** //////////////////////// CONSTRUCTORS //////////////////////////////
     /**
-     * Constructor for Chair, takes all columns from the invectory table as arguments
+     * Constructor for Chair, takes all columns from the 
+     * invectory table as arguments
      * @param id
      * @param type
      * @param legs
@@ -58,7 +60,8 @@ public class Chair extends Furniture{
      * @param price
      * @param manuID
      */
-    public Chair(String id, String type, String legs, String arms, String seat, String cushion, int price, String manuID){
+    public Chair(String id, String type, String legs, String arms,
+                 String seat, String cushion, int price, String manuID){
         super(id, type, price, manuID); // call superclass constructor;
         this.legs = yesNoToBool(legs);
         this.arms = yesNoToBool(arms);
@@ -68,7 +71,7 @@ public class Chair extends Furniture{
         // mirror the booleans into the boolArray
         this.resetBooleanArray();
     }
-    ////////////////////////////// ACCESSORS /////////////////////////////////////
+    //** /////////////////// ACCESSORS /////////////////////////////////////
 
     /**
      * Getter for legs
@@ -110,11 +113,11 @@ public class Chair extends Furniture{
         return this.boolArray; // return the pointer to the boolean array
     }
 
-
      /**
      * isComplete() checks if all of the booleans are true or not 
      * this method indicates if item is finished or requires more parts
-     * @return (boolean) true if all individual booleans are true, and false if not
+     * @return (boolean) true if all individual booleans are true,
+     *         and false if not
      */
     public boolean isComplete(){
         for (int k =0; k< this.boolArray.length; k++ ){
@@ -126,7 +129,7 @@ public class Chair extends Furniture{
     }
 
 
-    ////////////////////////////// MUTATORS //////////////////////////////////////
+    //** ////////////////////// MUTATORS //////////////////////////////////////
     
     /**
      * method to set the value of legs
@@ -141,7 +144,7 @@ public class Chair extends Furniture{
         return;
     }
 
- /**
+    /**
      * method to set the value of arm
      * as we build a new object from broken parts
      * or deconstruct / destroy an old object 
@@ -167,7 +170,7 @@ public class Chair extends Furniture{
         return;
     }
 
- /**
+    /**
      * method to set the value of cushion
      * as we build a new object from broken parts
      * or deconstruct / destroy an old object 
@@ -179,7 +182,6 @@ public class Chair extends Furniture{
         this.resetBooleanArray();
         return;
     }
-
 
      /**
      * method to mirror the boolean values back
@@ -214,7 +216,8 @@ public class Chair extends Furniture{
      */
     public void setBoolArray(int k, boolean value){
         if (k < 0 || k > boolArray.length-1){
-            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+            throw new IllegalArgumentException("Error: index " + k +
+                                                 " is out of bounds");
         }
         //set the boolean in the array to value
         this.boolArray[k]=value;
@@ -222,8 +225,7 @@ public class Chair extends Furniture{
         this.setBooleansFromArray();
     }
 
-
-    ////////////////////////////// OTHER /////////////////////////////////////////
+    //** //////////////////////// OTHER /////////////////////////////////////
     
     /**
      * method to find the number of different parts a piece of furniture
@@ -254,4 +256,3 @@ public class Chair extends Furniture{
     
 
 } // closing brace for class Chair
-

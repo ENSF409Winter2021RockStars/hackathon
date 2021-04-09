@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////
 // Title: Desk.java
 // Authors: Mathew Pelletier, Zorondras Rodriguez
 // Creation Date: March 27, 2021
@@ -6,16 +6,17 @@
 // Revision Date: March 28, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: Furniture subclass for a desk
-/////////////////////////////////////////////////////////////////
+//** //////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
- * @version   0.02
- * @since     0.01
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@version   0.02
+*@since     0.01
 */
 
 /**
@@ -25,18 +26,19 @@ package edu.ucalgary.ensf409;
  */
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- */
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+*/
+
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
 
 /**
  * Desk is a subclass of furniture with boolean fields 
  * for if the item has specified components
  */
 public class Desk extends Furniture{
-    ////////////////////////////// ATTRIBUTES //////////////////////////////////
+    //** ////////////////////// ATTRIBUTES //////////////////////////////////
     private boolean legs; // item has legs
     private boolean top; // item has a desk top
     private boolean drawer; // item has a drawer
@@ -45,9 +47,10 @@ public class Desk extends Furniture{
     private boolean[] boolArray = new boolean[3]; 
 
 
-    ////////////////////////////// CONSTRUCTORS ///////////////////////////////////
+    //** //////////////////// CONSTRUCTORS ///////////////////////////////////
     /**
-     * Constructor for desk, takes all columns from the invectory table as arguments
+     * Constructor for desk, takes all columns from the 
+     * invectory table as arguments
      * @param id
      * @param type
      * @param legs
@@ -56,7 +59,8 @@ public class Desk extends Furniture{
      * @param price
      * @param manuID
      */
-    public Desk(String id, String type, String legs, String top, String drawer, int price, String manuID){
+    public Desk(String id, String type, String legs, String top,
+                String drawer, int price, String manuID){
         super(id, type, price, manuID);// call the constructor of Furniture()
         this.legs = yesNoToBool(legs);
         this.top = yesNoToBool(top);
@@ -66,7 +70,7 @@ public class Desk extends Furniture{
         this.resetBooleanArray();
     }
 
-    /////////////////////////////// ACCESSORS ///////////////////////////////////////
+    //** //////////////////// ACCESSORS ///////////////////////////////////////
 
     /**
      * Getter for legs
@@ -78,7 +82,8 @@ public class Desk extends Furniture{
 
     /**
      * Getter for top
-     * @return (boolean) true if top of desk is in good shape and false otherwise
+     * @return (boolean) true if top of desk is in good shape 
+     *         and false otherwise
      */
     public boolean getTop(){
         return this.top;
@@ -92,7 +97,6 @@ public class Desk extends Furniture{
         return this.drawer;
     }
 
-
     /**
      * getter for boolArray
      * @return (boolean[]) array representation of the boolean attributes
@@ -104,7 +108,8 @@ public class Desk extends Furniture{
     /**
      * isComplete() checks if all of the booleans are true or not 
      * this method indicates if item is finished or requires more parts
-     * @return (boolean) true if all individual booleans are true, and false if not
+     * @return (boolean) true if all individual booleans are true, 
+     *         and false if not
      */
     public boolean isComplete(){
         for (int k =0; k< this.boolArray.length; k++ ){
@@ -115,7 +120,7 @@ public class Desk extends Furniture{
         return true;
     }
 
-    /////////////////////////////// MUTATORS  ////////////////////////////////////////
+    //** ///////////////// MUTATORS  ////////////////////////////////////////
 
      /**
      * method to set the value of legs
@@ -187,7 +192,8 @@ public class Desk extends Furniture{
      */
     public void setBoolArray(int k, boolean value){
         if (k < 0 || k > boolArray.length-1){
-            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+            throw new IllegalArgumentException("Error: index " 
+                                                + k + " is out of bounds");
         }
         //set the boolean in the array to value
         this.boolArray[k]=value;
@@ -195,8 +201,7 @@ public class Desk extends Furniture{
         this.setBooleansFromArray();
     }
 
-
-    /////////////////////////////// OTHER ///////////////////////////////////////////
+    //** /////////////////////// OTHER //////////////////////////////////////
     
     /**
      * method to find the number of different parts a piece of furniture

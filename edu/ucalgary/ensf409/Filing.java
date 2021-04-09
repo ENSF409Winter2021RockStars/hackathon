@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////////
 // Title: Filing.java
 // Authors: Mathew Pelletier, Ron Rodriguez
 // Creation Date: March 27, 2021
@@ -6,14 +6,15 @@
 // Revision Date: March 28, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: Furniture subclass for a filing cabinet
-/////////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
  * @version   0.02
  * @since     0.01
 */
@@ -25,12 +26,11 @@ package edu.ucalgary.ensf409;
  */
 
  /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ *@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
-
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
 
 /**
  * Filing is a subclass of furniture with boolean fields for if 
@@ -38,7 +38,7 @@ package edu.ucalgary.ensf409;
  */
 public class Filing extends Furniture{
 
-    ////////////////////////////// ATTRIBUTES ////////////////////////////////////
+    //** ///////////////////// ATTRIBUTES ////////////////////////////////////
 
     private boolean rails; //item has rails
     private boolean drawers; //item has drawers
@@ -47,9 +47,10 @@ public class Filing extends Furniture{
     // an array to mirror the booleans
     private boolean[] boolArray = new boolean[3]; 
 
-    /////////////////////////////// CONSTRUCTORS ////////////////////////////////
+    //** /////////////////////// CONSTRUCTORS ////////////////////////////////
     /**
-     * Constructor for Filing, takes all columns from the inventory table as arguments;
+     * Constructor for Filing, takes all columns from the 
+     * inventory table as arguments;
      * @param id
      * @param type
      * @param rails
@@ -58,7 +59,8 @@ public class Filing extends Furniture{
      * @param price
      * @param manuID
      */
-    public Filing(String id, String type, String rails, String drawers, String cabinet, int price, String manuID){
+    public Filing(String id, String type, String rails, String drawers,
+                    String cabinet, int price, String manuID){
         super(id, type, price, manuID); // call constructor for Furniture()
         this.rails = yesNoToBool(rails);
         this.drawers = yesNoToBool(drawers);
@@ -68,7 +70,7 @@ public class Filing extends Furniture{
         this.resetBooleanArray();
     }
 
-    /////////////////////////////// ACCESSORS //////////////////////////////////
+    //** //////////////////////// ACCESSORS //////////////////////////////////
 
     /**
      * getter for rails
@@ -105,7 +107,8 @@ public class Filing extends Furniture{
      /**
      * isComplete() checks if all of the booleans are true or not 
      * this method indicates if item is finished or requires more parts
-     * @return (boolean) true if all individual booleans are true, and false if not
+     * @return (boolean) true if all individual booleans are true, 
+     *          and false if not
      */
     public boolean isComplete(){
         for (int k =0; k< this.boolArray.length; k++ ){
@@ -117,7 +120,7 @@ public class Filing extends Furniture{
     }
 
 
-    /////////////////////////////// MUTATORS //////////////////////////////////
+    //** ////////////////////// MUTATORS //////////////////////////////////
 
 
      /**
@@ -190,7 +193,8 @@ public class Filing extends Furniture{
      */
     public void setBoolArray(int k, boolean value){
         if (k < 0 || k > boolArray.length-1){
-            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+            throw new IllegalArgumentException("Error: index " 
+                        + k + " is out of bounds");
         }
         //set the boolean in the array to value
         this.boolArray[k]=value;
@@ -198,9 +202,7 @@ public class Filing extends Furniture{
         this.setBooleansFromArray();
     }
 
-
-
-    /////////////////////////////// OTHER /////////////////////////////////////
+    //** /////////////////////// OTHER /////////////////////////////////////
     
     /**
      * method to find the number of different parts a piece of furniture
@@ -229,7 +231,5 @@ public class Filing extends Furniture{
         + this.getRails() +" "+ this.getDrawers() +" "
         + this.getCabinet()+" "+ this.getPrice()+" "+ this.getManuID();
     }
-
-
-
+    
 } // closing brace for class Filing()
