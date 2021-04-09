@@ -297,6 +297,14 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
     // get a line of keyboard input
     userResponseStr=keyconsole.nextLine();
     System.out.println();
+
+    // quit as a response to any selection
+    if (userResponseStr.equals("q")){
+        this.playExitMessage();
+        System.exit(1); // early exit program
+    }
+
+
     try{
     userResponseInt = Integer.parseInt(userResponseStr);//try to convert to int
     }catch(NumberFormatException e){
@@ -628,6 +636,17 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
         return;
     }
 
+    /**
+     * playExitMessage() plays the exit message
+     */
+    public void playExitMessage(){
+        System.out.println(); // make some space 
+        System.out.println("Thanks for choosing Suppy Chain Manager"+
+                            "as your Inventory Selector!");
+        System.out.println("See you next time! Bye...");
+        return;
+    }
+
 
 	// Use this to clear the screen taken from source: 	
 	//  https://stackoverflow.com/questions/2979383/java-clear-the-console		
@@ -651,9 +670,9 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
 	        }
 	        else
 	        {
-			    //System.out.print("\033[H\033[2J");  
-			    //System.out.flush(); 
-			    Runtime.getRuntime().exec("clear");
+			    System.out.print("\033[H\033[2J");  
+			    System.out.flush(); 
+			    //Runtime.getRuntime().exec("clear");
 	        }
 	    }
 	    catch (final Exception e)
@@ -728,10 +747,9 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
 
         }
 
-        System.out.println(); // make some space 
-        System.out.println("Thanks for choosing Suppy Chain Manager"+
-                            "as your Inventory Selector!");
-        System.out.println("See you next time! Bye...");
+
+        SCM.playExitMessage();
+
         // close the scanner resource
         // only close this when you no longer ever need System.in
         // Otherwise System.in will freeze and not work 

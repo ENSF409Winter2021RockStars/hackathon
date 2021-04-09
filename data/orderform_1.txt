@@ -4,11 +4,11 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Medium Filing, 2
+Original Request: Adjustable Desk, 2
 
 Items Ordered
-ID: F002
-ID: F009
-ID: F014
+ID: D2746
+ID: D4475
+ID: D7373
 
-Total Price: $400
+Total Price: $800

@@ -4,11 +4,10 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Mesh Chair, 1
+Original Request: Task Chair, 1
 
 Items Ordered
-ID: C6748
-ID: C8138
-ID: C9890
+ID: C0914
+ID: C3405
 
-Total Price: $200
+Total Price: $150
