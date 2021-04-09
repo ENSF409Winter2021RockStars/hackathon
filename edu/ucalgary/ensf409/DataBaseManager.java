@@ -322,6 +322,8 @@ public class DataBaseManager{
         }
     }
 
+
+
 //////////////////////////////////////////////////////////////////////////////
     /**
      * main method for preliminary object and method testing

@@ -433,6 +433,25 @@ public class SupplyChainManagerTest{
         assertTrue("Connection was not succesfully made", closed);
     }
 
+    @Test
+    public void testDelete(){
+        DataBaseManager testDBM = new DataBaseManager("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
+        testDBM.initializeConnection();
+
+        ArrayList<Furniture> testFurnMatch= testDBM.selectMatchingFurniture("chair","Mesh");
+
+        testDBM.deleteItems("chair", testFurnMatch);
+
+        ArrayList<Furniture> testRemFurn= testDBM.selectMatchingFurniture("chair","Mesh");
+
+        addChairs(testFurnMatch);
+
+        testDBM.closeDBConnection();
+
+        assertTrue("Items were not properly deleted from the database.", testRemFurn.isEmpty());
+
+    }
+
     /**************************************    FurnitureSelector    ***********************************************/
 
     @Test
@@ -934,6 +953,39 @@ public class SupplyChainManagerTest{
   return;
 }
 
+private void addChairs(ArrayList<Furniture> FurnList){
+    try{  
+        Connection dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/INVENTORY","scm","ensf409");
+        StringBuilder query = new StringBuilder("INSERT INTO chair VALUES (?,?,?,?,?,?,?,?)");
+        PreparedStatement prepStmt = dbConnect.prepareStatement(query.toString());  
+        for(Furniture furn : FurnList){
+            String[] yesNo = booleanToYN(furn.getBoolArray());
+            prepStmt.setString(1,furn.getID());
+            prepStmt.setString(2, furn.getType());
+            prepStmt.setString(3, yesNo[0]);
+            prepStmt.setString(4, yesNo[1]);
+            prepStmt.setString(5, yesNo[2]);
+            prepStmt.setString(6, yesNo[3]);
+            prepStmt.setInt(7, furn.getPrice());
+            prepStmt.setString(8, furn.getManuID());
+            prepStmt.executeUpdate();
+        }
+
+        dbConnect.close();
+    } catch(SQLException e){
+        System.out.println(e.getMessage()); // print the exception
+        e.printStackTrace(); // print the Stack Trace
+    }
+}
+
+private String[] booleanToYN(boolean[] trueFalse){
+    String[] yesNo = new String[trueFalse.length];
+    for(int i = 0; i < trueFalse.length; i++){
+        if (trueFalse[i]) yesNo[i] = "Y";
+        else yesNo[i] = "N";
+    }
+    return yesNo;
+}
 
 /************************************************************************************************************/
 

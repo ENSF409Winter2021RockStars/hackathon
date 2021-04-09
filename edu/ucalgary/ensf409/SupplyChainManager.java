@@ -54,7 +54,7 @@ public class SupplyChainManager{
 
     // a saftey switch to prevent deletion from the Inventory DB
     // change this to false when you want to demo DB deletion
-    private boolean safety=true; //false;
+    private boolean safety=false; //false;
     // change this boolean to control setting the Faculty, Contact and Date 
     // in the FurnitureOrderFormFile file 
     private boolean orderFormFileInfoBool=true;
