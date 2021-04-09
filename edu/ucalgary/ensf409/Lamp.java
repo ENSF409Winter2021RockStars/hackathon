@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+// ************************************************************* /
 // Title: Lamp.java
 // Authors: Mathew Pelletier, Ron Rodriguez
 // Creation Date: March 27, 2021
@@ -6,16 +6,17 @@
 // Revision Date: March 28, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: Furniture subclass for a filing cabinet
-/////////////////////////////////////////////////////////////////
+// ***********************************************************/ 
 
 package edu.ucalgary.ensf409;
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
- * @version   0.03
- * @since     0.01
+ * @author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+ * @version 0.03
+ * @since  0.01
 */
 
 /**
@@ -25,28 +26,30 @@ package edu.ucalgary.ensf409;
  */
 
  /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ * @author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+ * @author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 
 /**
- * Lamp is a subclass of furniture with boolean fields for if the item has specified components
+ * Lamp is a subclass of furniture with 
+ * boolean fields for if the item has specified components
  */
 public class Lamp extends Furniture{
 
-    /////////////////////////////// ATTRIBUTES //////////////////////////////
+  // ** ////////////////////// ATTRIBUTES //////////////////////////////
   private boolean base; //item has a base
   private boolean bulb; //item has a bulb
 
   // an array to mirror the booleans
   private boolean[] boolArray = new boolean[2]; 
 
-    ////////////////////////////// CONSTRUCTORS /////////////////////////////
+    // ** //////////////////// CONSTRUCTORS /////////////////////////////
     /**
-     * Constructor for Lamp, takes all columns of the inventory table as arguments
+     * Constructor for Lamp, takes all columns of the 
+     * inventory table as arguments
      * @param id
      * @param type
      * @param base
@@ -54,7 +57,8 @@ public class Lamp extends Furniture{
      * @param price
      * @param manuID
      */
-    public Lamp(String id, String type, String base, String bulb, int price, String manuID){
+    public Lamp(String id, String type, String base, String bulb, 
+                int price, String manuID){
         super(id, type, price, manuID);
         this.base = yesNoToBool(base);
         this.bulb = yesNoToBool(bulb);
@@ -64,7 +68,7 @@ public class Lamp extends Furniture{
 
     }
 
-    ////////////////////////////// ACCESSORS /////////////////////////////////////
+    // ** ////////////////////// ACCESSORS  ///////////////////////////////////
 
     /**
      * getter for base
@@ -94,7 +98,8 @@ public class Lamp extends Furniture{
     /**
      * isComplete() checks if all of the booleans are true or not 
      * this method indicates if item is finished or requires more parts
-     * @return (boolean) true if all individual booleans are true, and false if not
+     * @return (boolean) true if all individual booleans are true,
+     *          and false if not
      */
     public boolean isComplete(){
         for (int k =0; k< this.boolArray.length; k++ ){
@@ -106,7 +111,7 @@ public class Lamp extends Furniture{
     }
 
 
-    ///////////////////////////// MUTATORS /////////////////////////////////////
+    // ** //////////////////////// MUTATORS ///////////////////////////////////
 
     /**
      * method to set the value of bulb
@@ -163,7 +168,8 @@ public class Lamp extends Furniture{
      */
     public void setBoolArray(int k, boolean value){
         if (k < 0 || k > boolArray.length-1){
-            throw new IllegalArgumentException("Error: index " + k + " is out of bounds");
+            throw new IllegalArgumentException("Error: index " 
+                    + k + " is out of bounds");
         }
         //set the boolean in the array to value
         this.boolArray[k]=value;
@@ -172,7 +178,7 @@ public class Lamp extends Furniture{
     }
 
 
-    /////////////////////////////// OTHER //////////////////////////////////////
+    // ** /////////////////////// OTHER //////////////////////////////////////
     
     /**
      * method to find the number of different parts a piece of furniture

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////
+//************************************************************* /
 // Title: Manufacturer.java
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 27, 2021
@@ -6,10 +6,11 @@
 // Revision Date: March 27, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham,
+//                Zorondras Rodriguez
 //
 // Description: Container class for Manufacturer table data
-////////////////////////////////////////////////////////////
+// ************************************************************ /
 
 package edu.ucalgary.ensf409;
 
@@ -20,13 +21,13 @@ package edu.ucalgary.ensf409;
  */
 
  /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ * @author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+ * @author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+ * @author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 /**
@@ -34,14 +35,14 @@ package edu.ucalgary.ensf409;
  * in the SQL database INVENTORY
  */
 public class Manufacturer{
-/////////////////////// ATTRIBUTES ///////////////////////
+//****************************** ATTRIBUTES ******************************* /
 
 private String manuID;
 private String name;
 private String phone;
 private String province;
 
-////////////////////// CONSTRUCTORS ///////////////////////
+// ************************ CONSTRUCTORS ********************************* /
 /**
  * Constructor with four inputs 
  * @param manuID (String) a manufacturer ID number as a String
@@ -56,7 +57,7 @@ public Manufacturer(String manuID, String name, String phone, String province){
     this.phone = new String(phone);
     this.province = new String(province);
 }
-/////////////////////// ACCESSORS ////////////////////////
+//***************************** ACCESSORS ******************************* /
 /**
  * getter for manuID
  * @return (String) the manufacturer ID
@@ -89,11 +90,11 @@ public String getProvince(){
     return this.province;
 }
 
-////////////////////// MUTATORS ///////////////////////////
+// *********************** MUTATORS ****************************** /
 
 // Not required
 
-////////////////////// OTHER //////////////////////////////
+// ************************* OTHER ****************************** /
 
 /**
  *toString() is a string representation of the class
