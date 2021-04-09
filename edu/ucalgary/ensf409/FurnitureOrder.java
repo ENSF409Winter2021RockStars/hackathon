@@ -5,8 +5,9 @@
 // Version: 0.02
 // Revision Date: March 28, 2021
 //
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
 // Team: ENSF409 Group 48
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: A class containing parameters of a furniture order
 /////////////////////////////////////////////////////////////////
@@ -20,14 +21,14 @@ package edu.ucalgary.ensf409;
  */
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- */
-/**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*/
+/**
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
 
  /**
   * FurnitureOrder is a class the contains the values of a furniture order
@@ -35,13 +36,13 @@ package edu.ucalgary.ensf409;
   */
  public class FurnitureOrder{
 
- ////////////////////////////// ATTRIBUTES ////////////////////////////
+ //** //////////////////////// ATTRIBUTES ////////////////////////////
 
 private  String category;
 private  String type;
 private  int quantity;
 
- ////////////////////////// CONSTRUCTORS //////////////////////////////
+ //** //////////////////// CONSTRUCTORS //////////////////////////////
     public FurnitureOrder(String category, String type, int quantity){
 
         this.category = category;
@@ -49,7 +50,7 @@ private  int quantity;
         this.quantity = quantity;
     }
     
- ///////////////////////////  ACCESSORS  ///////////////////////////////
+ //** /////////////////////  ACCESSORS  ///////////////////////////////
 
     /**
      * getCategory() returns the category or Table from which the ordered
@@ -76,10 +77,10 @@ private  int quantity;
         return this.quantity;
     }
 
- //////////////////////////// MUTATORS /////////////////////////////////
+ //** ///////////////////// MUTATORS /////////////////////////////////
 
 
- /////////////////////////// OTHER //////////////////////////////////////
+ //** ///////////////////// OTHER ////////////////////////////////////
 
     /**
      * toString() method
