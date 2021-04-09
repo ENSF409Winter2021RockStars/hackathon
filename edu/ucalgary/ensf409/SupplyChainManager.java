@@ -1,4 +1,4 @@
-//////////////////////////////
+// ***********************************************
 // Title: SupplyChainManager
 // Author: (Ron) Zorondras Rodriguez
 // Creation Date: March 28, 2021
@@ -6,10 +6,11 @@
 // Revision Date: April 8, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: Main control unit
-///////////////////////////////////////////////////
+// ************************************************
 
 package edu.ucalgary.ensf409;
 import java.util.ArrayList;
@@ -25,26 +26,27 @@ import java.lang.IllegalArgumentException;
  */
 
  /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ * @author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+ * @author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+ * @author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 /**
  * SupplyChainManager is a class to get user input for a request
  * to an Inventory system using MySQL.  The user makes a request
- * The request is parsed, and a combination of lowest cost from the inventory is created
- * if such a combination does not exist, a helpful output is made to the console, suggesting 
- * relevant manufacturers.  If such a cheapest combination exists, then an order form is created
- * and writen to disk.  Simultaneously the requested items are deleted from the database.
+ * The request is parsed, and a combination of lowest cost from the inventory is 
+ * created. If such a combination does not exist, a helpful output is made to 
+ * the console, suggesting relevant manufacturers.  If such a cheapest 
+ * combination exists, then an order form is created and writen to disk.  
+ * Simultaneously the requested items are deleted from the database.
  */
 public class SupplyChainManager{
 
-    ////////////////////  ATTRIBUTES ///////////////////////////////
+    /* ***********************  ATTRIBUTES  ******************************** */
     // change these variables for your local installation
     private String username ="scm"; 
     private String password = "ensf409";
@@ -66,7 +68,7 @@ public class SupplyChainManager{
     // a scanner for user interaction  
     public Scanner keyconsole; 
 
-    ///////////////////// CONSTRUCTOR //////////////////////////////////
+    /* ************************ CONSTRUCTOR ******************************** */
     public SupplyChainManager(){
     // construct a new Registration object to manage INVENTORY
     this.dBM = new DataBaseManager(this.dbURL,this.username,this.password);
@@ -75,14 +77,16 @@ public class SupplyChainManager{
     this.keyconsole = new Scanner(System.in);
     }
    
-    ////////////////////// METHODS  /////////////////////////////////////
+    /* *********************    METHODS      ************************* */
 
 
     /**
-     * setOrderFormFileInfo is a user interaction method to populate the FurnitureOrderFormFile object with 
-     * String information for the Faculty, Contact and Date.
+     * setOrderFormFileInfo is a user interaction method to populate the 
+     * FurnitureOrderFormFile object with String information for the Faculty, 
+     * Contact and Date.
      * 
-     * file: (FurnitureOrderFormFile) a furniture order form file, that is being prepared for output to disk/printing
+     * file: (FurnitureOrderFormFile) a furniture order form file, that is being
+     *        prepared for output to disk/printing
      * return: (void) 
      */
     public void setOrderFormFileInfo( FurnitureOrderFormFile fileIn ){
@@ -92,15 +96,20 @@ public class SupplyChainManager{
         contact="";       
 
         System.out.println(); // make some space
-        System.out.println("We are creating the order form, please answer the following questions: ");
-        System.out.println("______________________________________________________________________");
+        System.out.println("We are creating the order form,"+
+        "please answer the following questions: ");
+        System.out.println("_____________________________"+
+                        "_________________________________________");
 
         try{
-        System.out.println("Who is the Contact for the order? Enter a Contact Name as a String : ");
+        System.out.println("Who is the Contact for the order?" +
+                            "Enter a Contact Name as a String : ");
         contact=this.keyconsole.nextLine();
-        System.out.println("What is the Date of the order? Enter a Date as a String : ");
+        System.out.println("What is the Date of the order?"+ 
+                            "Enter a Date as a String : ");
         date=this.keyconsole.nextLine();
-        System.out.println("Which Faculty is requesting the order? Enter the Faculty as a String : ");
+        System.out.println("Which Faculty is requesting the order?"+
+                            "Enter the Faculty as a String : ");
         faculty=this.keyconsole.nextLine();
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -119,7 +128,8 @@ public class SupplyChainManager{
     }
 
     /**
-     * setUserOrder is a user interaction method to populate the userOrder FurnitureOrder object
+     * setUserOrder is a user interaction method to populate the 
+     * userOrder FurnitureOrder object
      */
     public void setUserOrder(){
         String category,type;
@@ -153,8 +163,10 @@ public class SupplyChainManager{
     }
 
     /**
-     * userTypeSelection() is an input validated user interaction selector for Type
-     * @param numberInput a numeric value corresponding to the category previously selected
+     * userTypeSelection() is an input validated user interaction 
+     *                     selector for Type
+     * @param numberInput a numeric value corresponding to the category 
+     *                    previously selected
      * @return (int) a code for the Type associated with a Category
      */
     public int userTypeSelection(int numberInput){
@@ -176,7 +188,7 @@ public class SupplyChainManager{
 
         case 3:
             this.playFilingMenu();
-            userResponseValue=this.getResponseAsInt(1,3,"type of Filing Cabinet");
+         userResponseValue=this.getResponseAsInt(1,3,"type of Filing Cabinet");
             break;
 
         case 4:
@@ -188,10 +200,10 @@ public class SupplyChainManager{
         return userResponseValue;
     }
 
-
     /**
-     * decodeTypeSelection() is a decoder for the numeric value of the Type selected in
-     * a previous step by the user in the userTypeSelection() function
+     * decodeTypeSelection() is a decoder for the numeric value of the Type 
+     * selected in a previous step by the user in the userTypeSelection() 
+     * function
      * @param selection (int) the user selected number for the Type
      * @param category (String) the previously user selected category
      * @return (String) a string representation of the Type
@@ -265,16 +277,19 @@ public class SupplyChainManager{
     }
 
     /**
-     * getResponseAsInt() is a user interaction function to take in a string from keyboard input
-     * using Scanner, and convert this string into an integer and return the integer
-     * input validation is controlled by the lower and upper bounds. A third input
-     * selectionStr changes the user prompt message to correspond to the items being chosen 
+     * getResponseAsInt() is a user interaction function to take in a string 
+     * from keyboard input using Scanner, and convert this string into an 
+     * integer and return the integer. Input validation is controlled by the 
+     * lower and upper bounds. A third input selectionStr changes the user 
+     * prompt message to correspond to the items being chosen 
      *@param lowerBound (int) the lowest value a user may input and be accepted
      *@param upperBount (int) the highest value a user may input and be accepted
-     *@param selectionStr (String) a string corresponding to the type of objects being selected 
-     *@return (int) an integer value representing a menu option choice from lowerBound to upperBound
+     *@param selectionStr (String) a string corresponding to the type of objects 
+     *                    being selected 
+     *@return (int) an integer value representing a menu option choice from 
+     *              lowerBound to upperBound
      */
-    public int getResponseAsInt(int lowerBound, int upperBound, String selectionStr){
+public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
 
     int userResponseInt;
     String userResponseStr="";
@@ -283,7 +298,7 @@ public class SupplyChainManager{
     userResponseStr=keyconsole.nextLine();
     System.out.println();
     try{
-    userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+    userResponseInt = Integer.parseInt(userResponseStr);//try to convert to int
     }catch(NumberFormatException e){
         System.out.println(e.getMessage());
         userResponseInt=-1;
@@ -293,8 +308,8 @@ public class SupplyChainManager{
         System.out.println("Error: Selection out of range, try again!");
         userResponseStr=keyconsole.nextLine();
         try{
-            // try to convert
-            userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+            // try to convert to int
+            userResponseInt = Integer.parseInt(userResponseStr); 
             }catch(NumberFormatException e){
                 System.out.println(e.getMessage());
                 userResponseInt=-1; // stay in the loop
@@ -306,10 +321,11 @@ public class SupplyChainManager{
 
     // Depecated for code reuse in getResponseAsInt
     /**
-     * userCategorySelection() was the original method for selecting the category
-     * this function was extended /generalized to userInputAsInt()
+     * userCategorySelection() was the original method for selecting 
+     * the category. This function was extended /generalized to userInputAsInt()
      * @Depreacated
-     * @return (int) and integer representing the value choice from an enumerated menu  
+     * @return (int) and integer representing the value choice from an 
+     *         enumerated menu  
      */
     public int userCategorySelection(){ 
         int userResponseInt;
@@ -319,7 +335,8 @@ public class SupplyChainManager{
         // get a line of keyboard input
         userResponseStr=keyconsole.nextLine();
     try{
-    userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+    // try to convert to int
+    userResponseInt = Integer.parseInt(userResponseStr); 
     }catch(NumberFormatException e){
         System.out.println(e.getMessage());
         userResponseInt=-1;     
@@ -329,8 +346,8 @@ public class SupplyChainManager{
         System.out.println("Error: Selection out of range, try again!");
         userResponseStr=keyconsole.nextLine();
         try{
-            // try to convert
-            userResponseInt = Integer.parseInt(userResponseStr); // try to convert to int
+            // try to convert to int
+            userResponseInt = Integer.parseInt(userResponseStr); 
             }catch(NumberFormatException e){
                 System.out.println(e.getMessage());
                 userResponseInt=-1; // stay in the loop
@@ -342,10 +359,12 @@ public class SupplyChainManager{
 
 
     /**
-     * decodCategorySelection() takes in an integer menu option previously selected
-     * and decodes it into a String representation of the selection
-     * @param selection (int) an input integer code for a category previously selected by the user
-     * @return (String) a string representation of the input numeric category code
+     * decodCategorySelection() takes in an integer menu option previously 
+     * selected and decodes it into a String representation of the selection
+     * @param selection (int) an input integer code for a category previously 
+     *                  selected by the user
+     * @return (String) a string representation of the input numeric 
+     *         category code
      */
     public String decodeCategorySelection(int selection){
         String category="";
@@ -429,7 +448,7 @@ public class SupplyChainManager{
         System.out.println("Enter a number and press the RETURN key.");
     }
 
-    ////////////////////////// ACCESSOR ///////////////////////////////////
+    /* ****************************** ACCESSOR *************************** */
 
    /**
     * Getter for userOrder
@@ -447,7 +466,6 @@ public class SupplyChainManager{
         return this.safety;
     }
 
-
     /**
     * Getter for switch (true to test the form info grab feature )
     * @return (boolean) the value of the method switch
@@ -456,12 +474,11 @@ public class SupplyChainManager{
         return this.orderFormFileInfoBool;
     }
 
-    
     /**
      * userOrderForm() is the process flow from user interaction 
      * up to form printing 
-     * @param run (int) program counter to track the number of order forms generated
-     *             and label them seperately.
+     * @param run (int) program counter to track the number of order forms 
+     *            generated and label them seperately.
      */
     public boolean userOrderForm(int run){
 
@@ -518,16 +535,17 @@ public class SupplyChainManager{
             // no valid combo set success to false
             success = false;
             
-            System.out.println("A combination to fulfill the requested Furniture " 
+        System.out.println("A combination to fulfill the requested Furniture " 
                             +"peices and quantities was not found.");
-            System.out.println("Here are some posible manufacturers to contact:");
+        System.out.println("Here are some posible manufacturers to contact:");
             
 
             // print out the suggested manufacturers 
             // massage this to look like the output in the pdf 
             // if no manufacturers are found print an message saying so
             if(form.getManufacturers().isEmpty()){
-                System.out.print("Sorry, no manufacturers for this product type were found in the database.");
+        System.out.print("Sorry, no manufacturers for this product type"+
+                            "were found in the database.");
             }
             else{
                 for (Manufacturer manu : form.getManufacturers()){
@@ -537,9 +555,11 @@ public class SupplyChainManager{
 
         }else{
             /// NEXT Send the form to print in FurnitureOrderFormFile
-            FurnitureOrderFormFile file = new FurnitureOrderFormFile("orderform_"+run+".txt");
+        FurnitureOrderFormFile file = 
+                    new FurnitureOrderFormFile("orderform_"+run+".txt");
 
-             // Call method for setting the Faculty, Contact and Date in the file, before print out
+    // Call method for setting the Faculty, Contact and Date
+    // in the file, before print out
                 if ( this.getOrderFormFileInfoBool()){
                 // method to get user interation and modify the OrderFormFile 
                 this.setOrderFormFileInfo(file); 
@@ -548,7 +568,8 @@ public class SupplyChainManager{
             // write the order form to disk in directory data
             file.createFile(form);
 
-            System.out.println("A new form with the request has been saved to : "+file.getFileName() );
+    System.out.println("A new form with the request has been saved to : "
+                        +file.getFileName() );
             //System.out.println();// make some space
             // the Answer for what to buy is in solutionSet
             // or just reuse form.getFurnitureList() / solutionSet
@@ -556,10 +577,12 @@ public class SupplyChainManager{
                     // initialize the connection to the Database
                     this.dBM.initializeConnection();
                     // send the kill item request to the DB
-                    this.dBM.deleteItems(this.getUserOrder().getCategory(),solutionSet);
+                    this.dBM.deleteItems(this.getUserOrder().getCategory(),
+                                            solutionSet);
                     // close the conenection 
                     this.dBM.closeDBConnection();
-                    System.out.println("The ordered items have been removed from the inventory database");
+                    System.out.println("The ordered items have been removed"+
+                    " from the inventory database");
                 }      
         }
 
@@ -570,7 +593,8 @@ public class SupplyChainManager{
      * mainMenuInteraction() gets the response from the main menu options, 
      * then returns a code corresponding to the input entered by the user
      *
-     * @return an integer code based on user input , 1 for continue, -1 for quit, -2 for bad input
+     * @return an integer code based on user input , 
+     *         1 for continue, -1 for quit, -2 for bad input
      */
     public int mainMenuInteraction(){
         String userSelectionStr="";
@@ -581,8 +605,8 @@ public class SupplyChainManager{
         // get a line of input from the keyboard   
         userSelectionStr=this.keyconsole.nextLine();
 
-        // if it is q or 2 send the quit signal -1, if 1 return 1, else return -2
-        if (userSelectionStr.equalsIgnoreCase("q") || userSelectionStr.equals("2")){
+    // if it is q or 2 send the quit signal -1, if 1 return 1, else return -2
+    if (userSelectionStr.equalsIgnoreCase("q") || userSelectionStr.equals("2")){
             return -1; // signal for quit
         } else if (userSelectionStr.equals("1")){
             return 1;
@@ -619,7 +643,7 @@ public class SupplyChainManager{
 	        if (os.contains("Windows"))
 	        {
                 try{
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+           new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                 } catch (Exception e){
                     System.out.println(e.getMessage());
                     e.printStackTrace();
@@ -657,9 +681,8 @@ public class SupplyChainManager{
     }
 
 
-    //////////////////////////// MAIN ////////////////////////////////////////
+    /* *************************** MAIN ************************* */
 
-    /////////////////////////////////////////////////////////////////////
     /**
      * main function for running the program 
      * @param args (String[]) console arguments (optional)
@@ -689,7 +712,8 @@ public class SupplyChainManager{
             // Get a user form from user interaction
             success=SCM.userOrderForm(counter);
             if(success){
-                counter++; // keep track of the number of order requests made / program runs 
+            // keep track of the number of order requests made / program runs
+                counter++;  
             }
             // print the Main Menu and get a selection
             System.out.println();// make some space
@@ -705,7 +729,8 @@ public class SupplyChainManager{
         }
 
         System.out.println(); // make some space 
-        System.out.println("Thanks for choosing Suppy Chain Manager as your Inventory Selector!");
+        System.out.println("Thanks for choosing Suppy Chain Manager"+
+                            "as your Inventory Selector!");
         System.out.println("See you next time! Bye...");
         // close the scanner resource
         // only close this when you no longer ever need System.in
