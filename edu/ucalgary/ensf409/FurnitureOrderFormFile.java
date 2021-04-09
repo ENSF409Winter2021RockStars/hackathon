@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////////
 // Title: FurnitureOrderFormFile.java
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
@@ -6,10 +6,11 @@
 // Revision Date: April 5, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham,
+//                Zorondras Rodriguez
 //
 // Description: A class to output a order form in one of two formats
-/////////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
 
@@ -17,7 +18,7 @@ import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-/////////////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////////////
 
 /**
  * @author <a href ="mailto:zarodrig@ucalgary.ca>Zorondras Rodriguez</a> 
@@ -26,13 +27,13 @@ import java.io.FileWriter;
  */
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+ * @author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
  */
 /**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+ * @author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+ * @author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
 /**
@@ -41,11 +42,13 @@ import java.io.FileWriter;
  */
  public class FurnitureOrderFormFile{
 
-///////////////////////////  ATTRIBUTES  ////////////////////////////////
+//** /////////////////////////  ATTRIBUTES  ////////////////////////////////
 
 // static final stirng variables
-private static final String DIR = "data"; // the directory to place the order form
-private static final String PREFIX = "Error: "; // a prefix for error messages 
+// the directory to place the order form
+private static final String DIR = "data"; 
+// a prefix for error messages
+private static final String PREFIX = "Error: ";  
 
 private String faculty="";
 private String date=""; // maybe a DateTime object instead?
@@ -54,7 +57,7 @@ private String contact="";
 private String fileName; // make this a relative path item?
 
 
-//////////////////////////  CONSTRUCTORS ///////////////////////////////
+//** ///////////////////  CONSTRUCTORS  ///////////////////////////////
 
 /**
  * Constructor no input arguments
@@ -72,7 +75,7 @@ public FurnitureOrderFormFile(String fileName){
     this.setFileName(fileName);
 }
 
-///////////////////////// ACCESSORS  ////////////////////////////////////
+//** /////////////////////// ACCESSORS  /////////////////////////////////
 
 /**
  * getter for faculty
@@ -105,7 +108,7 @@ public String getContact(){
 public String getFileName(){
     return this.fileName;
 }
-///////////////////////// MUTATORS //////////////////////////////////////
+//** ////////////////////   MUTATORS   ////////////////////////////////////
 
   // Set the fileName
   /**
@@ -140,7 +143,7 @@ public String getFileName(){
       this.date = new String(date);
   }
 
-///////////////////////// FORM WRITER METHODS ///////////////////////
+//** /////////////////// FORM WRITER METHODS ///////////////////////
 
 /**
  * This method takes in a FurnitureOrder form and produces an order file 
@@ -158,17 +161,20 @@ public void createFile(FurnitureOrderForm form){
 
       // This line had an error there was no comma
       // line below has a + maybe do that
-      System.err.printf(PREFIX + "FileName must be specified with setter or method call.%n");
+      System.err.printf(PREFIX + 
+                "FileName must be specified with setter or method call.%n");
       System.exit(1);
     }
  
-    // Create directory if it doesn't exist; if it does exist, make sure it is a directory
+    // Create directory if it doesn't exist; if it does exist, 
+    // make sure it is a directory
     try {
       if (! directory.exists()) {
         directory.mkdir();
       } else {
         if (! directory.isDirectory()) {
-          System.err.printf(PREFIX + "file %s exists but is not a directory.%n", DIR);
+          System.err.printf(PREFIX + 
+                      "file %s exists but is not a directory.%n", DIR);
           System.exit(1);
         }
       }
@@ -182,66 +188,74 @@ public void createFile(FurnitureOrderForm form){
     }
 
     try {
-
-      // fix this
-      // I don't like the nesting here, Constructs a BufferedWriter on a FileWriter
-      // opened on the fileName (this is to not require closing the FileWriter object)
+      // I don't like the nesting here, 
+      // Constructs a BufferedWriter on a FileWriter opened on the fileName 
+      //(this is to not require closing the FileWriter object)
       // which is lazy and confusing 
       file = new BufferedWriter(new FileWriter(this.fileName) );
   
       // Write the header
         tmp="Furniture Order Form"; // file header
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
+        // write a newline at the end of each string from the LinkedList
+        file.newLine(); 
         file.newLine(); // write another newLine
       
         // write the Faculty info
         tmp="Faculty: "+this.getFaculty();
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
+        // write a newline at the end of each string from the LinkedList
+        file.newLine();   
 
         // Write the Contact Info
         tmp="Contact: "+this.getContact();
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
+        // write a newline at the end of each string from the LinkedList
+        file.newLine(); 
 
         // write the Date info
         tmp="Date: "+this.getDate();
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length());
+        // write a newline at the end of each string from the LinkedList
+        file.newLine();  
         file.newLine();// make a newLine
 
         //Original Request: mesh chair, 1
         tmp="Original Request: "+form.getClientRequest().getType()+" "
                                 +form.getClientRequest().getCategory()+
                             ", "+form.getClientRequest().getQuantity();
-
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
+        // write a newline at the end of each string from the LinkedList
+        file.newLine(); 
         file.newLine();// make a newLine
                
-        //Items Ordered
-        //ID: C9890
-        //ID: C0942
-        
         tmp="Items Ordered\n";
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
       
         // loop over the furniture array list 
         for (int k = 0; k< form.getFurnitureList().size(); k++){
 
            tmp="ID: "+ form.getFurnitureList().get(k).getID();
-           file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-           file.newLine(); // write a newline at the end of each string from the LinkedList      
+           // write it to the file from index 0 to full string length
+           file.write(tmp, 0, tmp.length());
+           // write a newline at the end of each string from the LinkedList
+           file.newLine();      
         }
         
         file.newLine(); // write a newline 
             
         //Total Price: $150
         tmp="Total Price: $"+form.getCost();
-        file.write(tmp, 0, tmp.length()); // write it to the file from index 0 to full string length
-        file.newLine(); // write a newline at the end of each string from the LinkedList  
-            
+        // write it to the file from index 0 to full string length
+        file.write(tmp, 0, tmp.length()); 
+        // write a newline at the end of each string from the LinkedList
+        file.newLine();          
     }
 
     catch (Exception e) {
@@ -255,7 +269,7 @@ public void createFile(FurnitureOrderForm form){
     return;
 }
 
-///////////////////////// OTHER ////////////////////////////////////////
+//** /////////////////////// OTHER ////////////////////////////////////////
 
   /**
    * checkFileExists is a wrapper for File(filename).exists
@@ -288,11 +302,11 @@ public void createFile(FurnitureOrderForm form){
     return full.getPath();
   }
 
-
   /**
    * closeWriter() is a wrapper for file.close() 
    * with Exception handling
-   * @param file (BufferedWriter) is a file handle that is open that we want to close
+   * @param file (BufferedWriter) is a file handle that is open 
+   *             that we want to close
    */
   private void closeWriter(BufferedWriter file) {
     try {
@@ -359,7 +373,6 @@ public void cleanUp() {
     cleanUp(path);
   }
 
-
  } // closing brace of FurnitureOrderFormFile
 
- //////////////////////////// END OF FILE /////////////////////////////
+ //** /////////////////////   END OF FILE   /////////////////////////////
