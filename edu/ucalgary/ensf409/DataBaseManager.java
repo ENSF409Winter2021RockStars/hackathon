@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////
 // Title: DataBaseManager.java
 // Authors: Ron Rodriguez & Mathew Pelletier
 // Creation Date: March 27, 2021
@@ -6,10 +6,11 @@
 // Revision Date: April 4, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham,
+//                Zorondras Rodriguez
 //
 // Description: A preliminary database traversing class file
-/////////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////////
 
 package edu.ucalgary.ensf409;
 import java.sql.*;
@@ -30,20 +31,21 @@ import java.util.ArrayList;
 */
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- */
-/**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
- */
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
+*/
 
 /**
- * FurnitureSelector is a class to manipulate a MySQL database related
- * to an office furniture database system called INVENTORY wit tables,
- * CHAIR, DESK, FILING, LAMP, MANUFACTURER    
- */
+*@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*/
+
+/**
+* FurnitureSelector is a class to manipulate a MySQL database related
+* to an office furniture database system called INVENTORY wit tables,
+* CHAIR, DESK, FILING, LAMP, MANUFACTURER    
+*/
 public class DataBaseManager{
 
-    ///////////////////////// ATTRIBUTES //////////////////////////////
+    //** /////////////////////// ATTRIBUTES //////////////////////////////
     public final String DBURL; //store the database url information
     public final String USERNAME; //store the user's account username
     public final String PASSWORD; //store the user's account password
@@ -53,7 +55,7 @@ public class DataBaseManager{
     // decalare a ResultSet object to store db querry results in 
     private ResultSet results;
 
-    ////////////////////////// CONSTRUCTORS //////////////////////////
+    //** //////////////////////// CONSTRUCTORS //////////////////////////
     /**
      * Constructor for class DataBaseManager
      *
@@ -61,13 +63,13 @@ public class DataBaseManager{
      * @param inUSERNAME (String) USERNAME
      * @param inPASSWORD (String) PASSWORD 
      */
-    public DataBaseManager(String inDBURL, String inUSERNAME, String inPASSWORD){
+    public DataBaseManager(String inDBURL,String inUSERNAME,String inPASSWORD){
         this.DBURL = inDBURL;
         this.USERNAME = inUSERNAME;
         this.PASSWORD = inPASSWORD;
     }
    
-    ////////////////////////  ACCESSORS ///////////////////////////////
+    //** //////////////////////  ACCESSORS ///////////////////////////////
 
     /**
      * Getter for DBURL
@@ -92,9 +94,9 @@ public class DataBaseManager{
     public String getPassword(){
         return this.PASSWORD;
     }
-///////////////////////////////////////////////////////////////////////////
+//** /////////////////////////////////////////////////////////////////////////
 
- //////////////////////  DATABASE METHODS /////////////////////////
+ //** ////////////////////  DATABASE METHODS /////////////////////////
 
     // connects to the MySQL DB
     /**
@@ -106,7 +108,8 @@ public class DataBaseManager{
     public boolean initializeConnection(){   
         try{
             // USE INVENTORY; will be set here in DBURL
-            this.dbConnect = DriverManager.getConnection(this.getDburl().toUpperCase(),
+            this.dbConnect = 
+            DriverManager.getConnection(this.getDburl().toUpperCase(),
             this.getUsername(),this.getPassword());
             return dbConnect.isValid(1);
         
@@ -141,15 +144,20 @@ public class DataBaseManager{
     } // closing brace for method close()
 
         /**
-     * selectMatchingFurniture checks a specified database table for all records with specified Type and returns as an ArrayList
+     * selectMatchingFurniture checks a specified database table for all
+     * records with specified Type and returns as an ArrayList
      * @param category database table to query (CHAIR,DESK,FILING,LAMP)
-     * @param type condition for rows to query (ie. in CHAIR: Task,Mesh,Executive,Ergonomic,Kneeling)
-     * @return ArrayList of objects, of the specified category with specified type
+     * @param type condition for rows to query 
+     *             (ie. in CHAIR: Task,Mesh,Executive,Ergonomic,Kneeling)
+     * @return ArrayList of objects, of the specified category
+     *         with specified type
      */
-    public ArrayList<Furniture> selectMatchingFurniture(String category, String type){
+    public ArrayList<Furniture> selectMatchingFurniture(String category, 
+                                                        String type){
         // ArrayList as a container to hold retrieved furniture
         ArrayList<Furniture> matchingFurn = new ArrayList<Furniture>();
-        String query = "SELECT * FROM " + category.toUpperCase() + " WHERE Type = '" + type + "'";
+        String query = "SELECT * FROM " + category.toUpperCase() 
+                        + " WHERE Type = '" + type + "'";
         try{
             // create new statements and execute the query saving results
             Statement myStmt = dbConnect.createStatement();  
@@ -158,30 +166,48 @@ public class DataBaseManager{
                 Furniture newFurn = null; // Furniture pointer 
                 // create a new list element 
                 switch(category.toUpperCase()){
-                    case "CHAIR": // new list element is of type chair, use retrieved values from results as constructor arguments
-                        newFurn = new Chair(results.getString("ID"),results.getString("Type"),
-                        results.getString("Legs"),results.getString("Arms"), results.getString("Seat"),
-                        results.getString("Cushion"), results.getInt("Price"),results.getString("ManuID"));
+                // new list element is of type chair, use retrieved values
+                // from results as constructor arguments
+                    case "CHAIR":
+                        newFurn = new Chair(results.getString("ID"),
+                                            results.getString("Type"),
+                        results.getString("Legs"),results.getString("Arms"),
+                                                 results.getString("Seat"),
+                        results.getString("Cushion"), results.getInt("Price"),
+                                                 results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "DESK": // new list element is of type desk, use retrieved values from results as constructor arguments
-                        newFurn = new Desk(results.getString("ID"),results.getString("Type"),
-                        results.getString("Legs"),results.getString("Top"), results.getString("Drawer"),
+                    // new list element is of type desk, use retrieved values 
+                    // from results as constructor arguments
+                    case "DESK": 
+                        newFurn = new Desk(results.getString("ID"),
+                        results.getString("Type"),
+                        results.getString("Legs"),results.getString("Top"),
+                         results.getString("Drawer"),
                         results.getInt("Price"),results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "FILING": // new list element is of type filing, use retrieved values from results as constructor arguments
-                        newFurn = new Filing(results.getString("ID"),results.getString("Type"),
-                        results.getString("Rails"),results.getString("Drawers"), results.getString("Cabinet"),
+                    
+                    //new list element is of type filing, 
+                    //use retrieved values from results as constructor arguments
+                    case "FILING":                         
+                        newFurn = new Filing(results.getString("ID"),
+                        results.getString("Type"),
+                        results.getString("Rails"),results.getString("Drawers"),
+                        results.getString("Cabinet"),
                         results.getInt("Price"),results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
                         break;
-                    case "LAMP": // new list element is of type lamp, use retrieved values from results as constructor arguments
-                        newFurn = new Lamp(results.getString("ID"),results.getString("Type"),
-                        results.getString("Base"),results.getString("Bulb"), results.getInt("Price"),
+                    //new list element is of type lamp, use retrieved values 
+                    //from results as constructor arguments
+                    case "LAMP": 
+                        newFurn = new Lamp(results.getString("ID"),
+                        results.getString("Type"),
+                        results.getString("Base"),results.getString("Bulb"),
+                        results.getInt("Price"),
                         results.getString("ManuID"));
 
                         matchingFurn.add(newFurn);
@@ -195,13 +221,15 @@ public class DataBaseManager{
             System.out.println(e.getMessage()); // print the Exception message
             e.printStackTrace(); // print the stack trace 
         }
-        return matchingFurn; // return the ArrayList of Furniture which match the request 
+        // return the ArrayList of Furniture which match the request
+        return matchingFurn;  
     }
 
     /**
-     * retrieveManufacturers() is a method to extract all of the manufacturer info 
-     * from the manufacturer table in INVENTORY and populate Manufacturer objects and store them
-     * into an array list.  Retrieves all of the manufacturers.
+     * retrieveManufacturers() is a method to extract all of the 
+     * manufacturer info from the manufacturer table in INVENTORY and populate 
+     * Manufacturer objects and store them into an array list.  
+     * Retrieves all of the manufacturers.
      * @return (ArrayList<Manufacturer>) an array list of manufacturers
      */
     public ArrayList<Manufacturer> retrieveManufacturers(){
@@ -236,22 +264,27 @@ public class DataBaseManager{
         }
         return manufactList;
     }
+
     /**
-     * retrieveSpecificManufacturer is a method that extracts manufacturer info for all
-     * manufacturers who produce the requested item
+     * retrieveSpecificManufacturer is a method that extracts manufacturer 
+     * info for all manufacturers who produce the requested item
      * @param category category of produced item from inventory database
      * @param type type of the produced item from inventory database
-     * @return (ArrayList<Manufacturer>) an array list of manufacturers which produce the specified item
+     * @return (ArrayList<Manufacturer>) an array list of manufacturers 
+     *         which produce the specified item
      */
-    public ArrayList<Manufacturer> retrieveSpecificManufacturer(String category, String type){
+    public ArrayList<Manufacturer> retrieveSpecificManufacturer(String category,
+                                   String type){
         // Make a container to hold manufacturers
         ArrayList<Manufacturer> manufactList = new ArrayList<Manufacturer>();
         try{
-            //query string for all unique manufacturer IDs for all items of category and type
-            String furnQuery = "SELECT DISTINCT ManuID FROM " +  category.toUpperCase() +
+            //query string for all unique manufacturer IDs 
+            // for all items of category and type
+            String furnQuery = "SELECT DISTINCT ManuID FROM " +
+                                  category.toUpperCase() +
                                 " WHERE Type = '" + type.toUpperCase() + "'";
             // create statement to query DB
-            Statement myStmt = dbConnect.createStatement();///** */
+            Statement myStmt = dbConnect.createStatement();
             //execute query and store results
             results = myStmt.executeQuery(furnQuery);
             // if there were no matching manufacturers return the empty list
@@ -263,8 +296,10 @@ public class DataBaseManager{
             while (results.next()){
                 uniqueID.add(results.getString("ManuID"));
             }
-            //new query to retrieve all manufacturer info for previously retrieved ManuIDs
-            StringBuilder manuQuery = new StringBuilder("SELECT * FROM MANUFACTURER WHERE ManuID IN (");
+            //new query to retrieve all manufacturer info for 
+            // previously retrieved ManuIDs
+            StringBuilder manuQuery =
+            new StringBuilder("SELECT * FROM MANUFACTURER WHERE ManuID IN (");
             //Add each ManuID from storage to string
             for(String temp:uniqueID){
                 manuQuery.append("'" + temp + "',");
@@ -298,21 +333,27 @@ public class DataBaseManager{
      * Method deleteItems, deletes all items from the table specified that have 
      * IDs matching objects in the Bought Items argument
      * @param category table to delete from
-     * @param BoughtItems list of objects to delete from the database according to ID
+     * @param BoughtItems list of objects to delete from the database 
+     *                    according to ID
      */
     public void deleteItems(String table, ArrayList<Furniture> BoughtItems){
         try{
-            //New query string to delete all items in list from the specified table
-            // need to push all table names to upper case for linux/unix installs of mysql
+            //New query string to delete all items in list from the 
+            // specified table need to push all table names to upper case for 
+            // linux/unix installs of mysql
             // shouldn't affect the run on windows or macOS 
-            StringBuilder query = new StringBuilder("DELETE FROM " + table.toUpperCase() + " WHERE ID IN (");
+            StringBuilder query = new StringBuilder("DELETE FROM " + 
+            table.toUpperCase() + " WHERE ID IN (");
             for(Furniture temp : BoughtItems){
                 query.append("'" + temp.getID() + "',");
             }
             query.setLength(query.length()-1);// why is this being set?
-            query.append(")"); // close the query statement " where id in ( id1, id2 ... ) ""
-            // create a prepared statement with the created query string and execute the update
-            PreparedStatement myStmt = dbConnect.prepareStatement(query.toString());
+            //close the query statement " where id in ( id1, id2 ... ) "
+            query.append(")"); 
+            //create a prepared statement with the created query string 
+            //and execute the update
+            PreparedStatement myStmt =
+            dbConnect.prepareStatement(query.toString());
             myStmt.executeUpdate(); // run the query / delete the items from db
             myStmt.close(); // Close statement
         }
@@ -322,9 +363,7 @@ public class DataBaseManager{
         }
     }
 
-
-
-//////////////////////////////////////////////////////////////////////////////
+//** /////////////////////////////////////////////////////////////////////////
     /**
      * main method for preliminary object and method testing
      */
@@ -349,7 +388,8 @@ public class DataBaseManager{
         // make a pull of all matching furniture 
         myFurnMatch= myJDBC.selectMatchingFurniture("chair","Mesh");
         // grab all manufacturer's of mesh chairs
-        ArrayList<Manufacturer> meshManufactList = myJDBC.retrieveSpecificManufacturer("Filing","large");
+        ArrayList<Manufacturer> meshManufactList = 
+        myJDBC.retrieveSpecificManufacturer("Filing","large");
         //Manufacturer manu; // Manufacturer pointer
         // print out the manufacturer of mesh chairs
         for ( Manufacturer temp : meshManufactList){
@@ -358,8 +398,10 @@ public class DataBaseManager{
         System.out.println(myFurnMatch.size());
 
         // !!! DANGER !!! 
-        //Wouldn't recommend testing this unless you want to re-add/restore the database
-        //ArrayList<Furniture> meshChairs = myJDBC.selectMatchingFurniture("chair","mesh");
+        //Wouldn't recommend testing this unless you want to 
+        //re-add/restore the database
+        //ArrayList<Furniture> meshChairs =
+        //           myJDBC.selectMatchingFurniture("chair","mesh");
         //myJDBC.deleteItems("chair", meshChairs);
         // !!! DANGER  !!!
 
@@ -373,5 +415,4 @@ public class DataBaseManager{
 
 }// closing brace for class DataBaseManager
 
-
-////////////////////////// END OF FILE /////////////////////////////////////////
+//** ////////////////// END OF FILE /////////////////////////////////////////
