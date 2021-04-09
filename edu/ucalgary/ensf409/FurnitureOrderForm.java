@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////
+//** ////////////////////////////////////////////////////////////
 // Title: FurnitureOrderForm.java
 // Author: Ron Rodriguez
 // Creation Date: March 27, 2021
@@ -6,10 +6,11 @@
 // Revision Date: March 30, 2021
 //
 // Team: ENSF409 Group 48
-// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, Zorondras Rodriguez
+// Group Members: Jade Meggitt, Mathew Pelletier, Quinn Ledingham, 
+//                Zorondras Rodriguez
 //
 // Description: A class containing a Furniture Order Form 
-/////////////////////////////////////////////////////////////////
+//** ///////////////////////////////////////////////////////////////
 package edu.ucalgary.ensf409;
 
 import java.util.ArrayList;
@@ -21,18 +22,18 @@ import java.util.ArrayList;
  */
 
 /**
- * @author    Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
- */
-/**
- * @author    Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*@author Jade Meggitt <a href="mailto:jade.meggitt@ucalgary.ca">jade.meggittt@ucalgary.ca</a>
 */
 /**
- * @author    Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
+*@author Mathew Pelletier <a href="mailto:mwpellet@ucalgary.ca">mwpellet@ucalgary.ca</a>
+*/
+/**
+ *@author Quinn Ledingham <a href="mailto:quinn.ledingham@ucalgary.ca">quinn.ledingham@ucalgary.ca</a>
  */
 
  public class FurnitureOrderForm{
 
-///////////////////////////// ATTRIBUTES ///////////////////////////////
+//** /////////////////////////// ATTRIBUTES ///////////////////////////////
 
 /// NEEDS ACCESS TO THE DATABASE TO WORK
 // a DataBaseManager object 
@@ -67,7 +68,7 @@ private int cost;
 // why use an array , when we can use an array list??
 private ArrayList<Manufacturer> manufacturers;
 
-/////////////////////////// CONSTRUCTORS ///////////////////////////////
+//** //////////////////////// CONSTRUCTORS ///////////////////////////////
 
 /**
  * 
@@ -86,18 +87,23 @@ public FurnitureOrderForm(FurnitureOrder clientRequest){
 
 }
 
-//////////////////////////// ACCESSORS /////////////////////////////////
+//** ///////////////////////// ACCESSORS /////////////////////////////////
 
 public void getInformationFromDataBase(){
     // RON: might need more, where do we get cost and the manufacturers from?
     // RON: here is the answer to your question:
-    this.dBM = new DataBaseManager(this.dbURL.toUpperCase(),this.username,this.password);
+    this.dBM = 
+    new DataBaseManager(this.dbURL.toUpperCase(),this.username,this.password);
     // open a connection
     this.dBM.initializeConnection();
     // declare storage arrayList for the candidate furniture 
-    this.candidateFurniture=dBM.selectMatchingFurniture(clientRequest.getCategory(),clientRequest.getType());
+    this.candidateFurniture=
+    dBM.selectMatchingFurniture(clientRequest.getCategory(),
+                                clientRequest.getType());
     // grab the manufacturers while you're at it
-    this.manufacturers=dBM.retrieveSpecificManufacturer(clientRequest.getCategory(), clientRequest.getType());
+    this.manufacturers=
+    dBM.retrieveSpecificManufacturer(clientRequest.getCategory(),
+                                     clientRequest.getType());
     // close the connection
     this.dBM.closeDBConnection();
  return;
@@ -114,7 +120,8 @@ public FurnitureOrder getClientRequest(){
 
 /**
  * Getter for the furnitureList of final requests that meet the lowest cost
- * @return (ArrayList<Furniture>) the furniture list of solutions to the lowest cost combination 
+ * @return (ArrayList<Furniture>) the furniture list of solutions 
+ *         to the lowest cost combination 
  */
 public ArrayList<Furniture> getFurnitureList(){
     // better to return a copy
@@ -123,7 +130,8 @@ public ArrayList<Furniture> getFurnitureList(){
 
 /**
  * Getter for the candidate Furniture list
- * @return all furniture that meet the category and type specifications in clientRequest form 
+ * @return all furniture that meet the category and type 
+ *         specifications in clientRequest form 
  */
 public ArrayList<Furniture> getCandidateFurniture(){
     // better to return a copy
@@ -140,7 +148,8 @@ public int getCost(){
 
 /**
  * Getter for the manufacturer list
- * @return (ArrayList<Manufacturer>) the list of manufacturers of category and type office products
+ * @return (ArrayList<Manufacturer>) the list of manufacturers of category 
+ *          and type office products
  */
 //public Manufacturer[] getManufacturers(){    
 public ArrayList<Manufacturer> getManufacturers(){
@@ -148,15 +157,16 @@ public ArrayList<Manufacturer> getManufacturers(){
     return this.manufacturers;
 }
 
-///////////////////////////// MUTATORS ////////////////////////////////
+//** /////////////////////////// MUTATORS ////////////////////////////////
 
 //generates the required furniture
 /**
- * generateFurnitureList() is a method to compute the lowest cost combination of
- * furniture that meets the specified category,type, and quantity requested in the
- * userRequest form
+ *generateFurnitureList() is a method to compute the lowest cost combination of
+ *furniture that meets the specified category,type,and quantity requested in the
+ *userRequest form
  * @return (void) modifies the pointer this.furnitureList to point 
- *          to a new ArrayList<Furniture> with the correct combination items of lowest cost
+ *          to a new ArrayList<Furniture> with the correct combination 
+ *          items of lowest cost
  */
 public void generateFurnitureList(){
 // you need to do this first 
@@ -177,7 +187,6 @@ this.cost=this.computer.calculateCheapestSet(clientRequest.getQuantity());
 return;
 }
 
-////////////////////////////// OTHER ///////////////////////////////////
-
+//** //////////////////////////// OTHER ///////////////////////////////////
 
 }// closing brace of class FurnitureOrderForm 
