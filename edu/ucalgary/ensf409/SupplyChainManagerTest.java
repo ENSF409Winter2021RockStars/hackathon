@@ -499,6 +499,7 @@ private static final String PREFIX = "Error: "; // a prefix for error messages
         ArrayList<Furniture> testRemFurn=
         testDBM.selectMatchingFurniture("chair","Mesh");
 
+        // Adds back the deleted chairs restoring the database 
         addChairs(testFurnMatch);
 
         testDBM.closeDBConnection();
@@ -1061,13 +1062,16 @@ private static final String PREFIX = "Error: "; // a prefix for error messages
   return;
 }
 
+/** Add back the deleted chairs back into the database 
+ * 
+ */
 private void addChairs(ArrayList<Furniture> FurnList){
     try{  
         Connection dbConnect =
         DriverManager.getConnection("jdbc:mysql://localhost/INVENTORY",
                                         "scm","ensf409");
         StringBuilder query =
-        new StringBuilder("INSERT INTO chair VALUES (?,?,?,?,?,?,?,?)");
+        new StringBuilder("INSERT INTO CHAIR VALUES (?,?,?,?,?,?,?,?)");
         PreparedStatement prepStmt=dbConnect.prepareStatement(query.toString());  
         for(Furniture furn : FurnList){
             String[] yesNo = booleanToYN(furn.getBoolArray());
