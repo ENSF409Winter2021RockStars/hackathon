@@ -1,14 +1,14 @@
 Furniture Order Form
 
-Faculty: 
-Contact: 
-Date: 
+Faculty: Software Engineering
+Contact: Oscar Amy Lime
+Date: April 10, 2021
 
-Original Request: Adjustable Desk, 2
+Original Request: Mesh Chair, 1
 
 Items Ordered
-ID: D2746
-ID: D4475
-ID: D7373
+ID: C6748
+ID: C8138
+ID: C9890
 
-Total Price: $800
+Total Price: $200
