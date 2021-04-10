@@ -1,14 +1,16 @@
 Furniture Order Form
 
-Faculty: Software Engineering
-Contact: Oscar Amy Lime
-Date: April 10, 2021
+Faculty: Geomatics Engineering
+Contact: Ron Rodriguez
+Date: April 9, 2021
 
-Original Request: Mesh Chair, 1
+Original Request: Small Filing, 3
 
 Items Ordered
-ID: C6748
-ID: C8138
-ID: C9890
+ID: F001
+ID: F004
+ID: F005
+ID: F006
+ID: F013
 
-Total Price: $200
+Total Price: $300

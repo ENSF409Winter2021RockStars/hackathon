@@ -299,9 +299,9 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
     System.out.println();
 
     // quit as a response to any selection
-    if (userResponseStr.equals("q")){
-        this.playExitMessage();
-        System.exit(1); // early exit program
+    if (userResponseStr.equals("q")){// if q is given as input 
+        this.playExitMessage(); // play the exit message 
+        System.exit(1); // early exit / terminate the program
     }
 
 
@@ -640,9 +640,8 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
      * playExitMessage() plays the exit message
      */
     public void playExitMessage(){
-        System.out.println(); // make some space 
         System.out.println("Thanks for choosing Suppy Chain Manager"+
-                            "as your Inventory Selector!");
+                            " as your Inventory Selector!");
         System.out.println("See you next time! Bye...");
         return;
     }
@@ -747,7 +746,7 @@ public int getResponseAsInt(int lowerBound,int upperBound,String selectionStr){
 
         }
 
-
+        System.out.println(); // make some space
         SCM.playExitMessage();
 
         // close the scanner resource
