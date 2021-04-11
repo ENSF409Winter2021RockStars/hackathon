@@ -4,10 +4,11 @@ Faculty:
 Contact: 
 Date: 
 
-Original Request: Task Chair, 1
+Original Request: Traditional Desk, 2
 
 Items Ordered
-ID: C0914
-ID: C3405
+ID: D4231
+ID: D8675
+ID: D9352
 
-Total Price: $150
+Total Price: $200
